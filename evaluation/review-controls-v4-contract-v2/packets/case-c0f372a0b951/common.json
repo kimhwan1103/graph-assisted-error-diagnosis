@@ -1,0 +1,251 @@
+{
+  "archive_observations": {
+    "archive_sha256": "abb8239e4ce5287040ac3eb8b3b9719080b4270833ac3a754dc6ef883aaf339f",
+    "complete_paths": [
+      "readers/load-policy.js",
+      "Dockerfile",
+      ".dockerignore"
+    ],
+    "ignore_path": ".dockerignore",
+    "ignore_present": true,
+    "masked_paths": [],
+    "regular_files": [
+      ".dockerignore",
+      "Dockerfile",
+      "README.md",
+      "config/settlement-rules.json",
+      "fixtures/transactions.json",
+      "package.json",
+      "pipeline/aggregate.js",
+      "readers/load-labels.js",
+      "readers/load-policy.js",
+      "src/job.js"
+    ],
+    "root_directory": ".",
+    "special_files_skipped": false
+  },
+  "candidate_signals": [
+    {
+      "evidence_id": "EV000001",
+      "signal": "possible_failure; not a diagnosis"
+    }
+  ],
+  "context": {
+    "deployment_status": "failed",
+    "exit_code": 1,
+    "reported_stage": "runtime"
+  },
+  "input_limitations": [],
+  "logs": [
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 1,
+      "event_line": 1,
+      "id": "EV000001",
+      "log_id": "captured-1",
+      "sequence": 1,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "Error: ENOENT: no such file or directory, open '/app/config/settlement-rules.json'",
+      "timestamp": "2026-10-22T15:34:43.237728+00:00"
+    },
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 2,
+      "event_line": 1,
+      "id": "EV000002",
+      "log_id": "captured-2",
+      "sequence": 2,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "    at readFileSync (node:fs:440:20)",
+      "timestamp": "2026-10-22T15:34:43.237769+00:00"
+    },
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 3,
+      "event_line": 1,
+      "id": "EV000003",
+      "log_id": "captured-3",
+      "sequence": 3,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "    at loadPolicy (file:///app/readers/load-policy.js:4:21)",
+      "timestamp": "2026-10-22T15:34:43.237773+00:00"
+    },
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 4,
+      "event_line": 1,
+      "id": "EV000004",
+      "log_id": "captured-4",
+      "sequence": 4,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "    at file:///app/src/job.js:7:18",
+      "timestamp": "2026-10-22T15:34:43.237776+00:00"
+    },
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 5,
+      "event_line": 1,
+      "id": "EV000005",
+      "log_id": "captured-5",
+      "sequence": 5,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)",
+      "timestamp": "2026-10-22T15:34:43.237778+00:00"
+    },
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 6,
+      "event_line": 1,
+      "id": "EV000006",
+      "log_id": "captured-6",
+      "sequence": 6,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)",
+      "timestamp": "2026-10-22T15:34:43.237780+00:00"
+    },
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 7,
+      "event_line": 1,
+      "id": "EV000007",
+      "log_id": "captured-7",
+      "sequence": 7,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+      "timestamp": "2026-10-22T15:34:43.237783+00:00"
+    },
+    {
+      "chunk_id": "backend-0001",
+      "chunk_line": 8,
+      "event_line": 1,
+      "id": "EV000008",
+      "log_id": "observation-d55e08582807",
+      "sequence": 8,
+      "source_id": "producer-6fe7ba0b8614",
+      "source_line": null,
+      "stage": "runtime",
+      "stream": "stderr",
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-3b91eddd80c5\",\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"example_only\",\"supply_kind\":\"external_volume\",\"target\":\"/app/config/settlement-rules.json\"}",
+      "timestamp": "2026-10-22T15:34:43.237783+00:00"
+    }
+  ],
+  "selection_version": "full-input.v1",
+  "source_evidence": [
+    {
+      "id": "SC000001",
+      "line": 1,
+      "path": "readers/load-policy.js",
+      "text": "import { readFileSync } from 'node:fs';"
+    },
+    {
+      "id": "SC000002",
+      "line": 2,
+      "path": "readers/load-policy.js",
+      "text": ""
+    },
+    {
+      "id": "SC000003",
+      "line": 3,
+      "path": "readers/load-policy.js",
+      "text": "export function loadPolicy() {"
+    },
+    {
+      "id": "SC000004",
+      "line": 4,
+      "path": "readers/load-policy.js",
+      "text": "  return JSON.parse(readFileSync('/app/config/settlement-rules.json', 'utf8'));"
+    },
+    {
+      "id": "SC000005",
+      "line": 5,
+      "path": "readers/load-policy.js",
+      "text": "}"
+    },
+    {
+      "id": "SC000006",
+      "line": 1,
+      "path": "Dockerfile",
+      "text": "FROM node:22-alpine"
+    },
+    {
+      "id": "SC000007",
+      "line": 2,
+      "path": "Dockerfile",
+      "text": "WORKDIR /app"
+    },
+    {
+      "id": "SC000008",
+      "line": 3,
+      "path": "Dockerfile",
+      "text": "COPY --chown=node:node package.json ./package.json"
+    },
+    {
+      "id": "SC000009",
+      "line": 4,
+      "path": "Dockerfile",
+      "text": "COPY --chown=node:node src ./src"
+    },
+    {
+      "id": "SC000010",
+      "line": 5,
+      "path": "Dockerfile",
+      "text": "COPY --chown=node:node readers ./readers"
+    },
+    {
+      "id": "SC000011",
+      "line": 6,
+      "path": "Dockerfile",
+      "text": "COPY --chown=node:node pipeline ./pipeline"
+    },
+    {
+      "id": "SC000012",
+      "line": 7,
+      "path": "Dockerfile",
+      "text": "COPY --chown=node:node fixtures ./fixtures"
+    },
+    {
+      "id": "SC000013",
+      "line": 8,
+      "path": "Dockerfile",
+      "text": "USER node"
+    },
+    {
+      "id": "SC000014",
+      "line": 9,
+      "path": "Dockerfile",
+      "text": "CMD [\"node\", \"src/job.js\"]"
+    },
+    {
+      "id": "SC000015",
+      "line": 1,
+      "path": ".dockerignore",
+      "text": ""
+    }
+  ],
+  "source_limitations": [
+    "readers/load-policy.js: 요청 끝 줄을 실제 파일 마지막 줄(5)로 제한했습니다.",
+    "Dockerfile: 요청 끝 줄을 실제 파일 마지막 줄(9)로 제한했습니다.",
+    ".dockerignore: 요청 끝 줄을 실제 파일 마지막 줄(1)로 제한했습니다."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "version": "iris-study.v4",
+  "role": "development",
+  "dataset": "evaluation/cross-program-v4/dataset.json",
+  "references": "evaluation/cross-program-v4/references.json",
+  "arms": [
+    "adaptive",
+    "graph_compact"
+  ],
+  "graph_timeout_seconds": 0.5,
+  "statistics": {
+    "quality_noninferiority_margin": 0.05,
+    "minimum_clusters_for_ni": 20,
+    "protocol_registration": null
+  },
+  "backend": {
+    "model_id": "gemma-4-31b-it",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta",
+    "temperature": 0.0,
+    "max_tokens": 4096,
+    "timeout_seconds": 180.0,
+    "seed": 42,
+    "repeats": 3,
+    "warmups": 0,
+    "max_calls": 162,
+    "max_evidence_bytes": 98304,
+    "max_source_bytes": 8192,
+    "max_prompt_bytes": 131072,
+    "enable_thinking": false,
+    "request_interval_seconds": 60.0
+  }
+}

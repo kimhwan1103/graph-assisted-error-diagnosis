@@ -1,0 +1,13 @@
+﻿arm,field,scheduled,match,mismatch,unavailable
+B_eq,target,36,36,0,0
+B_eq,source_path,36,36,0,0
+B_eq,source_line,36,36,0,0
+B_eq,repository_path,36,36,0,0
+B_eq,insert_after_line,36,36,0,0
+B_eq,plan,36,36,0,0
+G_eq,target,36,35,0,1
+G_eq,source_path,36,35,0,1
+G_eq,source_line,36,35,0,1
+G_eq,repository_path,36,35,0,1
+G_eq,insert_after_line,36,18,17,1
+G_eq,plan,36,35,0,1

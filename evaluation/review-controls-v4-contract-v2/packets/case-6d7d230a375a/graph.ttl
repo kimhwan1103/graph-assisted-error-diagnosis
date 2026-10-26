@@ -1,0 +1,113 @@
+@prefix ns1: <urn:iris:compact:v1:> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure/candidate/packaging> a ns1:PackagingCandidate ;
+    ns1:input <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:copy>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:entry>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure/candidate>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:ignore> ;
+    ns1:repoPath "views/index.html" ;
+    ns1:rule "docker-copy-omission.v1" ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000001> a ns1:Evidence ;
+    ns1:id "EV000001" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000003> a ns1:Evidence ;
+    ns1:id "EV000003" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000004> a ns1:Evidence ;
+    ns1:id "SC000004" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000006> a ns1:Evidence ;
+    ns1:id "SC000006" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000007> a ns1:Evidence ;
+    ns1:id "SC000007" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000008> a ns1:Evidence ;
+    ns1:id "SC000008" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000009> a ns1:Evidence ;
+    ns1:id "SC000009" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000010> a ns1:Evidence ;
+    ns1:id "SC000010" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000011> a ns1:Evidence ;
+    ns1:id "SC000011" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000012> a ns1:Evidence ;
+    ns1:id "SC000012" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000013> a ns1:Evidence ;
+    ns1:id "SC000013" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000014> a ns1:Evidence ;
+    ns1:id "SC000014" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:copy> a ns1:ArchiveFact,
+        ns1:CopyCoverage ;
+    ns1:archiveHash "664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba" ;
+    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000006>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000007>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000008>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000009>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000010>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000011>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000012>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000013> ;
+    ns1:omitted true ;
+    ns1:repoPath "views/index.html" ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:entry> a ns1:ArchiveFact,
+        ns1:RepositoryEntry ;
+    ns1:archiveHash "664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba" ;
+    ns1:regular true ;
+    ns1:repoPath "views/index.html" ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure> a ns1:Fact,
+        ns1:ReadFailure ;
+    ns1:code "ENOENT" ;
+    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000001> ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure/candidate> a ns1:Candidate ;
+    ns1:input <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:frame>,
+        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:read> ;
+    ns1:rule "observed-file-read.v1" ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:frame> a ns1:Fact,
+        ns1:StackFrame ;
+    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000003> ;
+    ns1:line 4 ;
+    ns1:path "view/load-template.js" ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:ignore> a ns1:ArchiveFact,
+        ns1:IgnorePolicy ;
+    ns1:allows true ;
+    ns1:archiveHash "664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba" ;
+    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000014> ;
+    ns1:repoPath "views/index.html" ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+
+<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:read> a ns1:Fact,
+        ns1:SourceRead ;
+    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000004> ;
+    ns1:line 4 ;
+    ns1:path "view/load-template.js" ;
+    ns1:scope "9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47" ;
+    ns1:target "/app/views/index.html" .
+

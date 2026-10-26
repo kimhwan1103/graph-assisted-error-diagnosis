@@ -1,0 +1,16 @@
+{
+  "model_id": "gemma-4-31b-it",
+  "base_url": "https://generativelanguage.googleapis.com/v1beta",
+  "temperature": 0.0,
+  "max_tokens": 4096,
+  "timeout_seconds": 300.0,
+  "seed": 42,
+  "repeats": 1,
+  "warmups": 0,
+  "max_calls": 12,
+  "max_evidence_bytes": 16384,
+  "max_source_bytes": 8192,
+  "max_prompt_bytes": 98304,
+  "enable_thinking": false,
+  "request_interval_seconds": 15.0
+}

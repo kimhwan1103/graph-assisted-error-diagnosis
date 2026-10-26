@@ -1,0 +1,422 @@
+[
+  {
+    "case_id": "case-26c50a5f9588",
+    "captured_base_case": "shipping-copy-missing",
+    "captured_payload_sha256": "2de21c1a625aa4b398ef45c48edcb1a8d69016dcaa1d93c118ec7871c0a0f9be",
+    "captured_log_sha256": "cd2d832a28361739d01a0d11ee52f6cfbdc64922d09fe26ca9ce7c865fed006f",
+    "original_identifiers": {
+      "projectId": "shipping-cli",
+      "serviceId": "shipping-cli",
+      "deploymentId": "shipping-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing": "producer-6dab7c12cf4f"
+    },
+    "authored_context_event": {
+      "id": "observation-043cc1d0442d",
+      "timestamp": "2026-10-22T15:34:29.163970720Z",
+      "sourceId": "producer-6dab7c12cf4f",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-ff5c289e029f\",\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/assets/tariffs.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/assets/tariffs.json",
+      "supply_kind": "image_static",
+      "repository_file_role": "approved_static_asset",
+      "provided_build_id": "artifact-ff5c289e029f",
+      "observed_build_id": "artifact-ff5c289e029f"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-d22f5648fa67",
+    "captured_base_case": "shipping-copy-missing",
+    "captured_payload_sha256": "2de21c1a625aa4b398ef45c48edcb1a8d69016dcaa1d93c118ec7871c0a0f9be",
+    "captured_log_sha256": "cd2d832a28361739d01a0d11ee52f6cfbdc64922d09fe26ca9ce7c865fed006f",
+    "original_identifiers": {
+      "projectId": "shipping-cli",
+      "serviceId": "shipping-cli",
+      "deploymentId": "shipping-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing": "producer-6dab7c12cf4f"
+    },
+    "authored_context_event": {
+      "id": "observation-7ee4a8fd5c3e",
+      "timestamp": "2026-10-22T15:34:29.163970720Z",
+      "sourceId": "producer-6dab7c12cf4f",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":null,\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"unconfirmed\",\"supply_kind\":\"unknown\",\"target\":\"/app/assets/tariffs.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/assets/tariffs.json",
+      "supply_kind": "unknown",
+      "repository_file_role": "unconfirmed",
+      "provided_build_id": "artifact-ff5c289e029f",
+      "observed_build_id": null
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-eb28711105b6",
+    "captured_base_case": "shipping-copy-missing",
+    "captured_payload_sha256": "2de21c1a625aa4b398ef45c48edcb1a8d69016dcaa1d93c118ec7871c0a0f9be",
+    "captured_log_sha256": "cd2d832a28361739d01a0d11ee52f6cfbdc64922d09fe26ca9ce7c865fed006f",
+    "original_identifiers": {
+      "projectId": "shipping-cli",
+      "serviceId": "shipping-cli",
+      "deploymentId": "shipping-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing": "producer-6dab7c12cf4f"
+    },
+    "authored_context_event": {
+      "id": "observation-540515cf97df",
+      "timestamp": "2026-10-22T15:34:29.163970720Z",
+      "sourceId": "producer-6dab7c12cf4f",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-ff5c289e029f\",\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"example_only\",\"supply_kind\":\"external_volume\",\"target\":\"/app/assets/tariffs.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/assets/tariffs.json",
+      "supply_kind": "external_volume",
+      "repository_file_role": "example_only",
+      "provided_build_id": "artifact-ff5c289e029f",
+      "observed_build_id": "artifact-ff5c289e029f"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-f47b9c941cc8",
+    "captured_base_case": "shipping-copy-missing",
+    "captured_payload_sha256": "2de21c1a625aa4b398ef45c48edcb1a8d69016dcaa1d93c118ec7871c0a0f9be",
+    "captured_log_sha256": "cd2d832a28361739d01a0d11ee52f6cfbdc64922d09fe26ca9ce7c865fed006f",
+    "original_identifiers": {
+      "projectId": "shipping-cli",
+      "serviceId": "shipping-cli",
+      "deploymentId": "shipping-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-shipping-copy-missing": "producer-6dab7c12cf4f"
+    },
+    "authored_context_event": {
+      "id": "observation-3e8a6f0b546e",
+      "timestamp": "2026-10-22T15:34:29.163970720Z",
+      "sourceId": "producer-6dab7c12cf4f",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-1f2c855b7936\",\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/assets/tariffs.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/assets/tariffs.json",
+      "supply_kind": "image_static",
+      "repository_file_role": "approved_static_asset",
+      "provided_build_id": "artifact-ff5c289e029f",
+      "observed_build_id": "artifact-1f2c855b7936"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-6d7d230a375a",
+    "captured_base_case": "http-copy-missing",
+    "captured_payload_sha256": "288456553023d633ee16d1f1f47c66640d1e3342bafb16071694c9aa0bb1af69",
+    "captured_log_sha256": "953349c090a9604d9d3c942c0fb5edc1ad33f1a01c62b3e5fbe0e762914bb431",
+    "original_identifiers": {
+      "projectId": "template-http",
+      "serviceId": "template-http",
+      "deploymentId": "http-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing": "producer-f9b3b5a0ce1c"
+    },
+    "authored_context_event": {
+      "id": "observation-b657c68589a2",
+      "timestamp": "2026-10-22T15:34:36.009105473Z",
+      "sourceId": "producer-f9b3b5a0ce1c",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-be69ea2410d7\",\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/views/index.html\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/views/index.html",
+      "supply_kind": "image_static",
+      "repository_file_role": "approved_static_asset",
+      "provided_build_id": "artifact-be69ea2410d7",
+      "observed_build_id": "artifact-be69ea2410d7"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-7dfe4c50c41e",
+    "captured_base_case": "http-copy-missing",
+    "captured_payload_sha256": "288456553023d633ee16d1f1f47c66640d1e3342bafb16071694c9aa0bb1af69",
+    "captured_log_sha256": "953349c090a9604d9d3c942c0fb5edc1ad33f1a01c62b3e5fbe0e762914bb431",
+    "original_identifiers": {
+      "projectId": "template-http",
+      "serviceId": "template-http",
+      "deploymentId": "http-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing": "producer-f9b3b5a0ce1c"
+    },
+    "authored_context_event": {
+      "id": "observation-45a72aefb169",
+      "timestamp": "2026-10-22T15:34:36.009105473Z",
+      "sourceId": "producer-f9b3b5a0ce1c",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":null,\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"unconfirmed\",\"supply_kind\":\"unknown\",\"target\":\"/app/views/index.html\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/views/index.html",
+      "supply_kind": "unknown",
+      "repository_file_role": "unconfirmed",
+      "provided_build_id": "artifact-be69ea2410d7",
+      "observed_build_id": null
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-0f218dab4051",
+    "captured_base_case": "http-copy-missing",
+    "captured_payload_sha256": "288456553023d633ee16d1f1f47c66640d1e3342bafb16071694c9aa0bb1af69",
+    "captured_log_sha256": "953349c090a9604d9d3c942c0fb5edc1ad33f1a01c62b3e5fbe0e762914bb431",
+    "original_identifiers": {
+      "projectId": "template-http",
+      "serviceId": "template-http",
+      "deploymentId": "http-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing": "producer-f9b3b5a0ce1c"
+    },
+    "authored_context_event": {
+      "id": "observation-feaada9caf66",
+      "timestamp": "2026-10-22T15:34:36.009105473Z",
+      "sourceId": "producer-f9b3b5a0ce1c",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-be69ea2410d7\",\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"example_only\",\"supply_kind\":\"external_volume\",\"target\":\"/app/views/index.html\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/views/index.html",
+      "supply_kind": "external_volume",
+      "repository_file_role": "example_only",
+      "provided_build_id": "artifact-be69ea2410d7",
+      "observed_build_id": "artifact-be69ea2410d7"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-354d4ba3c109",
+    "captured_base_case": "http-copy-missing",
+    "captured_payload_sha256": "288456553023d633ee16d1f1f47c66640d1e3342bafb16071694c9aa0bb1af69",
+    "captured_log_sha256": "953349c090a9604d9d3c942c0fb5edc1ad33f1a01c62b3e5fbe0e762914bb431",
+    "original_identifiers": {
+      "projectId": "template-http",
+      "serviceId": "template-http",
+      "deploymentId": "http-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-http-copy-missing": "producer-f9b3b5a0ce1c"
+    },
+    "authored_context_event": {
+      "id": "observation-e12b482c2d8d",
+      "timestamp": "2026-10-22T15:34:36.009105473Z",
+      "sourceId": "producer-f9b3b5a0ce1c",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-956ae3093c13\",\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/views/index.html\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/views/index.html",
+      "supply_kind": "image_static",
+      "repository_file_role": "approved_static_asset",
+      "provided_build_id": "artifact-be69ea2410d7",
+      "observed_build_id": "artifact-956ae3093c13"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-ac97140f1910",
+    "captured_base_case": "batch-copy-missing",
+    "captured_payload_sha256": "74a3d8e01dfa14e63ee7bd6764aa1c07aca95ca2e9f014d9726f88f4034abef0",
+    "captured_log_sha256": "bf151f7f57c0d28ddea67c40e8051115c07d47fd0a4f96d829af1525cbb7b0ad",
+    "original_identifiers": {
+      "projectId": "settlement-batch",
+      "serviceId": "settlement-batch",
+      "deploymentId": "batch-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing": "producer-6fe7ba0b8614"
+    },
+    "authored_context_event": {
+      "id": "observation-5ee282951603",
+      "timestamp": "2026-10-22T15:34:43.237783306Z",
+      "sourceId": "producer-6fe7ba0b8614",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-3b91eddd80c5\",\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/config/settlement-rules.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/config/settlement-rules.json",
+      "supply_kind": "image_static",
+      "repository_file_role": "approved_static_asset",
+      "provided_build_id": "artifact-3b91eddd80c5",
+      "observed_build_id": "artifact-3b91eddd80c5"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-076460f66785",
+    "captured_base_case": "batch-copy-missing",
+    "captured_payload_sha256": "74a3d8e01dfa14e63ee7bd6764aa1c07aca95ca2e9f014d9726f88f4034abef0",
+    "captured_log_sha256": "bf151f7f57c0d28ddea67c40e8051115c07d47fd0a4f96d829af1525cbb7b0ad",
+    "original_identifiers": {
+      "projectId": "settlement-batch",
+      "serviceId": "settlement-batch",
+      "deploymentId": "batch-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing": "producer-6fe7ba0b8614"
+    },
+    "authored_context_event": {
+      "id": "observation-744d8907851c",
+      "timestamp": "2026-10-22T15:34:43.237783306Z",
+      "sourceId": "producer-6fe7ba0b8614",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":null,\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"unconfirmed\",\"supply_kind\":\"unknown\",\"target\":\"/app/config/settlement-rules.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/config/settlement-rules.json",
+      "supply_kind": "unknown",
+      "repository_file_role": "unconfirmed",
+      "provided_build_id": "artifact-3b91eddd80c5",
+      "observed_build_id": null
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-c0f372a0b951",
+    "captured_base_case": "batch-copy-missing",
+    "captured_payload_sha256": "74a3d8e01dfa14e63ee7bd6764aa1c07aca95ca2e9f014d9726f88f4034abef0",
+    "captured_log_sha256": "bf151f7f57c0d28ddea67c40e8051115c07d47fd0a4f96d829af1525cbb7b0ad",
+    "original_identifiers": {
+      "projectId": "settlement-batch",
+      "serviceId": "settlement-batch",
+      "deploymentId": "batch-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing": "producer-6fe7ba0b8614"
+    },
+    "authored_context_event": {
+      "id": "observation-d55e08582807",
+      "timestamp": "2026-10-22T15:34:43.237783306Z",
+      "sourceId": "producer-6fe7ba0b8614",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-3b91eddd80c5\",\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"example_only\",\"supply_kind\":\"external_volume\",\"target\":\"/app/config/settlement-rules.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/config/settlement-rules.json",
+      "supply_kind": "external_volume",
+      "repository_file_role": "example_only",
+      "provided_build_id": "artifact-3b91eddd80c5",
+      "observed_build_id": "artifact-3b91eddd80c5"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  },
+  {
+    "case_id": "case-428ddd177b62",
+    "captured_base_case": "batch-copy-missing",
+    "captured_payload_sha256": "74a3d8e01dfa14e63ee7bd6764aa1c07aca95ca2e9f014d9726f88f4034abef0",
+    "captured_log_sha256": "bf151f7f57c0d28ddea67c40e8051115c07d47fd0a4f96d829af1525cbb7b0ad",
+    "original_identifiers": {
+      "projectId": "settlement-batch",
+      "serviceId": "settlement-batch",
+      "deploymentId": "batch-copy-missing",
+      "attemptId": "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing"
+    },
+    "source_identifier_pseudonyms": {
+      "iris-remed-8a0a5ddeab334e9b-capture-batch-copy-missing": "producer-6fe7ba0b8614"
+    },
+    "authored_context_event": {
+      "id": "observation-287620075c31",
+      "timestamp": "2026-10-22T15:34:43.237783306Z",
+      "sourceId": "producer-6fe7ba0b8614",
+      "stage": "runtime",
+      "stream": "stderr",
+      "sequence": 8,
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-c66986cca612\",\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/config/settlement-rules.json\"}"
+    },
+    "context_fields": {
+      "event": "deployment_observation",
+      "target": "/app/config/settlement-rules.json",
+      "supply_kind": "image_static",
+      "repository_file_role": "approved_static_asset",
+      "provided_build_id": "artifact-3b91eddd80c5",
+      "observed_build_id": "artifact-c66986cca612"
+    },
+    "origin": "captured_base + authored_controlled_context; context is NOT Docker measurement",
+    "timestamp_policy": "same supplied observation boundary as last captured event; authored sequence after capture",
+    "capture_text_status_and_timestamps_unchanged": true
+  }
+]

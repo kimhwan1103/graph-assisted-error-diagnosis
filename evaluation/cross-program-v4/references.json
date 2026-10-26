@@ -1,0 +1,1011 @@
+{
+  "version": "study-v4-reference.v1",
+  "provenance": "Author-created additional development evaluation; no human approval",
+  "cases": {
+    "shipping-copy-missing": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "d09cf0008a4d62d0df9f4cc252687008a512a46b05939faa92f9540ade043712",
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "expected_anchor": {
+        "path": "lib/load-tariffs.js",
+        "line": 4,
+        "target": "/app/assets/tariffs.json"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "lib/load-tariffs.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "lib/load-tariffs.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "RepositoryEntry",
+            "type",
+            "RepositoryEntry"
+          ],
+          [
+            "RepositoryEntry",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "RepositoryEntry",
+            "repoPath",
+            "assets/tariffs.json"
+          ],
+          [
+            "RepositoryEntry",
+            "regular",
+            "true"
+          ],
+          [
+            "CopyCoverage",
+            "type",
+            "CopyCoverage"
+          ],
+          [
+            "CopyCoverage",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "CopyCoverage",
+            "repoPath",
+            "assets/tariffs.json"
+          ],
+          [
+            "CopyCoverage",
+            "omitted",
+            "true"
+          ],
+          [
+            "IgnorePolicy",
+            "type",
+            "IgnorePolicy"
+          ],
+          [
+            "IgnorePolicy",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "IgnorePolicy",
+            "repoPath",
+            "assets/tariffs.json"
+          ],
+          [
+            "IgnorePolicy",
+            "allows",
+            "true"
+          ]
+        ],
+        "relations": null,
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "PackagingCandidate",
+            "rule",
+            "docker-copy-omission.v1"
+          ],
+          [
+            "PackagingCandidate",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "PackagingCandidate",
+            "repoPath",
+            "assets/tariffs.json"
+          ]
+        ]
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "shipping-copy-missing",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "shipping-optional-recovered": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "91976673cc679851450c44720380a08e8ca1e38889600c9e231806a30edd7b2d",
+      "expected_route": "general",
+      "acceptable_statuses": [
+        "no_failure_evidence"
+      ],
+      "expected_anchor": {
+        "path": "lib/load-labels.js",
+        "line": 4,
+        "target": "/app/config/local-labels.json"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/config/local-labels.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "lib/load-labels.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/config/local-labels.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "lib/load-labels.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/config/local-labels.json"
+          ]
+        ],
+        "relations": null,
+        "candidates": null
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "shipping-optional-recovered",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "shipping-alias-copy-missing": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "c3c0cc6370cfa6f79033449c6c8be6d6bfaa7e44378ca872f61714fc9c040872",
+      "expected_route": "general",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "expected_anchor": {
+        "path": "lib/load-tariffs.js",
+        "line": 4,
+        "target": "/app/assets/tariffs.json"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "lib/load-tariffs.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/assets/tariffs.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "lib/load-tariffs.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/assets/tariffs.json"
+          ]
+        ],
+        "relations": null,
+        "candidates": null
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "shipping-alias-copy-missing",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "http-copy-missing": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "bd0561bd2d2807175eb5cba6b642b38ad316f6d81afd63afc6d3d1b40f82adf1",
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "expected_anchor": {
+        "path": "view/load-template.js",
+        "line": 4,
+        "target": "/app/views/index.html"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "view/load-template.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "view/load-template.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "RepositoryEntry",
+            "type",
+            "RepositoryEntry"
+          ],
+          [
+            "RepositoryEntry",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "RepositoryEntry",
+            "repoPath",
+            "views/index.html"
+          ],
+          [
+            "RepositoryEntry",
+            "regular",
+            "true"
+          ],
+          [
+            "CopyCoverage",
+            "type",
+            "CopyCoverage"
+          ],
+          [
+            "CopyCoverage",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "CopyCoverage",
+            "repoPath",
+            "views/index.html"
+          ],
+          [
+            "CopyCoverage",
+            "omitted",
+            "true"
+          ],
+          [
+            "IgnorePolicy",
+            "type",
+            "IgnorePolicy"
+          ],
+          [
+            "IgnorePolicy",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "IgnorePolicy",
+            "repoPath",
+            "views/index.html"
+          ],
+          [
+            "IgnorePolicy",
+            "allows",
+            "true"
+          ]
+        ],
+        "relations": null,
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "PackagingCandidate",
+            "rule",
+            "docker-copy-omission.v1"
+          ],
+          [
+            "PackagingCandidate",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "PackagingCandidate",
+            "repoPath",
+            "views/index.html"
+          ]
+        ]
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "http-copy-missing",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "http-optional-recovered": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "5573e1ab9baa2b76d3bba3018d08d2dedc2c8782762e10ba241a553a0afd8ca2",
+      "expected_route": "general",
+      "acceptable_statuses": [
+        "no_failure_evidence"
+      ],
+      "expected_anchor": {
+        "path": "view/load-theme.js",
+        "line": 4,
+        "target": "/app/config/local-theme.json"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/config/local-theme.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "view/load-theme.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/config/local-theme.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "view/load-theme.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/config/local-theme.json"
+          ]
+        ],
+        "relations": null,
+        "candidates": null
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "http-optional-recovered",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "http-alias-copy-missing": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "2c6037b80b10ea9ef2d5fd1dc8f824d480024b0472d98f159071f2d86320edc9",
+      "expected_route": "general",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "expected_anchor": {
+        "path": "view/load-template.js",
+        "line": 4,
+        "target": "/app/views/index.html"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "view/load-template.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/views/index.html"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "view/load-template.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/views/index.html"
+          ]
+        ],
+        "relations": null,
+        "candidates": null
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "http-alias-copy-missing",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "batch-copy-missing": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "3435b5c958cade12b38d70cdeb02168793590aeb08a957f4cc4d5091a388a1d4",
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "expected_anchor": {
+        "path": "readers/load-policy.js",
+        "line": 4,
+        "target": "/app/config/settlement-rules.json"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "readers/load-policy.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "readers/load-policy.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "RepositoryEntry",
+            "type",
+            "RepositoryEntry"
+          ],
+          [
+            "RepositoryEntry",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "RepositoryEntry",
+            "repoPath",
+            "config/settlement-rules.json"
+          ],
+          [
+            "RepositoryEntry",
+            "regular",
+            "true"
+          ],
+          [
+            "CopyCoverage",
+            "type",
+            "CopyCoverage"
+          ],
+          [
+            "CopyCoverage",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "CopyCoverage",
+            "repoPath",
+            "config/settlement-rules.json"
+          ],
+          [
+            "CopyCoverage",
+            "omitted",
+            "true"
+          ],
+          [
+            "IgnorePolicy",
+            "type",
+            "IgnorePolicy"
+          ],
+          [
+            "IgnorePolicy",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "IgnorePolicy",
+            "repoPath",
+            "config/settlement-rules.json"
+          ],
+          [
+            "IgnorePolicy",
+            "allows",
+            "true"
+          ]
+        ],
+        "relations": null,
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "PackagingCandidate",
+            "rule",
+            "docker-copy-omission.v1"
+          ],
+          [
+            "PackagingCandidate",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "PackagingCandidate",
+            "repoPath",
+            "config/settlement-rules.json"
+          ]
+        ]
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "batch-copy-missing",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "batch-optional-recovered": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "2ebf25194ce243212ea2537811a135533238f0821a8b7438329c3ba2f13101e6",
+      "expected_route": "general",
+      "acceptable_statuses": [
+        "no_failure_evidence"
+      ],
+      "expected_anchor": {
+        "path": "readers/load-labels.js",
+        "line": 4,
+        "target": "/app/config/local-labels.json"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/config/local-labels.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "readers/load-labels.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/config/local-labels.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "readers/load-labels.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/config/local-labels.json"
+          ]
+        ],
+        "relations": null,
+        "candidates": null
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "batch-optional-recovered",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    },
+    "batch-alias-copy-missing": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "case_sha256": "975c07868d6117641a4e491d5f61164e4ec812721bf857bdcf237b4e80ad91d5",
+      "expected_route": "general",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "expected_anchor": {
+        "path": "readers/load-policy.js",
+        "line": 4,
+        "target": "/app/config/settlement-rules.json"
+      },
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "readers/load-policy.js"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "4"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/config/settlement-rules.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "readers/load-policy.js"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "4"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/config/settlement-rules.json"
+          ]
+        ],
+        "relations": null,
+        "candidates": null
+      },
+      "graph_reference_scope": "Authored semantic facts from real stack/source; relation IDs not scored; B/C candidate metric not applicable, not empty gold",
+      "quality_rubric": [],
+      "provenance": {
+        "capture": "batch-alias-copy-missing",
+        "source_line": 4,
+        "method": "app specification and real stack, not extractor output"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-26",
+  "scope": "public default suite; original archive-dependent tools/tests excluded",
+  "tests": {
+    "tests": 579,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  "passed": 578,
+  "skipped_reason": "Windows symlink privilege unavailable for one test",
+  "original_src_and_tools_bytes_unchanged": true,
+  "live_model_calls": 0,
+  "docker_experiments": 0,
+  "example_reconstruction": {
+    "shipping-cli": "matches original packet and passes SHACL/automatic assembly",
+    "template-http": "matches original packet and passes SHACL/automatic assembly",
+    "settlement-batch": "matches original packet and passes SHACL/automatic assembly"
+  },
+  "plan": {
+    "contexts": 12,
+    "scheduled_rows": 120,
+    "generation_call_cap": 216
+  }
+}

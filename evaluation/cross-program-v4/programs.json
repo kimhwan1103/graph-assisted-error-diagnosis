@@ -1,0 +1,65 @@
+[
+  {
+    "program": "shipping-cli",
+    "prefix": "shipping",
+    "lifecycle": "cli",
+    "entry": "bin/quote.js",
+    "reader": "lib/load-tariffs.js",
+    "target": "assets/tariffs.json",
+    "optional": "config/local-labels.json",
+    "optional_reader": "lib/load-labels.js",
+    "call_chain": [
+      "bin/quote.js",
+      "lib/load-tariffs.js",
+      "pricing/calculate.js"
+    ],
+    "format": "JSON",
+    "source_files": 9,
+    "javascript_files": 4,
+    "javascript_lines": 43,
+    "provenance": "new author-created application, not external natural bug",
+    "source_sha256": "fcf40cee7c25d1be2bfd9461de5960addcbb19993999ffec3559ea10abfe3b5c"
+  },
+  {
+    "program": "template-http",
+    "prefix": "http",
+    "lifecycle": "http",
+    "entry": "server.js",
+    "reader": "view/load-template.js",
+    "target": "views/index.html",
+    "optional": "config/local-theme.json",
+    "optional_reader": "view/load-theme.js",
+    "call_chain": [
+      "server.js",
+      "view/load-template.js",
+      "routes/page.js"
+    ],
+    "format": "HTML",
+    "source_files": 9,
+    "javascript_files": 4,
+    "javascript_lines": 46,
+    "provenance": "new author-created application, not external natural bug",
+    "source_sha256": "b03a0129c6e6e632bc4c8d03414c90e6fc412a10369f41841b158e08685cf853"
+  },
+  {
+    "program": "settlement-batch",
+    "prefix": "batch",
+    "lifecycle": "batch",
+    "entry": "src/job.js",
+    "reader": "readers/load-policy.js",
+    "target": "config/settlement-rules.json",
+    "optional": "config/local-labels.json",
+    "optional_reader": "readers/load-labels.js",
+    "call_chain": [
+      "src/job.js",
+      "readers/load-policy.js",
+      "pipeline/aggregate.js"
+    ],
+    "format": "JSON",
+    "source_files": 10,
+    "javascript_files": 4,
+    "javascript_lines": 49,
+    "provenance": "new author-created application, not external natural bug",
+    "source_sha256": "5d03775fc9e81ebe21ad23d2fdc9bbd07acd5e2c4771cd28597d0f83554f46f3"
+  }
+]

@@ -1,0 +1,5 @@
+﻿arm,scheduled,positive,negative,declared_accept,effective_accept,appropriate_accept,inappropriate_accept,negative_defer,excessive_defer,contract_blocked,provider_failure,final_valid,normalized_valid,fallback_calls,eligible,executed,restored,invalid_final_not_executed,provider_not_executed
+R_auto,12,6,6,12,12,6,6,0,0,0,0,12,12,0,3,3,3,0,0
+R_llm,36,18,18,33,33,18,15,3,0,0,0,36,36,3,9,9,9,0,0
+B_eq,36,18,18,36,36,18,18,0,0,0,0,36,36,0,9,9,9,0,0
+G_eq,36,18,18,35,18,9,9,0,0,17,1,33,33,17,9,6,6,2,1

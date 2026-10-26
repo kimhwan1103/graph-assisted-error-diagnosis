@@ -1,0 +1,15 @@
+@prefix g: <urn:iris:source-link:v1:> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+g:PositionShape a sh:NodeShape ; sh:targetClass g:Frame, g:Source ;
+ sh:property [ sh:path g:scope ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path g:path ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path g:line ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 1 ] .
+g:FrameShape a sh:NodeShape ; sh:targetClass g:Frame ;
+ sh:property [ sh:path g:evidence ; sh:minCount 1 ; sh:maxCount 8 ; sh:pattern "^EV[0-9]{6}$" ] .
+g:SourceShape a sh:NodeShape ; sh:targetClass g:Source ;
+ sh:property [ sh:path g:evidence ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^SC[0-9]{6}$" ] ;
+ sh:property [ sh:path g:operation ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] .
+g:CandidateShape a sh:NodeShape ; sh:targetClass g:Candidate ;
+ sh:property [ sh:path g:source ; sh:minCount 1 ; sh:maxCount 1 ; sh:class g:Source ] ;
+ sh:property [ sh:path g:rule ; sh:hasValue "error-source-link.v1" ; sh:maxCount 1 ] .

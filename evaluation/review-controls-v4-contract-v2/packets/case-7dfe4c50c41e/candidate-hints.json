@@ -1,0 +1,44 @@
+{
+  "candidate": {
+    "claim": "로그의 ENOENT 대상과 스택 위치의 소스 읽기 경로가 일치한다. 배포상 원인은 미확정이다.",
+    "code_line": 4,
+    "code_path": "view/load-template.js",
+    "evidence_ids": [
+      "EV000001",
+      "EV000003"
+    ],
+    "id": "C1",
+    "kind": "observed_file_read_failure",
+    "rule": "observed-file-read.v1",
+    "source_evidence_ids": [
+      "SC000004"
+    ],
+    "target": "/app/views/index.html"
+  },
+  "packaging_candidate": {
+    "archive_sha256": "664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba",
+    "claim": "제공 아카이브에 대상 파일이 있으나, 이 Dockerfile의 명시적 COPY에는 대상 경로로 공급하는 지시가 없다. 실제 배포에 동일 빌드 문맥·Dockerfile을 사용했는지는 미확인이다.",
+    "dockerfile": "Dockerfile",
+    "id": "P1",
+    "ignore_evidence_ids": [
+      "SC000014"
+    ],
+    "ignore_path": ".dockerignore",
+    "ignore_state": "read",
+    "kind": "docker_copy_omission",
+    "repo_path": "views/index.html",
+    "root_directory": ".",
+    "rule": "docker-copy-omission.v1",
+    "source_evidence_ids": [
+      "SC000006",
+      "SC000007",
+      "SC000008",
+      "SC000009",
+      "SC000010",
+      "SC000011",
+      "SC000012",
+      "SC000013"
+    ],
+    "target": "/app/views/index.html"
+  }
+}

@@ -1,0 +1,686 @@
+{
+  "version": "node-copy-replay.v2",
+  "engine": "node-copy-replay.v2",
+  "cases": [
+    {
+      "case_id": "shipping-copy-missing",
+      "program": "shipping-cli",
+      "stratum": "A",
+      "case_group": "repairable",
+      "allowed_states": [
+        "diagnosed"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "d09cf0008a4d62d0df9f4cc252687008a512a46b05939faa92f9540ade043712",
+      "source_files_sha256": "6049bd6f9b953f594bc521eb295ab4f81c4c2b6330ff1535761776665127037d",
+      "payload_sha256": "14e24feaa2a7e04a5c84306e4ecdcad08f94e100c5429fe220babb03c0399f9d",
+      "tests": {
+        "prefix": "shipping",
+        "lifecycle": "cli",
+        "entry": "bin/quote.js",
+        "reader": "lib/load-tariffs.js",
+        "target": "assets/tariffs.json",
+        "optional": "config/local-labels.json",
+        "optional_reader": "lib/load-labels.js",
+        "call_chain": [
+          "bin/quote.js",
+          "lib/load-tariffs.js",
+          "pricing/calculate.js"
+        ],
+        "format": "JSON",
+        "program": "shipping-cli",
+        "protected_files": {
+          "assets/tariffs.json": "9b0dce004b987cb7da203a7a3a1753ce1421b575753b0234d56e04695e756e8b",
+          "bin/quote.js": "f069eb818bff7e2520b090784f448805256a343f2a5887d2eddd804f8f78e2d2",
+          "lib/load-labels.js": "75cd305368335258941f85d53dcd6ecbb52d688dd5065a49bc294a7326d35893",
+          "lib/load-tariffs.js": "76c260d96470a23793cba1895a19225bb7542133cc4b3ecf39b71dc383f07a1d",
+          "package.json": "f1e60ef3f8a2a12302847e7b2d66de8348ef4776c16390445b0075df3e531bf9",
+          "pricing/calculate.js": "2b638032e560da6f9f6433230f282a7979d8f4bd133b1b0c785750e8bcead0c9"
+        },
+        "tests": [
+          {
+            "args": [],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 1400,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":4000,\"weightKg\":0}"
+            ],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 1000,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":10000,\"weightKg\":2}"
+            ],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 0,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":4000,\"weightKg\":-1}"
+            ],
+            "code": 2,
+            "error": "INVALID_INPUT"
+          },
+          {
+            "args": [
+              "bad-json"
+            ],
+            "code": 2,
+            "error": "INVALID_INPUT"
+          }
+        ],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node bin ./bin\nCOPY --chown=node:node lib ./lib\nCOPY --chown=node:node pricing ./pricing\nCOPY --chown=node:node assets/tariffs.json ./assets/tariffs.json\nUSER node\nCMD [\"node\", \"bin/quote.js\"]\n",
+      "capture_sha256": "94d02a6332c733020ffb3b9582b1e1057d59316f87dd26b6a3d2f1ee2ec6183e"
+    },
+    {
+      "case_id": "shipping-optional-recovered",
+      "program": "shipping-cli",
+      "stratum": "B",
+      "case_group": "no_change",
+      "allowed_states": [
+        "no_failure_evidence"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "91976673cc679851450c44720380a08e8ca1e38889600c9e231806a30edd7b2d",
+      "source_files_sha256": "d6b7e026c16ea85610a8e8b06354d5df2a9078b9a877a1e71141862a16b8593a",
+      "payload_sha256": "cece0213859f75702d400ee611178b12f731c10057be516923236a97bf89563f",
+      "tests": {
+        "prefix": "shipping",
+        "lifecycle": "cli",
+        "entry": "bin/quote.js",
+        "reader": "lib/load-tariffs.js",
+        "target": "assets/tariffs.json",
+        "optional": "config/local-labels.json",
+        "optional_reader": "lib/load-labels.js",
+        "call_chain": [
+          "bin/quote.js",
+          "lib/load-tariffs.js",
+          "pricing/calculate.js"
+        ],
+        "format": "JSON",
+        "program": "shipping-cli",
+        "protected_files": {
+          "assets/tariffs.json": "9b0dce004b987cb7da203a7a3a1753ce1421b575753b0234d56e04695e756e8b",
+          "bin/quote.js": "f069eb818bff7e2520b090784f448805256a343f2a5887d2eddd804f8f78e2d2",
+          "lib/load-labels.js": "75cd305368335258941f85d53dcd6ecbb52d688dd5065a49bc294a7326d35893",
+          "lib/load-tariffs.js": "76c260d96470a23793cba1895a19225bb7542133cc4b3ecf39b71dc383f07a1d",
+          "package.json": "f1e60ef3f8a2a12302847e7b2d66de8348ef4776c16390445b0075df3e531bf9",
+          "pricing/calculate.js": "2b638032e560da6f9f6433230f282a7979d8f4bd133b1b0c785750e8bcead0c9"
+        },
+        "tests": [
+          {
+            "args": [],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 1400,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":4000,\"weightKg\":0}"
+            ],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 1000,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":10000,\"weightKg\":2}"
+            ],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 0,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":4000,\"weightKg\":-1}"
+            ],
+            "code": 2,
+            "error": "INVALID_INPUT"
+          },
+          {
+            "args": [
+              "bad-json"
+            ],
+            "code": 2,
+            "error": "INVALID_INPUT"
+          }
+        ],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node bin ./bin\nCOPY --chown=node:node lib ./lib\nCOPY --chown=node:node pricing ./pricing\nCOPY --chown=node:node assets/tariffs.json ./assets/tariffs.json\nENV OPTIONAL_CONFIG=1\nUSER node\nCMD [\"node\", \"bin/quote.js\"]\n",
+      "capture_sha256": "febd5d465f2be1df656c1c3b88649abdbed915d4659ab9aefacc041d8a1e0f85"
+    },
+    {
+      "case_id": "shipping-alias-copy-missing",
+      "program": "shipping-cli",
+      "stratum": "C",
+      "case_group": "repairable",
+      "allowed_states": [
+        "diagnosed"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "c3c0cc6370cfa6f79033449c6c8be6d6bfaa7e44378ca872f61714fc9c040872",
+      "source_files_sha256": "e2e24c8184a9e6f4503e4f45a3b84306a6528558723690dbb567246ecbc3004b",
+      "payload_sha256": "66e6754bea868a1cf2b052d19fe83a84925cc5a9140e295fc8d866fd768fff88",
+      "tests": {
+        "prefix": "shipping",
+        "lifecycle": "cli",
+        "entry": "bin/quote.js",
+        "reader": "lib/load-tariffs.js",
+        "target": "assets/tariffs.json",
+        "optional": "config/local-labels.json",
+        "optional_reader": "lib/load-labels.js",
+        "call_chain": [
+          "bin/quote.js",
+          "lib/load-tariffs.js",
+          "pricing/calculate.js"
+        ],
+        "format": "JSON",
+        "program": "shipping-cli",
+        "protected_files": {
+          "assets/tariffs.json": "9b0dce004b987cb7da203a7a3a1753ce1421b575753b0234d56e04695e756e8b",
+          "bin/quote.js": "f069eb818bff7e2520b090784f448805256a343f2a5887d2eddd804f8f78e2d2",
+          "lib/load-labels.js": "75cd305368335258941f85d53dcd6ecbb52d688dd5065a49bc294a7326d35893",
+          "lib/load-tariffs.js": "b73e1fc43e7440b032f36871817a565c21a3b43c031f392ae557eec0884808bf",
+          "package.json": "f1e60ef3f8a2a12302847e7b2d66de8348ef4776c16390445b0075df3e531bf9",
+          "pricing/calculate.js": "2b638032e560da6f9f6433230f282a7979d8f4bd133b1b0c785750e8bcead0c9"
+        },
+        "tests": [
+          {
+            "args": [],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 1400,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":4000,\"weightKg\":0}"
+            ],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 1000,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":10000,\"weightKg\":2}"
+            ],
+            "code": 0,
+            "expected": {
+              "shipping_fee": 0,
+              "label": "shipping"
+            }
+          },
+          {
+            "args": [
+              "{\"amount\":4000,\"weightKg\":-1}"
+            ],
+            "code": 2,
+            "error": "INVALID_INPUT"
+          },
+          {
+            "args": [
+              "bad-json"
+            ],
+            "code": 2,
+            "error": "INVALID_INPUT"
+          }
+        ],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node bin ./bin\nCOPY --chown=node:node lib ./lib\nCOPY --chown=node:node pricing ./pricing\nCOPY --chown=node:node assets/tariffs.json ./assets/tariffs.json\nUSER node\nCMD [\"node\", \"bin/quote.js\"]\n",
+      "capture_sha256": "a9d323b9ab7ca777b6cf8b597b1d7f0ed9539c031e3a992fff20c226d52aa399"
+    },
+    {
+      "case_id": "http-copy-missing",
+      "program": "template-http",
+      "stratum": "A",
+      "case_group": "repairable",
+      "allowed_states": [
+        "diagnosed"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "bd0561bd2d2807175eb5cba6b642b38ad316f6d81afd63afc6d3d1b40f82adf1",
+      "source_files_sha256": "e58912b9802e0d96215ee2534289de4d8837cf33c9d64246b1d865f6460dcd3e",
+      "payload_sha256": "c63ec2c820fd94c56abf03eb2eec31ae3ead3a13b105feda8acc1185d7627cba",
+      "tests": {
+        "prefix": "http",
+        "lifecycle": "http",
+        "entry": "server.js",
+        "reader": "view/load-template.js",
+        "target": "views/index.html",
+        "optional": "config/local-theme.json",
+        "optional_reader": "view/load-theme.js",
+        "call_chain": [
+          "server.js",
+          "view/load-template.js",
+          "routes/page.js"
+        ],
+        "format": "HTML",
+        "program": "template-http",
+        "protected_files": {
+          "package.json": "63ea339776c1eebb753aa8810bacd74b51b3e8af8723350c2d0595cb3302a26a",
+          "routes/page.js": "ad2f1a889ac0700686d120b0923f5807bf2453b7b441f0e1d9ba4cf67c1230e7",
+          "server.js": "a8311d66eff6249761f2b594e0fb16b6d6d275063123db71326d12da58e9eb02",
+          "view/load-template.js": "26a1c3bb720fed2ea20f9d637fcc2b1f6ce6d0418571d4c884bdabce7bd20220",
+          "view/load-theme.js": "074713b9a2ee20f4b2dac94a4f26a3767685003ed26bff755734a997d389b7b2",
+          "views/index.html": "717ec66dbb54fa08caf73b4efe1eb439fbbc1c1232cced4a4e68bbf5b34f26ff"
+        },
+        "tests": [],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node server.js ./server.js\nCOPY --chown=node:node view ./view\nCOPY --chown=node:node routes ./routes\nCOPY --chown=node:node views/index.html ./views/index.html\nUSER node\nCMD [\"node\", \"server.js\"]\n",
+      "capture_sha256": "aeae0578302bf6fc20740698ee5c807dfaaecaa6ec7409483dbd6227943dfdd0"
+    },
+    {
+      "case_id": "http-optional-recovered",
+      "program": "template-http",
+      "stratum": "B",
+      "case_group": "no_change",
+      "allowed_states": [
+        "no_failure_evidence"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "5573e1ab9baa2b76d3bba3018d08d2dedc2c8782762e10ba241a553a0afd8ca2",
+      "source_files_sha256": "5be512e43ac013792ede771ec9a887857cce5ea76756589e0b2f6e60151e0dbd",
+      "payload_sha256": "4b1491a87667c88bf64d4478173cb2b7d72835354ac46dc7d7d52877ea710064",
+      "tests": {
+        "prefix": "http",
+        "lifecycle": "http",
+        "entry": "server.js",
+        "reader": "view/load-template.js",
+        "target": "views/index.html",
+        "optional": "config/local-theme.json",
+        "optional_reader": "view/load-theme.js",
+        "call_chain": [
+          "server.js",
+          "view/load-template.js",
+          "routes/page.js"
+        ],
+        "format": "HTML",
+        "program": "template-http",
+        "protected_files": {
+          "package.json": "63ea339776c1eebb753aa8810bacd74b51b3e8af8723350c2d0595cb3302a26a",
+          "routes/page.js": "ad2f1a889ac0700686d120b0923f5807bf2453b7b441f0e1d9ba4cf67c1230e7",
+          "server.js": "a8311d66eff6249761f2b594e0fb16b6d6d275063123db71326d12da58e9eb02",
+          "view/load-template.js": "26a1c3bb720fed2ea20f9d637fcc2b1f6ce6d0418571d4c884bdabce7bd20220",
+          "view/load-theme.js": "074713b9a2ee20f4b2dac94a4f26a3767685003ed26bff755734a997d389b7b2",
+          "views/index.html": "717ec66dbb54fa08caf73b4efe1eb439fbbc1c1232cced4a4e68bbf5b34f26ff"
+        },
+        "tests": [],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node server.js ./server.js\nCOPY --chown=node:node view ./view\nCOPY --chown=node:node routes ./routes\nCOPY --chown=node:node views/index.html ./views/index.html\nENV OPTIONAL_CONFIG=1\nUSER node\nCMD [\"node\", \"server.js\"]\n",
+      "capture_sha256": "fb4d4b3597918af5278573a25909d2ab5801f0e759d037e44fa75a3545594a7e"
+    },
+    {
+      "case_id": "http-alias-copy-missing",
+      "program": "template-http",
+      "stratum": "C",
+      "case_group": "repairable",
+      "allowed_states": [
+        "diagnosed"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "2c6037b80b10ea9ef2d5fd1dc8f824d480024b0472d98f159071f2d86320edc9",
+      "source_files_sha256": "8b3a7424b329fc90d734b2c5feae92c399de62568ea98abbe158bec69e660cc8",
+      "payload_sha256": "5b48f9954dc76b2fd849004d9467849cd2f8bace338b659a6e12462b039732fd",
+      "tests": {
+        "prefix": "http",
+        "lifecycle": "http",
+        "entry": "server.js",
+        "reader": "view/load-template.js",
+        "target": "views/index.html",
+        "optional": "config/local-theme.json",
+        "optional_reader": "view/load-theme.js",
+        "call_chain": [
+          "server.js",
+          "view/load-template.js",
+          "routes/page.js"
+        ],
+        "format": "HTML",
+        "program": "template-http",
+        "protected_files": {
+          "package.json": "63ea339776c1eebb753aa8810bacd74b51b3e8af8723350c2d0595cb3302a26a",
+          "routes/page.js": "ad2f1a889ac0700686d120b0923f5807bf2453b7b441f0e1d9ba4cf67c1230e7",
+          "server.js": "a8311d66eff6249761f2b594e0fb16b6d6d275063123db71326d12da58e9eb02",
+          "view/load-template.js": "e857f8b00c422b211e008b6e27f1d645e47315089e41a3a4abce56ad347ad4ff",
+          "view/load-theme.js": "074713b9a2ee20f4b2dac94a4f26a3767685003ed26bff755734a997d389b7b2",
+          "views/index.html": "717ec66dbb54fa08caf73b4efe1eb439fbbc1c1232cced4a4e68bbf5b34f26ff"
+        },
+        "tests": [],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node server.js ./server.js\nCOPY --chown=node:node view ./view\nCOPY --chown=node:node routes ./routes\nCOPY --chown=node:node views/index.html ./views/index.html\nUSER node\nCMD [\"node\", \"server.js\"]\n",
+      "capture_sha256": "0f2ce6928f107ff829a4d3d948a2aa0f167dac2f8e0239f1dba2671781ffec65"
+    },
+    {
+      "case_id": "batch-copy-missing",
+      "program": "settlement-batch",
+      "stratum": "A",
+      "case_group": "repairable",
+      "allowed_states": [
+        "diagnosed"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "3435b5c958cade12b38d70cdeb02168793590aeb08a957f4cc4d5091a388a1d4",
+      "source_files_sha256": "f4d591b350676f51df76aa5a60899d68ca32741bb65830662d4bd23fd1358d13",
+      "payload_sha256": "1f43dc56173a424758ad2fad535891add1a9fb965a4e33527cfdc63841abf1c0",
+      "tests": {
+        "prefix": "batch",
+        "lifecycle": "batch",
+        "entry": "src/job.js",
+        "reader": "readers/load-policy.js",
+        "target": "config/settlement-rules.json",
+        "optional": "config/local-labels.json",
+        "optional_reader": "readers/load-labels.js",
+        "call_chain": [
+          "src/job.js",
+          "readers/load-policy.js",
+          "pipeline/aggregate.js"
+        ],
+        "format": "JSON",
+        "program": "settlement-batch",
+        "protected_files": {
+          "config/settlement-rules.json": "62a1bb160a67653517ad3c76c14b9313bbc3c6993d287e8b798d3d1880bab7fe",
+          "fixtures/transactions.json": "11e0957bd096ac95396a9e1fc86830423ba9f21566bcd62aec721f7b8dfa17a9",
+          "package.json": "e57cc09d20292bdeef6a3e6e08fc0f774d125af431f93d325f91b142084b33f0",
+          "pipeline/aggregate.js": "23db4bc145a394d739cd7e9567679bdae5aee960233c6d68acec7a5271a2525e",
+          "readers/load-labels.js": "75cd305368335258941f85d53dcd6ecbb52d688dd5065a49bc294a7326d35893",
+          "readers/load-policy.js": "eb6f9c7fbb67d3efb1356982f03b60ec4d13e04b3ecf8deb92cc51425e45373a",
+          "src/job.js": "62828b886d73962bfa87a7918dd7a69781dc8a0648294cf70b8193065ff73b6f"
+        },
+        "tests": [
+          {
+            "args": [],
+            "code": 0,
+            "expected": {
+              "count": 2,
+              "fees": 750,
+              "settlement": 29250,
+              "label": "settlement"
+            }
+          },
+          {
+            "args": [
+              "[]"
+            ],
+            "code": 0,
+            "expected": {
+              "count": 0,
+              "fees": 0,
+              "settlement": 0,
+              "label": "settlement"
+            }
+          },
+          {
+            "args": [
+              "[{\"amount\":-1}]"
+            ],
+            "code": 2,
+            "error": "INVALID_TRANSACTIONS"
+          },
+          {
+            "args": [
+              "[{\"amount\":20},{\"amount\":19}]"
+            ],
+            "code": 0,
+            "expected": {
+              "count": 2,
+              "fees": 1,
+              "settlement": 38,
+              "label": "settlement"
+            }
+          }
+        ],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node src ./src\nCOPY --chown=node:node readers ./readers\nCOPY --chown=node:node pipeline ./pipeline\nCOPY --chown=node:node fixtures ./fixtures\nCOPY --chown=node:node config/settlement-rules.json ./config/settlement-rules.json\nUSER node\nCMD [\"node\", \"src/job.js\"]\n",
+      "capture_sha256": "a197dada7b3d5b323fbedad86b61846d876ca984e845913941125e8ffdd15459"
+    },
+    {
+      "case_id": "batch-optional-recovered",
+      "program": "settlement-batch",
+      "stratum": "B",
+      "case_group": "no_change",
+      "allowed_states": [
+        "no_failure_evidence"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "2ebf25194ce243212ea2537811a135533238f0821a8b7438329c3ba2f13101e6",
+      "source_files_sha256": "5328fe670e5e1d905800815a66dbbb07712f65a4bb02d56c8d44eef32f016ead",
+      "payload_sha256": "7b5fc871c63480b58a8d4650f2af3b869068a1db294c37419895bc593f0269bf",
+      "tests": {
+        "prefix": "batch",
+        "lifecycle": "batch",
+        "entry": "src/job.js",
+        "reader": "readers/load-policy.js",
+        "target": "config/settlement-rules.json",
+        "optional": "config/local-labels.json",
+        "optional_reader": "readers/load-labels.js",
+        "call_chain": [
+          "src/job.js",
+          "readers/load-policy.js",
+          "pipeline/aggregate.js"
+        ],
+        "format": "JSON",
+        "program": "settlement-batch",
+        "protected_files": {
+          "config/settlement-rules.json": "62a1bb160a67653517ad3c76c14b9313bbc3c6993d287e8b798d3d1880bab7fe",
+          "fixtures/transactions.json": "11e0957bd096ac95396a9e1fc86830423ba9f21566bcd62aec721f7b8dfa17a9",
+          "package.json": "e57cc09d20292bdeef6a3e6e08fc0f774d125af431f93d325f91b142084b33f0",
+          "pipeline/aggregate.js": "23db4bc145a394d739cd7e9567679bdae5aee960233c6d68acec7a5271a2525e",
+          "readers/load-labels.js": "75cd305368335258941f85d53dcd6ecbb52d688dd5065a49bc294a7326d35893",
+          "readers/load-policy.js": "eb6f9c7fbb67d3efb1356982f03b60ec4d13e04b3ecf8deb92cc51425e45373a",
+          "src/job.js": "62828b886d73962bfa87a7918dd7a69781dc8a0648294cf70b8193065ff73b6f"
+        },
+        "tests": [
+          {
+            "args": [],
+            "code": 0,
+            "expected": {
+              "count": 2,
+              "fees": 750,
+              "settlement": 29250,
+              "label": "settlement"
+            }
+          },
+          {
+            "args": [
+              "[]"
+            ],
+            "code": 0,
+            "expected": {
+              "count": 0,
+              "fees": 0,
+              "settlement": 0,
+              "label": "settlement"
+            }
+          },
+          {
+            "args": [
+              "[{\"amount\":-1}]"
+            ],
+            "code": 2,
+            "error": "INVALID_TRANSACTIONS"
+          },
+          {
+            "args": [
+              "[{\"amount\":20},{\"amount\":19}]"
+            ],
+            "code": 0,
+            "expected": {
+              "count": 2,
+              "fees": 1,
+              "settlement": 38,
+              "label": "settlement"
+            }
+          }
+        ],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node src ./src\nCOPY --chown=node:node readers ./readers\nCOPY --chown=node:node pipeline ./pipeline\nCOPY --chown=node:node fixtures ./fixtures\nCOPY --chown=node:node config/settlement-rules.json ./config/settlement-rules.json\nENV OPTIONAL_CONFIG=1\nUSER node\nCMD [\"node\", \"src/job.js\"]\n",
+      "capture_sha256": "a19bfa2da29e94ecedbace3f62e6d382fbe35de61351ee54b4095b6e48982ab9"
+    },
+    {
+      "case_id": "batch-alias-copy-missing",
+      "program": "settlement-batch",
+      "stratum": "C",
+      "case_group": "repairable",
+      "allowed_states": [
+        "diagnosed"
+      ],
+      "engine": "node-copy-replay.v2",
+      "case_sha256": "975c07868d6117641a4e491d5f61164e4ec812721bf857bdcf237b4e80ad91d5",
+      "source_files_sha256": "bb2db21b722e2221f068c866f246e10fa2fe793e47639c8b137fd7a65422f6d4",
+      "payload_sha256": "591a305dd93d35f24744331b93f0eca47e8305163e87fa11ad64ff1709471f1c",
+      "tests": {
+        "prefix": "batch",
+        "lifecycle": "batch",
+        "entry": "src/job.js",
+        "reader": "readers/load-policy.js",
+        "target": "config/settlement-rules.json",
+        "optional": "config/local-labels.json",
+        "optional_reader": "readers/load-labels.js",
+        "call_chain": [
+          "src/job.js",
+          "readers/load-policy.js",
+          "pipeline/aggregate.js"
+        ],
+        "format": "JSON",
+        "program": "settlement-batch",
+        "protected_files": {
+          "config/settlement-rules.json": "62a1bb160a67653517ad3c76c14b9313bbc3c6993d287e8b798d3d1880bab7fe",
+          "fixtures/transactions.json": "11e0957bd096ac95396a9e1fc86830423ba9f21566bcd62aec721f7b8dfa17a9",
+          "package.json": "e57cc09d20292bdeef6a3e6e08fc0f774d125af431f93d325f91b142084b33f0",
+          "pipeline/aggregate.js": "23db4bc145a394d739cd7e9567679bdae5aee960233c6d68acec7a5271a2525e",
+          "readers/load-labels.js": "75cd305368335258941f85d53dcd6ecbb52d688dd5065a49bc294a7326d35893",
+          "readers/load-policy.js": "3521d0118bc902daad0864391d3365e22c67f46680d0b92775c3f4912286bd6f",
+          "src/job.js": "62828b886d73962bfa87a7918dd7a69781dc8a0648294cf70b8193065ff73b6f"
+        },
+        "tests": [
+          {
+            "args": [],
+            "code": 0,
+            "expected": {
+              "count": 2,
+              "fees": 750,
+              "settlement": 29250,
+              "label": "settlement"
+            }
+          },
+          {
+            "args": [
+              "[]"
+            ],
+            "code": 0,
+            "expected": {
+              "count": 0,
+              "fees": 0,
+              "settlement": 0,
+              "label": "settlement"
+            }
+          },
+          {
+            "args": [
+              "[{\"amount\":-1}]"
+            ],
+            "code": 2,
+            "error": "INVALID_TRANSACTIONS"
+          },
+          {
+            "args": [
+              "[{\"amount\":20},{\"amount\":19}]"
+            ],
+            "code": 0,
+            "expected": {
+              "count": 2,
+              "fees": 1,
+              "settlement": 38,
+              "label": "settlement"
+            }
+          }
+        ],
+        "html": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n",
+        "health": {
+          "status": "ok",
+          "app": "template-http",
+          "theme": "plain"
+        }
+      },
+      "reference_dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node src ./src\nCOPY --chown=node:node readers ./readers\nCOPY --chown=node:node pipeline ./pipeline\nCOPY --chown=node:node fixtures ./fixtures\nCOPY --chown=node:node config/settlement-rules.json ./config/settlement-rules.json\nUSER node\nCMD [\"node\", \"src/job.js\"]\n",
+      "capture_sha256": "8dde78215abb13380b3c19a47061f8e6a99cf72b47d0a495bbbfcdd64eecef99"
+    }
+  ],
+  "base_image": {
+    "requested": "node:22-alpine",
+    "id": "sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402",
+    "pinned_from": "node@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402",
+    "repo_digests": [
+      "node@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402"
+    ]
+  }
+}

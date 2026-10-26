@@ -1,0 +1,62 @@
+{
+  "Hessian.js-1.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-1.zip",
+    "sha256": "66660480e8a531d1289e75712a960a77f1005d8c4e07f26f7d9d5bb2a25e052b"
+  },
+  "Hessian.js-2.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-2.zip",
+    "sha256": "1904c43fe45c20ac1f3381c791dff2dfe6e9887f935d1959c0c690dcfa2d83ef"
+  },
+  "Hessian.js-3.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-3.zip",
+    "sha256": "0c8ffacfcec15b3efcac712bfb55dbb61a7f16444bed63d0f7cd2afeca8bbba7"
+  },
+  "Hessian.js-4.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-4.zip",
+    "sha256": "2a6e6a9b824a904fc93db5ed5a949653541f9657ae8c9af88e73fb978d105a57"
+  },
+  "Hessian.js-5.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-5.zip",
+    "sha256": "a105d18b6b38f507322afa22a666ef0a7097a38df3a5cfddd7e8e4d961c67d13"
+  },
+  "Hessian.js-6.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-6.zip",
+    "sha256": "afd745e0b7794e1336e9b3381304b4c071b17ab9c78e3f76b4d242a70179c057"
+  },
+  "Hessian.js-7.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-7.zip",
+    "sha256": "eece3bf864c37640a3b3f02c78dea9e6e649935cfbe4b4aed02a541c1abd44fa"
+  },
+  "Hessian.js-8.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-8.zip",
+    "sha256": "66bc8739fbce5099906bb2e53cc8640b505cfb8c69d4e9de42319dc1ed6d83bc"
+  },
+  "Hessian.js-9.zip": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js-9.zip",
+    "sha256": "4fa6743933046918edf63c1350ad27d26358277fa65097b184bd8a943c5d4268"
+  },
+  "LICENSE.benchmark": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/LICENSE",
+    "sha256": "5953d3d453ef8b521b5dde0750a37573d2a1a3eff0bb7e03f2cc57d095bbe95c"
+  },
+  "README.benchmark.md": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/README.md",
+    "sha256": "092c75258c4d86c5ac907d344a098a93de98226155e5fecf5c6f1ec0e39bfe60"
+  },
+  "Hessian.js_commands.csv": {
+    "url": "https://raw.githubusercontent.com/BugsJS/bug-dataset/7abbad3e4df12cd5294110bb5db11b7d5bc758a6/Projects/Hessian.js/Hessian.js_commands.csv",
+    "sha256": "7881c360af89b504e4603850b935c4d409fa82d4c4ed696cb7c904059edf9528"
+  },
+  "hessian-3-133ab71c142b4e8032d970fd972c1d1a9659d5c5.zip": {
+    "url": "https://codeload.github.com/BugsJS/hessian.js/zip/133ab71c142b4e8032d970fd972c1d1a9659d5c5",
+    "sha256": "e984db5525bbd91bff106e2e99d47b5b559d90513edc0a9590e3183181adf475"
+  },
+  "hessian-5-02b3fea2b86ca7a2a74371051ad4c53a97ee8e0d.zip": {
+    "url": "https://codeload.github.com/BugsJS/hessian.js/zip/02b3fea2b86ca7a2a74371051ad4c53a97ee8e0d",
+    "sha256": "045f798e0b57a98af73e0a9c47687b3b96a582ce3315bdeae64b5c72735f1f84"
+  },
+  "hessian-9-8f8699ea924bdaa07cb7cbc44899c97f4cbc8587.zip": {
+    "url": "https://codeload.github.com/BugsJS/hessian.js/zip/8f8699ea924bdaa07cb7cbc44899c97f4cbc8587",
+    "sha256": "12437077d98e6a69d521bff4ca572a473e4c4da7a6a7e14cc11b354ccf3ddb1e"
+  }
+}

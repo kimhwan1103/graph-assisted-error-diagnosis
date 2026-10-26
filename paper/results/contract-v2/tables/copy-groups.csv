@@ -1,0 +1,5 @@
+﻿arm,negative,frozen_target_copy_detected,first_plan_copy_present,any_plan_copy_present,archive_target_mapping_first_plan,archive_target_mapping_any_plan
+R_auto,6,6,6,6,6,6
+R_llm,18,15,18,18,18,18
+B_eq,18,18,18,18,18,18
+G_eq,18,9,15,18,15,18

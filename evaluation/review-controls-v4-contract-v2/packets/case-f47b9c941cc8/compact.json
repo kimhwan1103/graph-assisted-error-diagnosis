@@ -1,0 +1,254 @@
+{
+  "candidate": {
+    "id": "C1",
+    "kind": "observed_file_read_failure",
+    "target": "/app/assets/tariffs.json",
+    "code_path": "lib/load-tariffs.js",
+    "code_line": 4,
+    "rule": "observed-file-read.v1",
+    "evidence_ids": [
+      "EV000001",
+      "EV000003"
+    ],
+    "source_evidence_ids": [
+      "SC000004"
+    ],
+    "claim": "로그의 ENOENT 대상과 스택 위치의 소스 읽기 경로가 일치한다. 배포상 원인은 미확정이다."
+  },
+  "context": {
+    "reported_stage": "runtime",
+    "deployment_status": "failed",
+    "exit_code": 1
+  },
+  "producer": {
+    "source_id": "producer-6dab7c12cf4f",
+    "stage": "runtime",
+    "stream": "stderr"
+  },
+  "logs": [
+    {
+      "text": "Error: ENOENT: no such file or directory, open '/app/assets/tariffs.json'",
+      "occurrences": [
+        {
+          "id": "EV000001",
+          "timestamp": "2026-10-22T15:34:29.163919+00:00",
+          "sequence": 1,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 1
+        }
+      ]
+    },
+    {
+      "text": "    at readFileSync (node:fs:440:20)",
+      "occurrences": [
+        {
+          "id": "EV000002",
+          "timestamp": "2026-10-22T15:34:29.163957+00:00",
+          "sequence": 2,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 2
+        }
+      ]
+    },
+    {
+      "text": "    at loadTariffs (file:///app/lib/load-tariffs.js:4:21)",
+      "occurrences": [
+        {
+          "id": "EV000003",
+          "timestamp": "2026-10-22T15:34:29.163961+00:00",
+          "sequence": 3,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 3
+        }
+      ]
+    },
+    {
+      "text": "    at file:///app/bin/quote.js:6:19",
+      "occurrences": [
+        {
+          "id": "EV000004",
+          "timestamp": "2026-10-22T15:34:29.163963+00:00",
+          "sequence": 4,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 4
+        }
+      ]
+    },
+    {
+      "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)",
+      "occurrences": [
+        {
+          "id": "EV000005",
+          "timestamp": "2026-10-22T15:34:29.163965+00:00",
+          "sequence": 5,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 5
+        }
+      ]
+    },
+    {
+      "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)",
+      "occurrences": [
+        {
+          "id": "EV000006",
+          "timestamp": "2026-10-22T15:34:29.163968+00:00",
+          "sequence": 6,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 6
+        }
+      ]
+    },
+    {
+      "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+      "occurrences": [
+        {
+          "id": "EV000007",
+          "timestamp": "2026-10-22T15:34:29.163970+00:00",
+          "sequence": 7,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 7
+        }
+      ]
+    },
+    {
+      "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-1f2c855b7936\",\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/assets/tariffs.json\"}",
+      "occurrences": [
+        {
+          "id": "EV000008",
+          "timestamp": "2026-10-22T15:34:29.163970+00:00",
+          "sequence": 8,
+          "event_line": 1,
+          "chunk_id": "backend-0001",
+          "chunk_line": 8
+        }
+      ]
+    }
+  ],
+  "code": {
+    "path": "lib/load-tariffs.js",
+    "lines": [
+      [
+        "SC000001",
+        1,
+        "import { readFileSync } from 'node:fs';"
+      ],
+      [
+        "SC000002",
+        2,
+        ""
+      ],
+      [
+        "SC000003",
+        3,
+        "export function loadTariffs() {"
+      ],
+      [
+        "SC000004",
+        4,
+        "  return JSON.parse(readFileSync('/app/assets/tariffs.json', 'utf8'));"
+      ],
+      [
+        "SC000005",
+        5,
+        "}"
+      ]
+    ]
+  },
+  "limitations": [
+    "소스 스냅샷과 실제 실행 커밋의 일치를 독립 검증하지 않았다.",
+    "제공된 소스 범위만 확인했다. 실제 빌드 문맥·마운트·파일 공급·영속성 계약은 미확인이다."
+  ],
+  "deployment_code": [
+    {
+      "path": "Dockerfile",
+      "lines": [
+        [
+          "SC000006",
+          1,
+          "FROM node:22-alpine"
+        ],
+        [
+          "SC000007",
+          2,
+          "WORKDIR /app"
+        ],
+        [
+          "SC000008",
+          3,
+          "COPY --chown=node:node package.json ./package.json"
+        ],
+        [
+          "SC000009",
+          4,
+          "COPY --chown=node:node bin ./bin"
+        ],
+        [
+          "SC000010",
+          5,
+          "COPY --chown=node:node lib ./lib"
+        ],
+        [
+          "SC000011",
+          6,
+          "COPY --chown=node:node pricing ./pricing"
+        ],
+        [
+          "SC000012",
+          7,
+          "USER node"
+        ],
+        [
+          "SC000013",
+          8,
+          "CMD [\"node\", \"bin/quote.js\"]"
+        ]
+      ]
+    },
+    {
+      "path": ".dockerignore",
+      "lines": [
+        [
+          "SC000014",
+          1,
+          ""
+        ]
+      ]
+    }
+  ],
+  "packaging_candidate": {
+    "id": "P1",
+    "kind": "docker_copy_omission",
+    "rule": "docker-copy-omission.v1",
+    "repo_path": "assets/tariffs.json",
+    "target": "/app/assets/tariffs.json",
+    "dockerfile": "Dockerfile",
+    "archive_sha256": "de45d92f704e0c0455c43aa052d03f224978372ab4de29a90e30a0bdc81a653b",
+    "root_directory": ".",
+    "ignore_path": ".dockerignore",
+    "ignore_state": "read",
+    "insert_after_line": 6,
+    "anchor": "COPY --chown=node:node pricing ./pricing",
+    "snippet": "COPY --chown=node:node assets/tariffs.json ./assets/tariffs.json",
+    "source_evidence_ids": [
+      "SC000006",
+      "SC000007",
+      "SC000008",
+      "SC000009",
+      "SC000010",
+      "SC000011",
+      "SC000012",
+      "SC000013"
+    ],
+    "ignore_evidence_ids": [
+      "SC000014"
+    ],
+    "claim": "제공 아카이브에 대상 파일이 있으나, 이 Dockerfile의 명시적 COPY에는 대상 경로로 공급하는 지시가 없다. 실제 배포에 동일 빌드 문맥·Dockerfile을 사용했는지는 미확인이다."
+  }
+}

@@ -1,0 +1,113 @@
+@prefix ns1: <urn:iris:compact:v1:> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:failure/candidate/packaging> a ns1:PackagingCandidate ;
+    ns1:input <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:copy>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:entry>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:failure/candidate>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:ignore> ;
+    ns1:repoPath "assets/tariffs.json" ;
+    ns1:rule "docker-copy-omission.v1" ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:EV000001> a ns1:Evidence ;
+    ns1:id "EV000001" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:EV000003> a ns1:Evidence ;
+    ns1:id "EV000003" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000004> a ns1:Evidence ;
+    ns1:id "SC000004" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000006> a ns1:Evidence ;
+    ns1:id "SC000006" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000007> a ns1:Evidence ;
+    ns1:id "SC000007" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000008> a ns1:Evidence ;
+    ns1:id "SC000008" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000009> a ns1:Evidence ;
+    ns1:id "SC000009" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000010> a ns1:Evidence ;
+    ns1:id "SC000010" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000011> a ns1:Evidence ;
+    ns1:id "SC000011" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000012> a ns1:Evidence ;
+    ns1:id "SC000012" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000013> a ns1:Evidence ;
+    ns1:id "SC000013" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000014> a ns1:Evidence ;
+    ns1:id "SC000014" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:copy> a ns1:ArchiveFact,
+        ns1:CopyCoverage ;
+    ns1:archiveHash "de45d92f704e0c0455c43aa052d03f224978372ab4de29a90e30a0bdc81a653b" ;
+    ns1:evidence <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000006>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000007>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000008>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000009>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000010>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000011>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000012>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000013> ;
+    ns1:omitted true ;
+    ns1:repoPath "assets/tariffs.json" ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:entry> a ns1:ArchiveFact,
+        ns1:RepositoryEntry ;
+    ns1:archiveHash "de45d92f704e0c0455c43aa052d03f224978372ab4de29a90e30a0bdc81a653b" ;
+    ns1:regular true ;
+    ns1:repoPath "assets/tariffs.json" ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:failure> a ns1:Fact,
+        ns1:ReadFailure ;
+    ns1:code "ENOENT" ;
+    ns1:evidence <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:EV000001> ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:failure/candidate> a ns1:Candidate ;
+    ns1:input <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:failure>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:frame>,
+        <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:read> ;
+    ns1:rule "observed-file-read.v1" ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:frame> a ns1:Fact,
+        ns1:StackFrame ;
+    ns1:evidence <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:EV000003> ;
+    ns1:line 4 ;
+    ns1:path "lib/load-tariffs.js" ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:ignore> a ns1:ArchiveFact,
+        ns1:IgnorePolicy ;
+    ns1:allows true ;
+    ns1:archiveHash "de45d92f704e0c0455c43aa052d03f224978372ab4de29a90e30a0bdc81a653b" ;
+    ns1:evidence <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000014> ;
+    ns1:repoPath "assets/tariffs.json" ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+
+<urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:read> a ns1:Fact,
+        ns1:SourceRead ;
+    ns1:evidence <urn:iris:compact:301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c:SC000004> ;
+    ns1:line 4 ;
+    ns1:path "lib/load-tariffs.js" ;
+    ns1:scope "301cddeae8973716db0a6923f7c76a34fa12b7cdfde663d6b70b50a2340b8f7c" ;
+    ns1:target "/app/assets/tariffs.json" .
+

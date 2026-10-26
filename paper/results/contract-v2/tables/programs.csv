@@ -1,0 +1,13 @@
+﻿program_id,arm,scheduled,positive,negative,declared_accept,effective_accept,appropriate_accept,inappropriate_accept,negative_defer,excessive_defer,contract_blocked,provider_failure,final_valid,normalized_valid,fallback_calls,eligible,executed,restored,invalid_final_not_executed,provider_not_executed
+settlement-batch,R_auto,4,2,2,4,4,2,2,0,0,0,0,4,4,0,1,1,1,0,0
+settlement-batch,R_llm,12,6,6,9,9,6,3,3,0,0,0,12,12,3,3,3,3,0,0
+settlement-batch,B_eq,12,6,6,12,12,6,6,0,0,0,0,12,12,0,3,3,3,0,0
+settlement-batch,G_eq,12,6,6,12,6,3,3,0,0,6,0,12,12,6,3,3,3,0,0
+shipping-cli,R_auto,4,2,2,4,4,2,2,0,0,0,0,4,4,0,1,1,1,0,0
+shipping-cli,R_llm,12,6,6,12,12,6,6,0,0,0,0,12,12,0,3,3,3,0,0
+shipping-cli,B_eq,12,6,6,12,12,6,6,0,0,0,0,12,12,0,3,3,3,0,0
+shipping-cli,G_eq,12,6,6,12,12,6,6,0,0,0,0,12,12,0,3,3,3,0,0
+template-http,R_auto,4,2,2,4,4,2,2,0,0,0,0,4,4,0,1,1,1,0,0
+template-http,R_llm,12,6,6,12,12,6,6,0,0,0,0,12,12,0,3,3,3,0,0
+template-http,B_eq,12,6,6,12,12,6,6,0,0,0,0,12,12,0,3,3,3,0,0
+template-http,G_eq,12,6,6,11,0,0,0,0,0,11,1,9,9,11,3,0,0,2,1

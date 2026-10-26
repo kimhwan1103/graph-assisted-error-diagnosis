@@ -1,0 +1,117 @@
+@prefix ns1: <urn:iris:compact:v1:> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:failure/candidate/packaging> a ns1:PackagingCandidate ;
+    ns1:input <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:copy>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:entry>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:failure/candidate>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:ignore> ;
+    ns1:repoPath "config/settlement-rules.json" ;
+    ns1:rule "docker-copy-omission.v1" ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:EV000001> a ns1:Evidence ;
+    ns1:id "EV000001" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:EV000003> a ns1:Evidence ;
+    ns1:id "EV000003" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000004> a ns1:Evidence ;
+    ns1:id "SC000004" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000006> a ns1:Evidence ;
+    ns1:id "SC000006" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000007> a ns1:Evidence ;
+    ns1:id "SC000007" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000008> a ns1:Evidence ;
+    ns1:id "SC000008" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000009> a ns1:Evidence ;
+    ns1:id "SC000009" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000010> a ns1:Evidence ;
+    ns1:id "SC000010" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000011> a ns1:Evidence ;
+    ns1:id "SC000011" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000012> a ns1:Evidence ;
+    ns1:id "SC000012" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000013> a ns1:Evidence ;
+    ns1:id "SC000013" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000014> a ns1:Evidence ;
+    ns1:id "SC000014" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000015> a ns1:Evidence ;
+    ns1:id "SC000015" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:copy> a ns1:ArchiveFact,
+        ns1:CopyCoverage ;
+    ns1:archiveHash "abb8239e4ce5287040ac3eb8b3b9719080b4270833ac3a754dc6ef883aaf339f" ;
+    ns1:evidence <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000006>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000007>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000008>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000009>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000010>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000011>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000012>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000013>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000014> ;
+    ns1:omitted true ;
+    ns1:repoPath "config/settlement-rules.json" ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:entry> a ns1:ArchiveFact,
+        ns1:RepositoryEntry ;
+    ns1:archiveHash "abb8239e4ce5287040ac3eb8b3b9719080b4270833ac3a754dc6ef883aaf339f" ;
+    ns1:regular true ;
+    ns1:repoPath "config/settlement-rules.json" ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:failure> a ns1:Fact,
+        ns1:ReadFailure ;
+    ns1:code "ENOENT" ;
+    ns1:evidence <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:EV000001> ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:failure/candidate> a ns1:Candidate ;
+    ns1:input <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:failure>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:frame>,
+        <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:read> ;
+    ns1:rule "observed-file-read.v1" ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:frame> a ns1:Fact,
+        ns1:StackFrame ;
+    ns1:evidence <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:EV000003> ;
+    ns1:line 4 ;
+    ns1:path "readers/load-policy.js" ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:ignore> a ns1:ArchiveFact,
+        ns1:IgnorePolicy ;
+    ns1:allows true ;
+    ns1:archiveHash "abb8239e4ce5287040ac3eb8b3b9719080b4270833ac3a754dc6ef883aaf339f" ;
+    ns1:evidence <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000015> ;
+    ns1:repoPath "config/settlement-rules.json" ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+
+<urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:read> a ns1:Fact,
+        ns1:SourceRead ;
+    ns1:evidence <urn:iris:compact:496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75:SC000004> ;
+    ns1:line 4 ;
+    ns1:path "readers/load-policy.js" ;
+    ns1:scope "496deacfda80a5d25a746f2f9fbff5c80772f50ab7151ae7b6bab91fa50f7e75" ;
+    ns1:target "/app/config/settlement-rules.json" .
+

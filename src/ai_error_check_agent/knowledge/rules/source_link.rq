@@ -1,0 +1,8 @@
+PREFIX g: <urn:iris:source-link:v1:>
+CONSTRUCT {
+ ?frame a g:Candidate ; g:source ?source ; g:rule "error-source-link.v1" .
+}
+WHERE {
+ ?frame a g:Frame ; g:scope ?scope ; g:path ?path ; g:line ?line ; g:evidence ?ev .
+ ?source a g:Source ; g:scope ?scope ; g:path ?path ; g:line ?line ; g:evidence ?sc .
+}

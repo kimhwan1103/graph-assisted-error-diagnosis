@@ -1,0 +1,1518 @@
+{
+  "version": "study-v4-reference.v1",
+  "provenance": "Fixture specification transcribed separately from the extractor; unreviewed; not held-out gold. Never sent to the model.",
+  "cases": {
+    "missing-task-data": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "ENOENT 파일 읽기 실패를 실제 로그 근거와 연결한다.",
+        "패키징 누락·마운트·공급 실패 중 하나로 근본 원인을 확정하지 않는다.",
+        "소스 스냅샷 일치·누락 로그·데이터 계약의 미확인을 유지한다.",
+        "정상 원본과 공급 계약을 확인한 조건부 수정, 기존 데이터 보존, 검증·되돌리기를 제공한다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "renamed-file": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "ENOENT 파일 읽기 실패를 실제 로그 근거와 연결한다.",
+        "패키징 누락·마운트·공급 실패 중 하나로 근본 원인을 확정하지 않는다.",
+        "소스 스냅샷 일치·누락 로그·데이터 계약의 미확인을 유지한다.",
+        "정상 원본과 공급 계약을 확인한 조건부 수정, 기존 데이터 보존, 검증·되돌리기를 제공한다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/catalog.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/catalog.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/catalog.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/catalog.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "repeated-stack": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "ENOENT 파일 읽기 실패를 실제 로그 근거와 연결한다.",
+        "패키징 누락·마운트·공급 실패 중 하나로 근본 원인을 확정하지 않는다.",
+        "소스 스냅샷 일치·누락 로그·데이터 계약의 미확인을 유지한다.",
+        "정상 원본과 공급 계약을 확인한 조건부 수정, 기존 데이터 보존, 검증·되돌리기를 제공한다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "direct-literal": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "ENOENT 파일 읽기 실패를 실제 로그 근거와 연결한다.",
+        "패키징 누락·마운트·공급 실패 중 하나로 근본 원인을 확정하지 않는다.",
+        "소스 스냅샷 일치·누락 로그·데이터 계약의 미확인을 유지한다.",
+        "정상 원본과 공급 계약을 확인한 조건부 수정, 기존 데이터 보존, 검증·되돌리기를 제공한다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "2"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "2"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000002"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "recovered-same-stream": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "adaptive",
+      "acceptable_statuses": [
+        "no_failure_evidence"
+      ],
+      "quality_rubric": [
+        "오류와 동일 출처의 후속 회복을 함께 설명하고 미회복 장애로 확정하지 않는다.",
+        "수정 계획을 제시하지 않는다.",
+        "백엔드 FAILED와 종료 코드는 추가 확인 문맥으로 취급한다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "other-stream-healthy": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "adaptive",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "ENOENT 파일 읽기 실패를 실제 로그 근거와 연결한다.",
+        "패키징 누락·마운트·공급 실패 중 하나로 근본 원인을 확정하지 않는다.",
+        "소스 스냅샷 일치·누락 로그·데이터 계약의 미확인을 유지한다.",
+        "정상 원본과 공급 계약을 확인한 조건부 수정, 기존 데이터 보존, 검증·되돌리기를 제공한다.",
+        "다른 앱의 건강 상태를 실패 앱의 회복 증거로 사용하지 않는다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "source-target-mismatch": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "adaptive",
+      "acceptable_statuses": [
+        "diagnosed",
+        "insufficient_evidence"
+      ],
+      "quality_rubric": [
+        "로그 경로와 제공 소스의 파일 경로가 다름을 발견하고 스냅샷·배포 코드 일치를 의심한다.",
+        "제공 소스가 로그의 대상 파일을 읽는다고 잘못 주장하지 않는다.",
+        "원인 불확실성을 남기며 단정적 데이터 생성·덮어쓰기를 권하지 않는다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/other.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": []
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "expected-test-error": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "defer",
+      "acceptable_statuses": [
+        "no_failure_evidence"
+      ],
+      "quality_rubric": [
+        "단위 테스트가 의도해 확인한 ENOENT이며 앱을 실제로 실행하지 않았다는 문맥을 반영한다.",
+        "수정 계획을 제시하지 않는다.",
+        "그래프에 관계가 있다는 사실만으로 실제 장애를 확정하지 않는다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "docker-copy-omission": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "compact",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "직접 읽기 실패와 Dockerfile COPY 누락의 조건부 후보를 구분한다.",
+        "Dockerfile을 수정 대상으로 지정하고 기존 COPY를 유지하면서 data/tasks.json만 추가한다.",
+        "실제 빌드 문맥·마운트·정적 초기 데이터 계약의 미확인을 유지한다.",
+        "재빌드·읽기·기동·기능 검증 및 롤백을 포함한다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "CopyCoverage",
+            "omitted",
+            "true"
+          ],
+          [
+            "CopyCoverage",
+            "repoPath",
+            "data/tasks.json"
+          ],
+          [
+            "CopyCoverage",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "CopyCoverage",
+            "type",
+            "CopyCoverage"
+          ],
+          [
+            "IgnorePolicy",
+            "allows",
+            "true"
+          ],
+          [
+            "IgnorePolicy",
+            "repoPath",
+            "data/tasks.json"
+          ],
+          [
+            "IgnorePolicy",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "IgnorePolicy",
+            "type",
+            "IgnorePolicy"
+          ],
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "RepositoryEntry",
+            "regular",
+            "true"
+          ],
+          [
+            "RepositoryEntry",
+            "repoPath",
+            "data/tasks.json"
+          ],
+          [
+            "RepositoryEntry",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "RepositoryEntry",
+            "type",
+            "RepositoryEntry"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000011"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000012"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000013"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000014"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000015"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000016"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000017"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000018"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000019"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000020"
+          ],
+          [
+            "CopyCoverage",
+            "evidence",
+            "SC000021"
+          ],
+          [
+            "IgnorePolicy",
+            "evidence",
+            "SC000022"
+          ],
+          [
+            "IgnorePolicy",
+            "evidence",
+            "SC000023"
+          ],
+          [
+            "IgnorePolicy",
+            "evidence",
+            "SC000024"
+          ],
+          [
+            "IgnorePolicy",
+            "evidence",
+            "SC000025"
+          ],
+          [
+            "IgnorePolicy",
+            "evidence",
+            "SC000026"
+          ],
+          [
+            "IgnorePolicy",
+            "evidence",
+            "SC000027"
+          ],
+          [
+            "PackagingCandidate",
+            "input",
+            "Candidate"
+          ],
+          [
+            "PackagingCandidate",
+            "input",
+            "CopyCoverage"
+          ],
+          [
+            "PackagingCandidate",
+            "input",
+            "IgnorePolicy"
+          ],
+          [
+            "PackagingCandidate",
+            "input",
+            "RepositoryEntry"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "PackagingCandidate",
+            "repoPath",
+            "data/tasks.json"
+          ],
+          [
+            "PackagingCandidate",
+            "rule",
+            "docker-copy-omission.v1"
+          ],
+          [
+            "PackagingCandidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "already-copied": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "fallback",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "ENOENT 읽기 실패를 근거로 사용한다.",
+        "제공 Dockerfile의 COPY 누락으로 단정하지 않는다.",
+        "이미 복사한 사례는 실행 이미지·마운트를 확인하고, 제외 규칙 사례는 .dockerignore를 확인한다.",
+        "검증하지 않은 배포 정보와 데이터 계약은 불확실성으로 남긴다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    },
+    "ignored-file": {
+      "status": "provisional_author_fixture",
+      "approved_by": null,
+      "approved_at": null,
+      "expected_route": "fallback",
+      "acceptable_statuses": [
+        "diagnosed"
+      ],
+      "quality_rubric": [
+        "ENOENT 읽기 실패를 근거로 사용한다.",
+        "제공 Dockerfile의 COPY 누락으로 단정하지 않는다.",
+        "이미 복사한 사례는 실행 이미지·마운트를 확인하고, 제외 규칙 사례는 .dockerignore를 확인한다.",
+        "검증하지 않은 배포 정보와 데이터 계약은 불확실성으로 남긴다."
+      ],
+      "graph": {
+        "facts": [
+          [
+            "ReadFailure",
+            "code",
+            "ENOENT"
+          ],
+          [
+            "ReadFailure",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "ReadFailure",
+            "type",
+            "ReadFailure"
+          ],
+          [
+            "SourceRead",
+            "line",
+            "8"
+          ],
+          [
+            "SourceRead",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "SourceRead",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "SourceRead",
+            "type",
+            "SourceRead"
+          ],
+          [
+            "StackFrame",
+            "line",
+            "8"
+          ],
+          [
+            "StackFrame",
+            "path",
+            "src/tasks.js"
+          ],
+          [
+            "StackFrame",
+            "target",
+            "/app/data/tasks.json"
+          ],
+          [
+            "StackFrame",
+            "type",
+            "StackFrame"
+          ]
+        ],
+        "relations": [
+          [
+            "Candidate",
+            "input",
+            "ReadFailure"
+          ],
+          [
+            "Candidate",
+            "input",
+            "SourceRead"
+          ],
+          [
+            "Candidate",
+            "input",
+            "StackFrame"
+          ],
+          [
+            "ReadFailure",
+            "evidence",
+            "EV000001"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000007"
+          ],
+          [
+            "SourceRead",
+            "evidence",
+            "SC000008"
+          ],
+          [
+            "StackFrame",
+            "evidence",
+            "EV000003"
+          ]
+        ],
+        "candidates": [
+          [
+            "Candidate",
+            "rule",
+            "observed-file-read.v1"
+          ],
+          [
+            "Candidate",
+            "target",
+            "/app/data/tasks.json"
+          ]
+        ]
+      },
+      "graph_scope": "Observed primary read, first occurrence anchors, and positive omission facts. Historical/expected errors can have a valid read candidate without being a current service failure. A routing refusal does not erase the underlying observed facts; coverage/FN must be reported separately."
+    }
+  }
+}

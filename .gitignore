@@ -1,0 +1,42 @@
+# Local credentials and machine settings
+.env
+.env.*
+!.env.example
+*.local.json
+*.pem
+*.key
+.codex/
+.agents/
+.idea/
+.vscode/
+
+# Python / JavaScript environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+node_modules/
+build/
+dist/
+.coverage
+htmlcov/
+
+# Execution archives and local scratch work (published tables live in paper/)
+/results/
+/output/
+/.runtime/
+/.test-tmp/
+/.build-tmp/
+/.cv2t*/
+/.contract-v2-unit-*/
+/.cross-program-*-tmp/
+/.review-controls-test-tmp/
+/.review-controls-unit-tests/
+*.log
+*.tmp
+Thumbs.db
+.DS_Store

@@ -1,0 +1,95 @@
+{
+  "case_id": "case-0f218dab4051",
+  "eligible": true,
+  "checks": {
+    "candidate_ranges": true,
+    "graph_generated": true,
+    "shacl_conforms": true,
+    "both_candidates": true,
+    "all_logs_retained": true,
+    "context_retained": true,
+    "full_source_ranges": true,
+    "target_and_source_match": true,
+    "packaging_match": true,
+    "automatic_assembly_valid": true
+  },
+  "candidate_ranges": [
+    {
+      "path": "view/load-template.js",
+      "start_line": 4,
+      "end_line": 120,
+      "reason": "ENOENT 스택의 첫 애플리케이션 파일을 사전 선택했습니다. 원인 확정 근거는 아닙니다.",
+      "evidence_ids": [
+        "EV000001",
+        "EV000003"
+      ]
+    }
+  ],
+  "graph_report": {
+    "stage": "source",
+    "variant": "graph_compact",
+    "status": "ok",
+    "rule": "observed-file-read.v1",
+    "resources_sha256": "f18d73634aa314ae83034c493ee68e642e6a52e41f773d785c9731b5129dd62b",
+    "graph_ttl": "@prefix ns1: <urn:iris:compact:v1:> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure/candidate/packaging> a ns1:PackagingCandidate ;\n    ns1:input <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:copy>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:entry>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure/candidate>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:ignore> ;\n    ns1:repoPath \"views/index.html\" ;\n    ns1:rule \"docker-copy-omission.v1\" ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000001> a ns1:Evidence ;\n    ns1:id \"EV000001\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000003> a ns1:Evidence ;\n    ns1:id \"EV000003\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000004> a ns1:Evidence ;\n    ns1:id \"SC000004\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000006> a ns1:Evidence ;\n    ns1:id \"SC000006\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000007> a ns1:Evidence ;\n    ns1:id \"SC000007\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000008> a ns1:Evidence ;\n    ns1:id \"SC000008\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000009> a ns1:Evidence ;\n    ns1:id \"SC000009\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000010> a ns1:Evidence ;\n    ns1:id \"SC000010\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000011> a ns1:Evidence ;\n    ns1:id \"SC000011\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000012> a ns1:Evidence ;\n    ns1:id \"SC000012\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000013> a ns1:Evidence ;\n    ns1:id \"SC000013\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000014> a ns1:Evidence ;\n    ns1:id \"SC000014\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:copy> a ns1:ArchiveFact,\n        ns1:CopyCoverage ;\n    ns1:archiveHash \"664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba\" ;\n    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000006>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000007>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000008>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000009>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000010>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000011>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000012>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000013> ;\n    ns1:omitted true ;\n    ns1:repoPath \"views/index.html\" ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:entry> a ns1:ArchiveFact,\n        ns1:RepositoryEntry ;\n    ns1:archiveHash \"664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba\" ;\n    ns1:regular true ;\n    ns1:repoPath \"views/index.html\" ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure> a ns1:Fact,\n        ns1:ReadFailure ;\n    ns1:code \"ENOENT\" ;\n    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000001> ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure/candidate> a ns1:Candidate ;\n    ns1:input <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:failure>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:frame>,\n        <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:read> ;\n    ns1:rule \"observed-file-read.v1\" ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:frame> a ns1:Fact,\n        ns1:StackFrame ;\n    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:EV000003> ;\n    ns1:line 4 ;\n    ns1:path \"view/load-template.js\" ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:ignore> a ns1:ArchiveFact,\n        ns1:IgnorePolicy ;\n    ns1:allows true ;\n    ns1:archiveHash \"664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba\" ;\n    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000014> ;\n    ns1:repoPath \"views/index.html\" ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n<urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:read> a ns1:Fact,\n        ns1:SourceRead ;\n    ns1:evidence <urn:iris:compact:9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47:SC000004> ;\n    ns1:line 4 ;\n    ns1:path \"view/load-template.js\" ;\n    ns1:scope \"9d34b784617c17bb475c709b01714af0092fd3da94b97a99c0ef5f943dfdde47\" ;\n    ns1:target \"/app/views/index.html\" .\n\n",
+    "candidate": {
+      "id": "C1",
+      "kind": "observed_file_read_failure",
+      "target": "/app/views/index.html",
+      "code_path": "view/load-template.js",
+      "code_line": 4,
+      "rule": "observed-file-read.v1",
+      "evidence_ids": [
+        "EV000001",
+        "EV000003"
+      ],
+      "source_evidence_ids": [
+        "SC000004"
+      ],
+      "claim": "로그의 ENOENT 대상과 스택 위치의 소스 읽기 경로가 일치한다. 배포상 원인은 미확정이다."
+    },
+    "packaging_candidate": {
+      "id": "P1",
+      "kind": "docker_copy_omission",
+      "rule": "docker-copy-omission.v1",
+      "repo_path": "views/index.html",
+      "target": "/app/views/index.html",
+      "dockerfile": "Dockerfile",
+      "archive_sha256": "664477e807a42516ad0f4278e3d9b5d2679bde5e5e4ea588448c8057a8a947ba",
+      "root_directory": ".",
+      "ignore_path": ".dockerignore",
+      "ignore_state": "read",
+      "insert_after_line": 6,
+      "anchor": "COPY --chown=node:node routes ./routes",
+      "snippet": "COPY --chown=node:node views/index.html ./views/index.html",
+      "source_evidence_ids": [
+        "SC000006",
+        "SC000007",
+        "SC000008",
+        "SC000009",
+        "SC000010",
+        "SC000011",
+        "SC000012",
+        "SC000013"
+      ],
+      "ignore_evidence_ids": [
+        "SC000014"
+      ],
+      "claim": "제공 아카이브에 대상 파일이 있으나, 이 Dockerfile의 명시적 COPY에는 대상 경로로 공급하는 지시가 없다. 실제 배포에 동일 빌드 문맥·Dockerfile을 사용했는지는 미확인이다."
+    },
+    "metrics": {
+      "conforms": true,
+      "triples": 90,
+      "fact_count": 6,
+      "candidate_count": 2,
+      "total_ms": 18.991,
+      "original_log_lines": 8,
+      "distinct_log_lines": 8,
+      "retained_log_ids": 8
+    }
+  },
+  "preparation_ms": 2.592800068669021,
+  "graph_ms": 19.00450000539422,
+  "normal_route": "not_measured_until_preflight",
+  "candidate_generation": "offline_fixed_input_no_timeout"
+}

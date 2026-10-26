@@ -1,0 +1,278 @@
+{
+  "case-26c50a5f9588": [
+    {
+      "path": "lib/load-tariffs.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "6a95ecd3175e960ee531d0f1f2ccbad53211c0fdbaf9918743f6c3955dacd1b7"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "245596d7725cc142f0ba9144eba89ae08a31efd80cefa4c8fd348126f995dd1e"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-d22f5648fa67": [
+    {
+      "path": "lib/load-tariffs.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "6a95ecd3175e960ee531d0f1f2ccbad53211c0fdbaf9918743f6c3955dacd1b7"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "245596d7725cc142f0ba9144eba89ae08a31efd80cefa4c8fd348126f995dd1e"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-eb28711105b6": [
+    {
+      "path": "lib/load-tariffs.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "6a95ecd3175e960ee531d0f1f2ccbad53211c0fdbaf9918743f6c3955dacd1b7"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "245596d7725cc142f0ba9144eba89ae08a31efd80cefa4c8fd348126f995dd1e"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-f47b9c941cc8": [
+    {
+      "path": "lib/load-tariffs.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "6a95ecd3175e960ee531d0f1f2ccbad53211c0fdbaf9918743f6c3955dacd1b7"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "245596d7725cc142f0ba9144eba89ae08a31efd80cefa4c8fd348126f995dd1e"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-6d7d230a375a": [
+    {
+      "path": "view/load-template.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "5b392dcff08888dc8afe8a448bbddd922aa1100c142af5ff9c428a3f82f821d9"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "6e3ab2642c1ecf192696ee5b81367abe2c60d15b6bae043553b70cc10871fc07"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-7dfe4c50c41e": [
+    {
+      "path": "view/load-template.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "5b392dcff08888dc8afe8a448bbddd922aa1100c142af5ff9c428a3f82f821d9"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "6e3ab2642c1ecf192696ee5b81367abe2c60d15b6bae043553b70cc10871fc07"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-0f218dab4051": [
+    {
+      "path": "view/load-template.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "5b392dcff08888dc8afe8a448bbddd922aa1100c142af5ff9c428a3f82f821d9"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "6e3ab2642c1ecf192696ee5b81367abe2c60d15b6bae043553b70cc10871fc07"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-354d4ba3c109": [
+    {
+      "path": "view/load-template.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "5b392dcff08888dc8afe8a448bbddd922aa1100c142af5ff9c428a3f82f821d9"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 8,
+      "masked": false,
+      "excerpt_sha256": "6e3ab2642c1ecf192696ee5b81367abe2c60d15b6bae043553b70cc10871fc07"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "d9225201f84ba544b2ac76191af62b69b1590f87db11df7c75deec0806334f45"
+    }
+  ],
+  "case-ac97140f1910": [
+    {
+      "path": "readers/load-policy.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "d35c339a8c32283a6b081181cd91bd0bddcb15d8e26cd7239d066785e83f8a70"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 9,
+      "masked": false,
+      "excerpt_sha256": "894d99c205ecf0b3e4f8a73b9fd825e3a3230d8a18bede80c54d679446799d6f"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "a93bb4a9fed7c590178376dd432ee96dfe1fbeef54e410e4e8f021f9c59dce38"
+    }
+  ],
+  "case-076460f66785": [
+    {
+      "path": "readers/load-policy.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "d35c339a8c32283a6b081181cd91bd0bddcb15d8e26cd7239d066785e83f8a70"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 9,
+      "masked": false,
+      "excerpt_sha256": "894d99c205ecf0b3e4f8a73b9fd825e3a3230d8a18bede80c54d679446799d6f"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "a93bb4a9fed7c590178376dd432ee96dfe1fbeef54e410e4e8f021f9c59dce38"
+    }
+  ],
+  "case-c0f372a0b951": [
+    {
+      "path": "readers/load-policy.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "d35c339a8c32283a6b081181cd91bd0bddcb15d8e26cd7239d066785e83f8a70"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 9,
+      "masked": false,
+      "excerpt_sha256": "894d99c205ecf0b3e4f8a73b9fd825e3a3230d8a18bede80c54d679446799d6f"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "a93bb4a9fed7c590178376dd432ee96dfe1fbeef54e410e4e8f021f9c59dce38"
+    }
+  ],
+  "case-428ddd177b62": [
+    {
+      "path": "readers/load-policy.js",
+      "start_line": 1,
+      "end_line": 5,
+      "masked": false,
+      "excerpt_sha256": "d35c339a8c32283a6b081181cd91bd0bddcb15d8e26cd7239d066785e83f8a70"
+    },
+    {
+      "path": "Dockerfile",
+      "start_line": 1,
+      "end_line": 9,
+      "masked": false,
+      "excerpt_sha256": "894d99c205ecf0b3e4f8a73b9fd825e3a3230d8a18bede80c54d679446799d6f"
+    },
+    {
+      "path": ".dockerignore",
+      "start_line": 1,
+      "end_line": 1,
+      "masked": false,
+      "excerpt_sha256": "a93bb4a9fed7c590178376dd432ee96dfe1fbeef54e410e4e8f021f9c59dce38"
+    }
+  ]
+}

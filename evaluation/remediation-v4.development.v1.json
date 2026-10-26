@@ -1,0 +1,213 @@
+{
+  "version": "study-v4-remediation-cases.v1",
+  "study_sha256": "7541d299319afaf6a5d0bddfd55126cb0cdc3e49c168629783a2daa31012bd26",
+  "classification_timing": "post_hoc_development_before_replay_not_before_generation",
+  "normalization_policy": "limitations-text-unwrapping.v1",
+  "notes": "Available source archives are shared; actual model input subsets may differ and are recorded per cell. No claims of pre-registration or independent held-out incidents.",
+  "cases": [
+    {
+      "case_id": "recovered-same-stream",
+      "incident_id": "recovered-same-stream",
+      "cluster_id": "iris-demo-lineage",
+      "case_group": "no_change",
+      "development_exposure": "used_in_development",
+      "case_sha256": "c2b42b7f5b8760fb1179247117df941006dbe08a75a55a1e31f1a49336c867bf",
+      "source_files_sha256": "1ee594f69211229baa9f10d2b378ff22c7e16e52eaf32dd46f8a6cc396abc92b",
+      "payload_sha256": "f1f0d9d5bfe8b9c5d55c5cc68b7ba5dbcee8125be4a91dbb8714f4c6d74f13e3",
+      "file_sha256": {
+        "src/tasks.js": "d66af4e2aa86b6e064f5c45914d5274a406a116ee010fa450005f01af336e7ac",
+        "src/app.js": "a4f15f8b08d2d1d454c550f1a022c55dfb7c0f9f08410bc5b98440a8e51caad9",
+        "src/server.js": "ed4780943879a93d2386af8de80f9c67f11effbbe17814abaa4e9ef33c6468b1"
+      },
+      "provided_resources": {
+        "source_archive": "frozen case source_files; agent routing decides model-visible subset",
+        "external_resources": [],
+        "new_or_invented_data": false
+      },
+      "allowed_states": [
+        "no_failure_evidence"
+      ],
+      "technical_preflight": "not_applicable_to_response_only_control"
+    },
+    {
+      "case_id": "source-target-mismatch",
+      "incident_id": "source-target-mismatch",
+      "cluster_id": "iris-demo-lineage",
+      "case_group": "insufficient_context",
+      "development_exposure": "used_in_development",
+      "case_sha256": "bfe9f1c85dafd6284c40270adc97f372421081b42832684f6fe16ed3418ea138",
+      "source_files_sha256": "7478b4378ec7ac51e5a692c94d571f20f035032a0c1d87a95d355ef2c2f74e79",
+      "payload_sha256": "d8c05f26c3151c17f83b4e2001ea836cf1e9a217e69b2e144c36ed5d3fedecc6",
+      "file_sha256": {
+        "src/tasks.js": "8d0a3c448001e28a097bdb38b62fa57f29b28b4b322c833de5763358feae8243",
+        "src/app.js": "a4f15f8b08d2d1d454c550f1a022c55dfb7c0f9f08410bc5b98440a8e51caad9",
+        "src/server.js": "ed4780943879a93d2386af8de80f9c67f11effbbe17814abaa4e9ef33c6468b1"
+      },
+      "provided_resources": {
+        "source_archive": "frozen case source_files; agent routing decides model-visible subset",
+        "external_resources": [],
+        "new_or_invented_data": false
+      },
+      "allowed_states": [
+        "insufficient_evidence"
+      ],
+      "technical_preflight": "not_applicable_to_response_only_control"
+    },
+    {
+      "case_id": "expected-test-error",
+      "incident_id": "expected-test-error",
+      "cluster_id": "iris-demo-lineage",
+      "case_group": "no_change",
+      "development_exposure": "used_in_development",
+      "case_sha256": "79141bc35a4bdf2ba7e2879112707e701d2d65d8be9223116b5c9ad6be34ed22",
+      "source_files_sha256": "1ee594f69211229baa9f10d2b378ff22c7e16e52eaf32dd46f8a6cc396abc92b",
+      "payload_sha256": "5a50fc386fe09eb845439afacb0d942a30f3349cfcc0fbf449fc8f78a9749f30",
+      "file_sha256": {
+        "src/tasks.js": "d66af4e2aa86b6e064f5c45914d5274a406a116ee010fa450005f01af336e7ac",
+        "src/app.js": "a4f15f8b08d2d1d454c550f1a022c55dfb7c0f9f08410bc5b98440a8e51caad9",
+        "src/server.js": "ed4780943879a93d2386af8de80f9c67f11effbbe17814abaa4e9ef33c6468b1"
+      },
+      "provided_resources": {
+        "source_archive": "frozen case source_files; agent routing decides model-visible subset",
+        "external_resources": [],
+        "new_or_invented_data": false
+      },
+      "allowed_states": [
+        "no_failure_evidence"
+      ],
+      "technical_preflight": "not_applicable_to_response_only_control"
+    },
+    {
+      "case_id": "docker-copy-omission",
+      "incident_id": "docker-copy-omission",
+      "cluster_id": "iris-demo-lineage",
+      "case_group": "repairable",
+      "development_exposure": "used_in_development",
+      "case_sha256": "665e2262093ef4e794179c66eabae08c2d46a05970a4f328b4c69c66fa17310d",
+      "source_files_sha256": "28c50477c9109449632e8b3d944d07f0fa17d6c5390ac2c9fd784b7853de5581",
+      "payload_sha256": "c72fd7fbedc97e39bf8f3cfde15913c0c99976f0d946b92ae94627ccae7807be",
+      "file_sha256": {
+        "src/app.js": "a4f15f8b08d2d1d454c550f1a022c55dfb7c0f9f08410bc5b98440a8e51caad9",
+        "src/config.js": "7bd9ac0adea08e404fd7c790bc700543b4e3bfe32086d0243a59a7582193551b",
+        "src/server.js": "ed4780943879a93d2386af8de80f9c67f11effbbe17814abaa4e9ef33c6468b1",
+        "src/tasks.js": "d66af4e2aa86b6e064f5c45914d5274a406a116ee010fa450005f01af336e7ac",
+        "public/app.js": "f3eea0474f3fb5873a2c35621181fbf3c2b5c438201cc7d61789a3c0c1ed5ddd",
+        "public/favicon.svg": "66920059ab3d8c4f8c453e231764f351d8fbb2924ed91419324cba7c70a1d2b3",
+        "public/index.html": "0a81d5c647ad13c3a4d33b6ab6e31b605112aa1f14039efe0a077014aa85c9f8",
+        "public/style.css": "f1bd4a29b633c6d0ddb9ff42d5cf662c805d37ca136b4ffc35af220a5ac1ec68",
+        "data/tasks.json": "bb38b894643a54644e01638e0595f7fd216c6de29539d4424e4fd6768804fff1",
+        "Dockerfile": "ef279269afa08b47d3f4fa51436740c775a44f8652e0c0c549342e087557bbda",
+        ".dockerignore": "ebbe2434ca49303be3dec1890d22da2c06714cf84441b22d0afff11d3bc499b0",
+        "package.json": "83f2a7726cf6b9f2ff3d70b83cc45534073a5910f5f99c5dfa20e0bdec7a91d4"
+      },
+      "provided_resources": {
+        "source_archive": "frozen case source_files; agent routing decides model-visible subset",
+        "external_resources": [],
+        "new_or_invented_data": false
+      },
+      "allowed_states": [
+        "diagnosed"
+      ],
+      "technical_preflight": "pending_execution",
+      "adapter_policy": {
+        "version": "docker-copy-literal-adapter.v1",
+        "operation": "add_docker_copy",
+        "allowed_files": [
+          "Dockerfile"
+        ],
+        "default_position": "after_last_copy",
+        "target_resolution": "literal existing Dockerfile even when target_known is false; record assistance",
+        "syntax": "one-source literal COPY, shell/JSON form, optional --chown, quotes/whitespace",
+        "conditions": "conditional applicability under the declared fixture environment; no natural-language entailment"
+      },
+      "execution": {
+        "engine": "iris-copy-replay.v1",
+        "base_image": "node:22-alpine",
+        "isolation": "fresh, no network, no mounts, read-only root",
+        "conditions": [
+          "same supplied source/build context",
+          "no external mounts or initialization",
+          "supplied tasks.json is approved static fixture seed data"
+        ]
+      },
+      "tests": {
+        "version": "iris-copy-tests.v1",
+        "target_path": "/app/data/tasks.json",
+        "health_app": "iris-demo-web",
+        "title": "작은 완료",
+        "expected_tasks": [
+          {
+            "title": "첫 번째 웹 프로젝트 배포하기",
+            "category": "개발",
+            "done": false
+          },
+          {
+            "title": "오류 로그와 진단 결과 확인하기",
+            "category": "확인",
+            "done": false
+          },
+          {
+            "title": "해커톤 아이디어 적어두기",
+            "category": "아이디어",
+            "done": true
+          }
+        ],
+        "task_comparison": "exact all non-id fields; ignore generated UUID and list order",
+        "regression": "loadConfig default/custom/invalid ports; passes on broken image",
+        "protected_files": {
+          "src/app.js": "a4f15f8b08d2d1d454c550f1a022c55dfb7c0f9f08410bc5b98440a8e51caad9",
+          "src/config.js": "7bd9ac0adea08e404fd7c790bc700543b4e3bfe32086d0243a59a7582193551b",
+          "src/server.js": "ed4780943879a93d2386af8de80f9c67f11effbbe17814abaa4e9ef33c6468b1",
+          "src/tasks.js": "d66af4e2aa86b6e064f5c45914d5274a406a116ee010fa450005f01af336e7ac",
+          "public/app.js": "f3eea0474f3fb5873a2c35621181fbf3c2b5c438201cc7d61789a3c0c1ed5ddd",
+          "public/favicon.svg": "66920059ab3d8c4f8c453e231764f351d8fbb2924ed91419324cba7c70a1d2b3",
+          "public/index.html": "0a81d5c647ad13c3a4d33b6ab6e31b605112aa1f14039efe0a077014aa85c9f8",
+          "public/style.css": "f1bd4a29b633c6d0ddb9ff42d5cf662c805d37ca136b4ffc35af220a5ac1ec68",
+          "data/tasks.json": "bb38b894643a54644e01638e0595f7fd216c6de29539d4424e4fd6768804fff1",
+          "package.json": "83f2a7726cf6b9f2ff3d70b83cc45534073a5910f5f99c5dfa20e0bdec7a91d4"
+        },
+        "required_checks": [
+          "baseline_failure_reproduced",
+          "application_pass",
+          "build_pass",
+          "startup_pass",
+          "target_failure_resolved",
+          "health_pass",
+          "functional_pass",
+          "regression_pass",
+          "data_preservation_pass"
+        ]
+      }
+    }
+  ],
+  "excluded_cases": [
+    {
+      "case_id": "missing-task-data",
+      "reason": "Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair"
+    },
+    {
+      "case_id": "renamed-file",
+      "reason": "Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair"
+    },
+    {
+      "case_id": "repeated-stack",
+      "reason": "Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair"
+    },
+    {
+      "case_id": "direct-literal",
+      "reason": "Known source/log execution inconsistency"
+    },
+    {
+      "case_id": "other-stream-healthy",
+      "reason": "Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair"
+    },
+    {
+      "case_id": "already-copied",
+      "reason": "Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair"
+    },
+    {
+      "case_id": "ignored-file",
+      "reason": "Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair"
+    }
+  ]
+}

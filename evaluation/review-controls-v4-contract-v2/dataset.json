@@ -1,0 +1,1797 @@
+{
+  "version": "review-controls.v1",
+  "cases": [
+    {
+      "id": "case-26c50a5f9588",
+      "cluster_id": "shipping-cli",
+      "pair_id": "shipping-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5503438d7a9a",
+          "serviceId": "scope-ff1107a9d304",
+          "deploymentId": "scope-16789f7044da",
+          "attemptId": "scope-74fc31f90dc2",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:29.163919162Z",
+            "to": "2026-10-22T15:34:29.163970720Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:29.163919162Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/assets/tariffs.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:29.163957865Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:29.163961312Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTariffs (file:///app/lib/load-tariffs.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:29.163963777Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/bin/quote.js:6:19"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:29.163965971Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:29.163968135Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-043cc1d0442d",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-ff5c289e029f\",\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/assets/tariffs.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "6049bd6f9b953f594bc521eb295ab4f81c4c2b63",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node bin ./bin\nCOPY --chown=node:node lib ./lib\nCOPY --chown=node:node pricing ./pricing\nUSER node\nCMD [\"node\", \"bin/quote.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Shipping CLI\nRun `node bin/quote.js` with an optional JSON argument containing integer amount and weightKg.\nDefault input is amount 4000 and weightKg 2. Negative values or malformed input exit with code 2 and INVALID_INPUT on stderr.\nThe application reads tariffs and prints a JSON shipping_fee and label. OPTIONAL_CONFIG=1 enables optional local labels; missing labels use the shipping default.\n"
+        },
+        {
+          "path": "assets/tariffs.json",
+          "content": "{\"base\":1000,\"perKg\":200,\"freeAt\":10000}\n"
+        },
+        {
+          "path": "bin/quote.js",
+          "content": "import { loadTariffs } from '../lib/load-tariffs.js';\nimport { loadLabels } from '../lib/load-labels.js';\nimport { calculate } from '../pricing/calculate.js';\n\ntry {\n  const tariffs = loadTariffs();\n  let label = 'shipping';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default shipping label');\n    }\n  }\n  let order;\n  try { order = JSON.parse(process.argv[2] ?? '{\"amount\":4000,\"weightKg\":2}'); }\n  catch { throw new TypeError('INVALID_INPUT'); }\n  console.log(JSON.stringify({ shipping_fee: calculate(order, tariffs), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_INPUT' ? 2 : 1;\n}\n"
+        },
+        {
+          "path": "lib/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "lib/load-tariffs.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTariffs() {\n  return JSON.parse(readFileSync('/app/assets/tariffs.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"shipping-cli\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pricing/calculate.js",
+          "content": "export function calculate(order, tariffs) {\n  if (!order || !Number.isSafeInteger(order.amount) || !Number.isSafeInteger(order.weightKg)\n      || order.amount < 0 || order.weightKg < 0) {\n    throw new TypeError('INVALID_INPUT');\n  }\n  if (![tariffs.base, tariffs.perKg, tariffs.freeAt].every(x => Number.isSafeInteger(x) && x >= 0)) {\n    throw new TypeError('INVALID_TARIFFS');\n  }\n  return order.amount >= tariffs.freeAt ? 0 : tariffs.base + order.weightKg * tariffs.perKg;\n}\n"
+        }
+      ],
+      "program_id": "shipping-cli",
+      "base_incident_id": "shipping-required-copy",
+      "context_variant": "P_supported",
+      "eligible": true
+    },
+    {
+      "id": "case-d22f5648fa67",
+      "cluster_id": "shipping-cli",
+      "pair_id": "shipping-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5503438d7a9a",
+          "serviceId": "scope-ff1107a9d304",
+          "deploymentId": "scope-16789f7044da",
+          "attemptId": "scope-74fc31f90dc2",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:29.163919162Z",
+            "to": "2026-10-22T15:34:29.163970720Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:29.163919162Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/assets/tariffs.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:29.163957865Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:29.163961312Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTariffs (file:///app/lib/load-tariffs.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:29.163963777Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/bin/quote.js:6:19"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:29.163965971Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:29.163968135Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-7ee4a8fd5c3e",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":null,\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"unconfirmed\",\"supply_kind\":\"unknown\",\"target\":\"/app/assets/tariffs.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "6049bd6f9b953f594bc521eb295ab4f81c4c2b63",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node bin ./bin\nCOPY --chown=node:node lib ./lib\nCOPY --chown=node:node pricing ./pricing\nUSER node\nCMD [\"node\", \"bin/quote.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Shipping CLI\nRun `node bin/quote.js` with an optional JSON argument containing integer amount and weightKg.\nDefault input is amount 4000 and weightKg 2. Negative values or malformed input exit with code 2 and INVALID_INPUT on stderr.\nThe application reads tariffs and prints a JSON shipping_fee and label. OPTIONAL_CONFIG=1 enables optional local labels; missing labels use the shipping default.\n"
+        },
+        {
+          "path": "assets/tariffs.json",
+          "content": "{\"base\":1000,\"perKg\":200,\"freeAt\":10000}\n"
+        },
+        {
+          "path": "bin/quote.js",
+          "content": "import { loadTariffs } from '../lib/load-tariffs.js';\nimport { loadLabels } from '../lib/load-labels.js';\nimport { calculate } from '../pricing/calculate.js';\n\ntry {\n  const tariffs = loadTariffs();\n  let label = 'shipping';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default shipping label');\n    }\n  }\n  let order;\n  try { order = JSON.parse(process.argv[2] ?? '{\"amount\":4000,\"weightKg\":2}'); }\n  catch { throw new TypeError('INVALID_INPUT'); }\n  console.log(JSON.stringify({ shipping_fee: calculate(order, tariffs), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_INPUT' ? 2 : 1;\n}\n"
+        },
+        {
+          "path": "lib/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "lib/load-tariffs.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTariffs() {\n  return JSON.parse(readFileSync('/app/assets/tariffs.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"shipping-cli\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pricing/calculate.js",
+          "content": "export function calculate(order, tariffs) {\n  if (!order || !Number.isSafeInteger(order.amount) || !Number.isSafeInteger(order.weightKg)\n      || order.amount < 0 || order.weightKg < 0) {\n    throw new TypeError('INVALID_INPUT');\n  }\n  if (![tariffs.base, tariffs.perKg, tariffs.freeAt].every(x => Number.isSafeInteger(x) && x >= 0)) {\n    throw new TypeError('INVALID_TARIFFS');\n  }\n  return order.amount >= tariffs.freeAt ? 0 : tariffs.base + order.weightKg * tariffs.perKg;\n}\n"
+        }
+      ],
+      "program_id": "shipping-cli",
+      "base_incident_id": "shipping-required-copy",
+      "context_variant": "P_unknown",
+      "eligible": true
+    },
+    {
+      "id": "case-eb28711105b6",
+      "cluster_id": "shipping-cli",
+      "pair_id": "shipping-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5503438d7a9a",
+          "serviceId": "scope-ff1107a9d304",
+          "deploymentId": "scope-16789f7044da",
+          "attemptId": "scope-74fc31f90dc2",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:29.163919162Z",
+            "to": "2026-10-22T15:34:29.163970720Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:29.163919162Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/assets/tariffs.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:29.163957865Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:29.163961312Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTariffs (file:///app/lib/load-tariffs.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:29.163963777Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/bin/quote.js:6:19"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:29.163965971Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:29.163968135Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-540515cf97df",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-ff5c289e029f\",\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"example_only\",\"supply_kind\":\"external_volume\",\"target\":\"/app/assets/tariffs.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "6049bd6f9b953f594bc521eb295ab4f81c4c2b63",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node bin ./bin\nCOPY --chown=node:node lib ./lib\nCOPY --chown=node:node pricing ./pricing\nUSER node\nCMD [\"node\", \"bin/quote.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Shipping CLI\nRun `node bin/quote.js` with an optional JSON argument containing integer amount and weightKg.\nDefault input is amount 4000 and weightKg 2. Negative values or malformed input exit with code 2 and INVALID_INPUT on stderr.\nThe application reads tariffs and prints a JSON shipping_fee and label. OPTIONAL_CONFIG=1 enables optional local labels; missing labels use the shipping default.\n"
+        },
+        {
+          "path": "assets/tariffs.json",
+          "content": "{\"base\":1000,\"perKg\":200,\"freeAt\":10000}\n"
+        },
+        {
+          "path": "bin/quote.js",
+          "content": "import { loadTariffs } from '../lib/load-tariffs.js';\nimport { loadLabels } from '../lib/load-labels.js';\nimport { calculate } from '../pricing/calculate.js';\n\ntry {\n  const tariffs = loadTariffs();\n  let label = 'shipping';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default shipping label');\n    }\n  }\n  let order;\n  try { order = JSON.parse(process.argv[2] ?? '{\"amount\":4000,\"weightKg\":2}'); }\n  catch { throw new TypeError('INVALID_INPUT'); }\n  console.log(JSON.stringify({ shipping_fee: calculate(order, tariffs), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_INPUT' ? 2 : 1;\n}\n"
+        },
+        {
+          "path": "lib/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "lib/load-tariffs.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTariffs() {\n  return JSON.parse(readFileSync('/app/assets/tariffs.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"shipping-cli\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pricing/calculate.js",
+          "content": "export function calculate(order, tariffs) {\n  if (!order || !Number.isSafeInteger(order.amount) || !Number.isSafeInteger(order.weightKg)\n      || order.amount < 0 || order.weightKg < 0) {\n    throw new TypeError('INVALID_INPUT');\n  }\n  if (![tariffs.base, tariffs.perKg, tariffs.freeAt].every(x => Number.isSafeInteger(x) && x >= 0)) {\n    throw new TypeError('INVALID_TARIFFS');\n  }\n  return order.amount >= tariffs.freeAt ? 0 : tariffs.base + order.weightKg * tariffs.perKg;\n}\n"
+        }
+      ],
+      "program_id": "shipping-cli",
+      "base_incident_id": "shipping-required-copy",
+      "context_variant": "N_external_supply",
+      "eligible": true
+    },
+    {
+      "id": "case-f47b9c941cc8",
+      "cluster_id": "shipping-cli",
+      "pair_id": "shipping-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5503438d7a9a",
+          "serviceId": "scope-ff1107a9d304",
+          "deploymentId": "scope-16789f7044da",
+          "attemptId": "scope-74fc31f90dc2",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:29.163919162Z",
+            "to": "2026-10-22T15:34:29.163970720Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:29.163919162Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/assets/tariffs.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:29.163957865Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:29.163961312Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTariffs (file:///app/lib/load-tariffs.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:29.163963777Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/bin/quote.js:6:19"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:29.163965971Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:29.163968135Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "stage": "runtime",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-3e8a6f0b546e",
+              "timestamp": "2026-10-22T15:34:29.163970720Z",
+              "sourceId": "producer-6dab7c12cf4f",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-1f2c855b7936\",\"provided_build_id\":\"artifact-ff5c289e029f\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/assets/tariffs.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "6049bd6f9b953f594bc521eb295ab4f81c4c2b63",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node bin ./bin\nCOPY --chown=node:node lib ./lib\nCOPY --chown=node:node pricing ./pricing\nUSER node\nCMD [\"node\", \"bin/quote.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Shipping CLI\nRun `node bin/quote.js` with an optional JSON argument containing integer amount and weightKg.\nDefault input is amount 4000 and weightKg 2. Negative values or malformed input exit with code 2 and INVALID_INPUT on stderr.\nThe application reads tariffs and prints a JSON shipping_fee and label. OPTIONAL_CONFIG=1 enables optional local labels; missing labels use the shipping default.\n"
+        },
+        {
+          "path": "assets/tariffs.json",
+          "content": "{\"base\":1000,\"perKg\":200,\"freeAt\":10000}\n"
+        },
+        {
+          "path": "bin/quote.js",
+          "content": "import { loadTariffs } from '../lib/load-tariffs.js';\nimport { loadLabels } from '../lib/load-labels.js';\nimport { calculate } from '../pricing/calculate.js';\n\ntry {\n  const tariffs = loadTariffs();\n  let label = 'shipping';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default shipping label');\n    }\n  }\n  let order;\n  try { order = JSON.parse(process.argv[2] ?? '{\"amount\":4000,\"weightKg\":2}'); }\n  catch { throw new TypeError('INVALID_INPUT'); }\n  console.log(JSON.stringify({ shipping_fee: calculate(order, tariffs), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_INPUT' ? 2 : 1;\n}\n"
+        },
+        {
+          "path": "lib/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "lib/load-tariffs.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTariffs() {\n  return JSON.parse(readFileSync('/app/assets/tariffs.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"shipping-cli\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pricing/calculate.js",
+          "content": "export function calculate(order, tariffs) {\n  if (!order || !Number.isSafeInteger(order.amount) || !Number.isSafeInteger(order.weightKg)\n      || order.amount < 0 || order.weightKg < 0) {\n    throw new TypeError('INVALID_INPUT');\n  }\n  if (![tariffs.base, tariffs.perKg, tariffs.freeAt].every(x => Number.isSafeInteger(x) && x >= 0)) {\n    throw new TypeError('INVALID_TARIFFS');\n  }\n  return order.amount >= tariffs.freeAt ? 0 : tariffs.base + order.weightKg * tariffs.perKg;\n}\n"
+        }
+      ],
+      "program_id": "shipping-cli",
+      "base_incident_id": "shipping-required-copy",
+      "context_variant": "N_snapshot_conflict",
+      "eligible": true
+    },
+    {
+      "id": "case-6d7d230a375a",
+      "cluster_id": "template-http",
+      "pair_id": "http-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5ab4d2e0f846",
+          "serviceId": "scope-46a38b546705",
+          "deploymentId": "scope-16f309a281eb",
+          "attemptId": "scope-78e35128e409",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:36.009040400Z",
+            "to": "2026-10-22T15:34:36.009105473Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:36.009040400Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/views/index.html'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:36.009088892Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:36.009093080Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTemplate (file:///app/view/load-template.js:4:10)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:36.009096296Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/server.js:7:20"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:36.009099271Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:36.009102407Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-b657c68589a2",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-be69ea2410d7\",\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/views/index.html\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "e58912b9802e0d96215ee2534289de4d8837cf33",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node server.js ./server.js\nCOPY --chown=node:node view ./view\nCOPY --chown=node:node routes ./routes\nUSER node\nCMD [\"node\", \"server.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Template HTTP\nRun `node server.js`. The service loads its HTML template before listening on loopback port 8080.\nGET / serves HTML, /healthz returns status/app/theme JSON, and unknown paths return 404 JSON.\nOPTIONAL_CONFIG=1 enables optional local theme settings; a missing file uses plain theme.\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"template-http\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "routes/page.js",
+          "content": "export function route(template, theme, req, res) {\n  if (req.url === '/') {\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'X-Theme': theme });\n    return res.end(template);\n  }\n  res.setHeader('Content-Type', 'application/json');\n  if (req.url === '/healthz') {\n    res.writeHead(200);\n    return res.end(JSON.stringify({ status: 'ok', app: 'template-http', theme }));\n  }\n  res.writeHead(404);\n  res.end(JSON.stringify({ error: 'not_found' }));\n}\n"
+        },
+        {
+          "path": "server.js",
+          "content": "import { createServer } from 'node:http';\nimport { loadTemplate } from './view/load-template.js';\nimport { loadTheme } from './view/load-theme.js';\nimport { route } from './routes/page.js';\n\ntry {\n  const template = loadTemplate();\n  let theme = 'plain';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { theme = loadTheme().theme; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional theme unavailable; using plain theme');\n    }\n  }\n  const server = createServer((req, res) => route(template, theme, req, res));\n  server.listen(8080, '127.0.0.1', () => console.log('[ready] template-http listening on 127.0.0.1:8080'));\n  process.on('SIGTERM', () => server.close());\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = 1;\n}\n"
+        },
+        {
+          "path": "view/load-template.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTemplate() {\n  return readFileSync('/app/views/index.html', 'utf8');\n}\n"
+        },
+        {
+          "path": "view/load-theme.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTheme() {\n  return JSON.parse(readFileSync('/app/config/local-theme.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "views/index.html",
+          "content": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n"
+        }
+      ],
+      "program_id": "template-http",
+      "base_incident_id": "http-required-copy",
+      "context_variant": "P_supported",
+      "eligible": true
+    },
+    {
+      "id": "case-7dfe4c50c41e",
+      "cluster_id": "template-http",
+      "pair_id": "http-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5ab4d2e0f846",
+          "serviceId": "scope-46a38b546705",
+          "deploymentId": "scope-16f309a281eb",
+          "attemptId": "scope-78e35128e409",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:36.009040400Z",
+            "to": "2026-10-22T15:34:36.009105473Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:36.009040400Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/views/index.html'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:36.009088892Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:36.009093080Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTemplate (file:///app/view/load-template.js:4:10)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:36.009096296Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/server.js:7:20"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:36.009099271Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:36.009102407Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-45a72aefb169",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":null,\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"unconfirmed\",\"supply_kind\":\"unknown\",\"target\":\"/app/views/index.html\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "e58912b9802e0d96215ee2534289de4d8837cf33",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node server.js ./server.js\nCOPY --chown=node:node view ./view\nCOPY --chown=node:node routes ./routes\nUSER node\nCMD [\"node\", \"server.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Template HTTP\nRun `node server.js`. The service loads its HTML template before listening on loopback port 8080.\nGET / serves HTML, /healthz returns status/app/theme JSON, and unknown paths return 404 JSON.\nOPTIONAL_CONFIG=1 enables optional local theme settings; a missing file uses plain theme.\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"template-http\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "routes/page.js",
+          "content": "export function route(template, theme, req, res) {\n  if (req.url === '/') {\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'X-Theme': theme });\n    return res.end(template);\n  }\n  res.setHeader('Content-Type', 'application/json');\n  if (req.url === '/healthz') {\n    res.writeHead(200);\n    return res.end(JSON.stringify({ status: 'ok', app: 'template-http', theme }));\n  }\n  res.writeHead(404);\n  res.end(JSON.stringify({ error: 'not_found' }));\n}\n"
+        },
+        {
+          "path": "server.js",
+          "content": "import { createServer } from 'node:http';\nimport { loadTemplate } from './view/load-template.js';\nimport { loadTheme } from './view/load-theme.js';\nimport { route } from './routes/page.js';\n\ntry {\n  const template = loadTemplate();\n  let theme = 'plain';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { theme = loadTheme().theme; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional theme unavailable; using plain theme');\n    }\n  }\n  const server = createServer((req, res) => route(template, theme, req, res));\n  server.listen(8080, '127.0.0.1', () => console.log('[ready] template-http listening on 127.0.0.1:8080'));\n  process.on('SIGTERM', () => server.close());\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = 1;\n}\n"
+        },
+        {
+          "path": "view/load-template.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTemplate() {\n  return readFileSync('/app/views/index.html', 'utf8');\n}\n"
+        },
+        {
+          "path": "view/load-theme.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTheme() {\n  return JSON.parse(readFileSync('/app/config/local-theme.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "views/index.html",
+          "content": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n"
+        }
+      ],
+      "program_id": "template-http",
+      "base_incident_id": "http-required-copy",
+      "context_variant": "P_unknown",
+      "eligible": true
+    },
+    {
+      "id": "case-0f218dab4051",
+      "cluster_id": "template-http",
+      "pair_id": "http-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5ab4d2e0f846",
+          "serviceId": "scope-46a38b546705",
+          "deploymentId": "scope-16f309a281eb",
+          "attemptId": "scope-78e35128e409",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:36.009040400Z",
+            "to": "2026-10-22T15:34:36.009105473Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:36.009040400Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/views/index.html'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:36.009088892Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:36.009093080Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTemplate (file:///app/view/load-template.js:4:10)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:36.009096296Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/server.js:7:20"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:36.009099271Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:36.009102407Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-feaada9caf66",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-be69ea2410d7\",\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"example_only\",\"supply_kind\":\"external_volume\",\"target\":\"/app/views/index.html\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "e58912b9802e0d96215ee2534289de4d8837cf33",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node server.js ./server.js\nCOPY --chown=node:node view ./view\nCOPY --chown=node:node routes ./routes\nUSER node\nCMD [\"node\", \"server.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Template HTTP\nRun `node server.js`. The service loads its HTML template before listening on loopback port 8080.\nGET / serves HTML, /healthz returns status/app/theme JSON, and unknown paths return 404 JSON.\nOPTIONAL_CONFIG=1 enables optional local theme settings; a missing file uses plain theme.\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"template-http\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "routes/page.js",
+          "content": "export function route(template, theme, req, res) {\n  if (req.url === '/') {\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'X-Theme': theme });\n    return res.end(template);\n  }\n  res.setHeader('Content-Type', 'application/json');\n  if (req.url === '/healthz') {\n    res.writeHead(200);\n    return res.end(JSON.stringify({ status: 'ok', app: 'template-http', theme }));\n  }\n  res.writeHead(404);\n  res.end(JSON.stringify({ error: 'not_found' }));\n}\n"
+        },
+        {
+          "path": "server.js",
+          "content": "import { createServer } from 'node:http';\nimport { loadTemplate } from './view/load-template.js';\nimport { loadTheme } from './view/load-theme.js';\nimport { route } from './routes/page.js';\n\ntry {\n  const template = loadTemplate();\n  let theme = 'plain';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { theme = loadTheme().theme; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional theme unavailable; using plain theme');\n    }\n  }\n  const server = createServer((req, res) => route(template, theme, req, res));\n  server.listen(8080, '127.0.0.1', () => console.log('[ready] template-http listening on 127.0.0.1:8080'));\n  process.on('SIGTERM', () => server.close());\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = 1;\n}\n"
+        },
+        {
+          "path": "view/load-template.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTemplate() {\n  return readFileSync('/app/views/index.html', 'utf8');\n}\n"
+        },
+        {
+          "path": "view/load-theme.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTheme() {\n  return JSON.parse(readFileSync('/app/config/local-theme.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "views/index.html",
+          "content": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n"
+        }
+      ],
+      "program_id": "template-http",
+      "base_incident_id": "http-required-copy",
+      "context_variant": "N_external_supply",
+      "eligible": true
+    },
+    {
+      "id": "case-354d4ba3c109",
+      "cluster_id": "template-http",
+      "pair_id": "http-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-5ab4d2e0f846",
+          "serviceId": "scope-46a38b546705",
+          "deploymentId": "scope-16f309a281eb",
+          "attemptId": "scope-78e35128e409",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:36.009040400Z",
+            "to": "2026-10-22T15:34:36.009105473Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:36.009040400Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/views/index.html'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:36.009088892Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:36.009093080Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadTemplate (file:///app/view/load-template.js:4:10)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:36.009096296Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/server.js:7:20"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:36.009099271Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:36.009102407Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "stage": "runtime",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-e12b482c2d8d",
+              "timestamp": "2026-10-22T15:34:36.009105473Z",
+              "sourceId": "producer-f9b3b5a0ce1c",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-956ae3093c13\",\"provided_build_id\":\"artifact-be69ea2410d7\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/views/index.html\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "e58912b9802e0d96215ee2534289de4d8837cf33",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node server.js ./server.js\nCOPY --chown=node:node view ./view\nCOPY --chown=node:node routes ./routes\nUSER node\nCMD [\"node\", \"server.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Template HTTP\nRun `node server.js`. The service loads its HTML template before listening on loopback port 8080.\nGET / serves HTML, /healthz returns status/app/theme JSON, and unknown paths return 404 JSON.\nOPTIONAL_CONFIG=1 enables optional local theme settings; a missing file uses plain theme.\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"template-http\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "routes/page.js",
+          "content": "export function route(template, theme, req, res) {\n  if (req.url === '/') {\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'X-Theme': theme });\n    return res.end(template);\n  }\n  res.setHeader('Content-Type', 'application/json');\n  if (req.url === '/healthz') {\n    res.writeHead(200);\n    return res.end(JSON.stringify({ status: 'ok', app: 'template-http', theme }));\n  }\n  res.writeHead(404);\n  res.end(JSON.stringify({ error: 'not_found' }));\n}\n"
+        },
+        {
+          "path": "server.js",
+          "content": "import { createServer } from 'node:http';\nimport { loadTemplate } from './view/load-template.js';\nimport { loadTheme } from './view/load-theme.js';\nimport { route } from './routes/page.js';\n\ntry {\n  const template = loadTemplate();\n  let theme = 'plain';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { theme = loadTheme().theme; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional theme unavailable; using plain theme');\n    }\n  }\n  const server = createServer((req, res) => route(template, theme, req, res));\n  server.listen(8080, '127.0.0.1', () => console.log('[ready] template-http listening on 127.0.0.1:8080'));\n  process.on('SIGTERM', () => server.close());\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = 1;\n}\n"
+        },
+        {
+          "path": "view/load-template.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTemplate() {\n  return readFileSync('/app/views/index.html', 'utf8');\n}\n"
+        },
+        {
+          "path": "view/load-theme.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadTheme() {\n  return JSON.parse(readFileSync('/app/config/local-theme.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "views/index.html",
+          "content": "<!doctype html><html lang=\"en\"><head><title>Parcel status</title></head><body><h1>Your parcel dashboard</h1><p>Track deliveries here.</p></body></html>\n"
+        }
+      ],
+      "program_id": "template-http",
+      "base_incident_id": "http-required-copy",
+      "context_variant": "N_snapshot_conflict",
+      "eligible": true
+    },
+    {
+      "id": "case-ac97140f1910",
+      "cluster_id": "settlement-batch",
+      "pair_id": "batch-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-557af8f0cf22",
+          "serviceId": "scope-0da78f44ff55",
+          "deploymentId": "scope-c2534de1e6e8",
+          "attemptId": "scope-a5cb2f680cae",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:43.237728412Z",
+            "to": "2026-10-22T15:34:43.237783306Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:43.237728412Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/config/settlement-rules.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:43.237769910Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:43.237773457Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadPolicy (file:///app/readers/load-policy.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:43.237776122Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/src/job.js:7:18"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:43.237778647Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:43.237780981Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-5ee282951603",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-3b91eddd80c5\",\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/config/settlement-rules.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "f4d591b350676f51df76aa5a60899d68ca32741b",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node src ./src\nCOPY --chown=node:node readers ./readers\nCOPY --chown=node:node pipeline ./pipeline\nCOPY --chown=node:node fixtures ./fixtures\nUSER node\nCMD [\"node\", \"src/job.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Settlement batch\nRun `node src/job.js` with an optional JSON transaction array argument. Without it, fixtures/transactions.json is used.\nAmounts are nonnegative integer currency units. Round each transaction fee to the nearest integer, ties upward; aggregate the individual fees and net amounts.\nPrint count, fees, settlement, label JSON to stdout. Invalid transactions exit 2 with INVALID_TRANSACTIONS on stderr.\nOPTIONAL_CONFIG=1 enables optional labels and falls back to settlement when missing. No output files are written.\n"
+        },
+        {
+          "path": "config/settlement-rules.json",
+          "content": "{\"feeBasisPoints\":250}\n"
+        },
+        {
+          "path": "fixtures/transactions.json",
+          "content": "[{\"id\":\"sale-01\",\"amount\":10000},{\"id\":\"sale-02\",\"amount\":20000}]\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"settlement-batch\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pipeline/aggregate.js",
+          "content": "export function aggregate(transactions, policy) {\n  if (!Array.isArray(transactions) || transactions.some(t => !Number.isSafeInteger(t.amount) || t.amount < 0)) {\n    throw new TypeError('INVALID_TRANSACTIONS');\n  }\n  if (!Number.isSafeInteger(policy.feeBasisPoints) || policy.feeBasisPoints < 0 || policy.feeBasisPoints > 10000) {\n    throw new TypeError('INVALID_POLICY');\n  }\n  let fees = 0, settlement = 0;\n  for (const transaction of transactions) {\n    const fee = Math.floor((transaction.amount * policy.feeBasisPoints + 5000) / 10000);\n    fees += fee;\n    settlement += transaction.amount - fee;\n  }\n  return { count: transactions.length, fees, settlement };\n}\n"
+        },
+        {
+          "path": "readers/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "readers/load-policy.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadPolicy() {\n  return JSON.parse(readFileSync('/app/config/settlement-rules.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "src/job.js",
+          "content": "import { readFileSync } from 'node:fs';\nimport { loadPolicy } from '../readers/load-policy.js';\nimport { loadLabels } from '../readers/load-labels.js';\nimport { aggregate } from '../pipeline/aggregate.js';\n\ntry {\n  const policy = loadPolicy();\n  let label = 'settlement';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default settlement label');\n    }\n  }\n  let transactions;\n  try { transactions = JSON.parse(process.argv[2] ?? readFileSync('/app/fixtures/transactions.json', 'utf8')); }\n  catch { throw new TypeError('INVALID_TRANSACTIONS'); }\n  console.log(JSON.stringify({ ...aggregate(transactions, policy), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_TRANSACTIONS' ? 2 : 1;\n}\n"
+        }
+      ],
+      "program_id": "settlement-batch",
+      "base_incident_id": "batch-required-copy",
+      "context_variant": "P_supported",
+      "eligible": true
+    },
+    {
+      "id": "case-076460f66785",
+      "cluster_id": "settlement-batch",
+      "pair_id": "batch-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-557af8f0cf22",
+          "serviceId": "scope-0da78f44ff55",
+          "deploymentId": "scope-c2534de1e6e8",
+          "attemptId": "scope-a5cb2f680cae",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:43.237728412Z",
+            "to": "2026-10-22T15:34:43.237783306Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:43.237728412Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/config/settlement-rules.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:43.237769910Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:43.237773457Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadPolicy (file:///app/readers/load-policy.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:43.237776122Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/src/job.js:7:18"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:43.237778647Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:43.237780981Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-744d8907851c",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":null,\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"unconfirmed\",\"supply_kind\":\"unknown\",\"target\":\"/app/config/settlement-rules.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "f4d591b350676f51df76aa5a60899d68ca32741b",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node src ./src\nCOPY --chown=node:node readers ./readers\nCOPY --chown=node:node pipeline ./pipeline\nCOPY --chown=node:node fixtures ./fixtures\nUSER node\nCMD [\"node\", \"src/job.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Settlement batch\nRun `node src/job.js` with an optional JSON transaction array argument. Without it, fixtures/transactions.json is used.\nAmounts are nonnegative integer currency units. Round each transaction fee to the nearest integer, ties upward; aggregate the individual fees and net amounts.\nPrint count, fees, settlement, label JSON to stdout. Invalid transactions exit 2 with INVALID_TRANSACTIONS on stderr.\nOPTIONAL_CONFIG=1 enables optional labels and falls back to settlement when missing. No output files are written.\n"
+        },
+        {
+          "path": "config/settlement-rules.json",
+          "content": "{\"feeBasisPoints\":250}\n"
+        },
+        {
+          "path": "fixtures/transactions.json",
+          "content": "[{\"id\":\"sale-01\",\"amount\":10000},{\"id\":\"sale-02\",\"amount\":20000}]\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"settlement-batch\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pipeline/aggregate.js",
+          "content": "export function aggregate(transactions, policy) {\n  if (!Array.isArray(transactions) || transactions.some(t => !Number.isSafeInteger(t.amount) || t.amount < 0)) {\n    throw new TypeError('INVALID_TRANSACTIONS');\n  }\n  if (!Number.isSafeInteger(policy.feeBasisPoints) || policy.feeBasisPoints < 0 || policy.feeBasisPoints > 10000) {\n    throw new TypeError('INVALID_POLICY');\n  }\n  let fees = 0, settlement = 0;\n  for (const transaction of transactions) {\n    const fee = Math.floor((transaction.amount * policy.feeBasisPoints + 5000) / 10000);\n    fees += fee;\n    settlement += transaction.amount - fee;\n  }\n  return { count: transactions.length, fees, settlement };\n}\n"
+        },
+        {
+          "path": "readers/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "readers/load-policy.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadPolicy() {\n  return JSON.parse(readFileSync('/app/config/settlement-rules.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "src/job.js",
+          "content": "import { readFileSync } from 'node:fs';\nimport { loadPolicy } from '../readers/load-policy.js';\nimport { loadLabels } from '../readers/load-labels.js';\nimport { aggregate } from '../pipeline/aggregate.js';\n\ntry {\n  const policy = loadPolicy();\n  let label = 'settlement';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default settlement label');\n    }\n  }\n  let transactions;\n  try { transactions = JSON.parse(process.argv[2] ?? readFileSync('/app/fixtures/transactions.json', 'utf8')); }\n  catch { throw new TypeError('INVALID_TRANSACTIONS'); }\n  console.log(JSON.stringify({ ...aggregate(transactions, policy), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_TRANSACTIONS' ? 2 : 1;\n}\n"
+        }
+      ],
+      "program_id": "settlement-batch",
+      "base_incident_id": "batch-required-copy",
+      "context_variant": "P_unknown",
+      "eligible": true
+    },
+    {
+      "id": "case-c0f372a0b951",
+      "cluster_id": "settlement-batch",
+      "pair_id": "batch-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-557af8f0cf22",
+          "serviceId": "scope-0da78f44ff55",
+          "deploymentId": "scope-c2534de1e6e8",
+          "attemptId": "scope-a5cb2f680cae",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:43.237728412Z",
+            "to": "2026-10-22T15:34:43.237783306Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:43.237728412Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/config/settlement-rules.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:43.237769910Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:43.237773457Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadPolicy (file:///app/readers/load-policy.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:43.237776122Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/src/job.js:7:18"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:43.237778647Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:43.237780981Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-d55e08582807",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-3b91eddd80c5\",\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"example_only\",\"supply_kind\":\"external_volume\",\"target\":\"/app/config/settlement-rules.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "f4d591b350676f51df76aa5a60899d68ca32741b",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node src ./src\nCOPY --chown=node:node readers ./readers\nCOPY --chown=node:node pipeline ./pipeline\nCOPY --chown=node:node fixtures ./fixtures\nUSER node\nCMD [\"node\", \"src/job.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Settlement batch\nRun `node src/job.js` with an optional JSON transaction array argument. Without it, fixtures/transactions.json is used.\nAmounts are nonnegative integer currency units. Round each transaction fee to the nearest integer, ties upward; aggregate the individual fees and net amounts.\nPrint count, fees, settlement, label JSON to stdout. Invalid transactions exit 2 with INVALID_TRANSACTIONS on stderr.\nOPTIONAL_CONFIG=1 enables optional labels and falls back to settlement when missing. No output files are written.\n"
+        },
+        {
+          "path": "config/settlement-rules.json",
+          "content": "{\"feeBasisPoints\":250}\n"
+        },
+        {
+          "path": "fixtures/transactions.json",
+          "content": "[{\"id\":\"sale-01\",\"amount\":10000},{\"id\":\"sale-02\",\"amount\":20000}]\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"settlement-batch\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pipeline/aggregate.js",
+          "content": "export function aggregate(transactions, policy) {\n  if (!Array.isArray(transactions) || transactions.some(t => !Number.isSafeInteger(t.amount) || t.amount < 0)) {\n    throw new TypeError('INVALID_TRANSACTIONS');\n  }\n  if (!Number.isSafeInteger(policy.feeBasisPoints) || policy.feeBasisPoints < 0 || policy.feeBasisPoints > 10000) {\n    throw new TypeError('INVALID_POLICY');\n  }\n  let fees = 0, settlement = 0;\n  for (const transaction of transactions) {\n    const fee = Math.floor((transaction.amount * policy.feeBasisPoints + 5000) / 10000);\n    fees += fee;\n    settlement += transaction.amount - fee;\n  }\n  return { count: transactions.length, fees, settlement };\n}\n"
+        },
+        {
+          "path": "readers/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "readers/load-policy.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadPolicy() {\n  return JSON.parse(readFileSync('/app/config/settlement-rules.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "src/job.js",
+          "content": "import { readFileSync } from 'node:fs';\nimport { loadPolicy } from '../readers/load-policy.js';\nimport { loadLabels } from '../readers/load-labels.js';\nimport { aggregate } from '../pipeline/aggregate.js';\n\ntry {\n  const policy = loadPolicy();\n  let label = 'settlement';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default settlement label');\n    }\n  }\n  let transactions;\n  try { transactions = JSON.parse(process.argv[2] ?? readFileSync('/app/fixtures/transactions.json', 'utf8')); }\n  catch { throw new TypeError('INVALID_TRANSACTIONS'); }\n  console.log(JSON.stringify({ ...aggregate(transactions, policy), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_TRANSACTIONS' ? 2 : 1;\n}\n"
+        }
+      ],
+      "program_id": "settlement-batch",
+      "base_incident_id": "batch-required-copy",
+      "context_variant": "N_external_supply",
+      "eligible": true
+    },
+    {
+      "id": "case-428ddd177b62",
+      "cluster_id": "settlement-batch",
+      "pair_id": "batch-required-copy",
+      "variant": "supported_copy_omission",
+      "split": "development",
+      "exposure": "used_in_development",
+      "payload": {
+        "success": true,
+        "message": "Actual controlled Docker capture",
+        "data": {
+          "projectId": "scope-557af8f0cf22",
+          "serviceId": "scope-0da78f44ff55",
+          "deploymentId": "scope-c2534de1e6e8",
+          "attemptId": "scope-a5cb2f680cae",
+          "deploymentStatus": "FAILED",
+          "failedStage": "runtime",
+          "exitCode": 1,
+          "logRange": {
+            "from": "2026-10-22T15:34:43.237728412Z",
+            "to": "2026-10-22T15:34:43.237783306Z",
+            "isComplete": true
+          },
+          "logs": [
+            {
+              "id": "captured-1",
+              "timestamp": "2026-10-22T15:34:43.237728412Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 1,
+              "text": "Error: ENOENT: no such file or directory, open '/app/config/settlement-rules.json'"
+            },
+            {
+              "id": "captured-2",
+              "timestamp": "2026-10-22T15:34:43.237769910Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 2,
+              "text": "    at readFileSync (node:fs:440:20)"
+            },
+            {
+              "id": "captured-3",
+              "timestamp": "2026-10-22T15:34:43.237773457Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 3,
+              "text": "    at loadPolicy (file:///app/readers/load-policy.js:4:21)"
+            },
+            {
+              "id": "captured-4",
+              "timestamp": "2026-10-22T15:34:43.237776122Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 4,
+              "text": "    at file:///app/src/job.js:7:18"
+            },
+            {
+              "id": "captured-5",
+              "timestamp": "2026-10-22T15:34:43.237778647Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 5,
+              "text": "    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)"
+            },
+            {
+              "id": "captured-6",
+              "timestamp": "2026-10-22T15:34:43.237780981Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 6,
+              "text": "    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)"
+            },
+            {
+              "id": "captured-7",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "stage": "runtime",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stream": "stderr",
+              "sequence": 7,
+              "text": "    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)"
+            },
+            {
+              "id": "observation-287620075c31",
+              "timestamp": "2026-10-22T15:34:43.237783306Z",
+              "sourceId": "producer-6fe7ba0b8614",
+              "stage": "runtime",
+              "stream": "stderr",
+              "sequence": 8,
+              "text": "{\"event\":\"deployment_observation\",\"observed_build_id\":\"artifact-c66986cca612\",\"provided_build_id\":\"artifact-3b91eddd80c5\",\"repository_file_role\":\"approved_static_asset\",\"supply_kind\":\"image_static\",\"target\":\"/app/config/settlement-rules.json\"}"
+            }
+          ],
+          "source": {
+            "format": "tar.gz",
+            "downloadUrl": "https://example.s3.ap-northeast-2.amazonaws.com/source.tar.gz",
+            "commitSha": "f4d591b350676f51df76aa5a60899d68ca32741b",
+            "rootDirectory": "."
+          }
+        }
+      },
+      "source_files": [
+        {
+          "path": ".dockerignore",
+          "content": "\n"
+        },
+        {
+          "path": "Dockerfile",
+          "content": "FROM node:22-alpine\nWORKDIR /app\nCOPY --chown=node:node package.json ./package.json\nCOPY --chown=node:node src ./src\nCOPY --chown=node:node readers ./readers\nCOPY --chown=node:node pipeline ./pipeline\nCOPY --chown=node:node fixtures ./fixtures\nUSER node\nCMD [\"node\", \"src/job.js\"]\n"
+        },
+        {
+          "path": "README.md",
+          "content": "# Settlement batch\nRun `node src/job.js` with an optional JSON transaction array argument. Without it, fixtures/transactions.json is used.\nAmounts are nonnegative integer currency units. Round each transaction fee to the nearest integer, ties upward; aggregate the individual fees and net amounts.\nPrint count, fees, settlement, label JSON to stdout. Invalid transactions exit 2 with INVALID_TRANSACTIONS on stderr.\nOPTIONAL_CONFIG=1 enables optional labels and falls back to settlement when missing. No output files are written.\n"
+        },
+        {
+          "path": "config/settlement-rules.json",
+          "content": "{\"feeBasisPoints\":250}\n"
+        },
+        {
+          "path": "fixtures/transactions.json",
+          "content": "[{\"id\":\"sale-01\",\"amount\":10000},{\"id\":\"sale-02\",\"amount\":20000}]\n"
+        },
+        {
+          "path": "package.json",
+          "content": "{\"name\":\"settlement-batch\",\"version\":\"1.0.0\",\"type\":\"module\",\"private\":true}\n"
+        },
+        {
+          "path": "pipeline/aggregate.js",
+          "content": "export function aggregate(transactions, policy) {\n  if (!Array.isArray(transactions) || transactions.some(t => !Number.isSafeInteger(t.amount) || t.amount < 0)) {\n    throw new TypeError('INVALID_TRANSACTIONS');\n  }\n  if (!Number.isSafeInteger(policy.feeBasisPoints) || policy.feeBasisPoints < 0 || policy.feeBasisPoints > 10000) {\n    throw new TypeError('INVALID_POLICY');\n  }\n  let fees = 0, settlement = 0;\n  for (const transaction of transactions) {\n    const fee = Math.floor((transaction.amount * policy.feeBasisPoints + 5000) / 10000);\n    fees += fee;\n    settlement += transaction.amount - fee;\n  }\n  return { count: transactions.length, fees, settlement };\n}\n"
+        },
+        {
+          "path": "readers/load-labels.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadLabels() {\n  return JSON.parse(readFileSync('/app/config/local-labels.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "readers/load-policy.js",
+          "content": "import { readFileSync } from 'node:fs';\n\nexport function loadPolicy() {\n  return JSON.parse(readFileSync('/app/config/settlement-rules.json', 'utf8'));\n}\n"
+        },
+        {
+          "path": "src/job.js",
+          "content": "import { readFileSync } from 'node:fs';\nimport { loadPolicy } from '../readers/load-policy.js';\nimport { loadLabels } from '../readers/load-labels.js';\nimport { aggregate } from '../pipeline/aggregate.js';\n\ntry {\n  const policy = loadPolicy();\n  let label = 'settlement';\n  if (process.env.OPTIONAL_CONFIG === '1') {\n    try { label = loadLabels().label; }\n    catch (error) {\n      if (error.code !== 'ENOENT') throw error;\n      console.error(error.stack);\n      console.error('[recovered] optional labels unavailable; using default settlement label');\n    }\n  }\n  let transactions;\n  try { transactions = JSON.parse(process.argv[2] ?? readFileSync('/app/fixtures/transactions.json', 'utf8')); }\n  catch { throw new TypeError('INVALID_TRANSACTIONS'); }\n  console.log(JSON.stringify({ ...aggregate(transactions, policy), label }));\n} catch (error) {\n  console.error(error.stack);\n  process.exitCode = error.message === 'INVALID_TRANSACTIONS' ? 2 : 1;\n}\n"
+        }
+      ],
+      "program_id": "settlement-batch",
+      "base_incident_id": "batch-required-copy",
+      "context_variant": "N_snapshot_conflict",
+      "eligible": true
+    }
+  ]
+}

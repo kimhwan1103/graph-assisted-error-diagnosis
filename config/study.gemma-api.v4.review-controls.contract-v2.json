@@ -1,0 +1,29 @@
+{
+  "version": "review-controls.contract-v2",
+  "role": "development",
+  "root": "evaluation/review-controls-v4-contract-v2",
+  "arms": [
+    "R_auto",
+    "R_llm",
+    "B_eq",
+    "G_eq"
+  ],
+  "primary_call_cap": 108,
+  "fallback_call_cap": 108,
+  "backend": {
+    "model_id": "gemma-4-31b-it",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta",
+    "temperature": 0.0,
+    "max_tokens": 4096,
+    "timeout_seconds": 180.0,
+    "seed": 42,
+    "repeats": 3,
+    "warmups": 0,
+    "max_calls": 216,
+    "max_evidence_bytes": 98304,
+    "max_source_bytes": 8192,
+    "max_prompt_bytes": 131072,
+    "enable_thinking": false,
+    "request_interval_seconds": 60.0
+  }
+}

@@ -1,8 +1,8 @@
-# 종료 상태 정정 기록
+# Completion-status amendment
 
-기존: 기술적 복구 필요
+Previous status: Technical recovery required.
 
-이번 분석: **전체 완료·실험 종료** — 예정 120행 처리 완료; API 시간초과 1건을 실패 관측으로 보존; 재호출 없음.
+Status in this analysis: **All scheduled units processed; experiment concluded** — all 120 scheduled rows were processed; one API timeout is retained as a failed observation, without another call.
 
-판정 근거: 완료 120, 미완료 0, 제외 0; API 실패 1건은 이미 전송된 MODEL_TIMEOUT으로 보존; Docker 실행 27건 전부 복구 및 cleanup 오류 없음. 원래 지표, 분모, 응답, 검사 결과를 변경하지 않았다. API 실패의 잠재 응답은 여전히 결측이다. 상태 정정은 추가 호출이나 성공 응답 대체를 요구하지 않는 일정 완료 판정이다. 상세 검증 verification.json과 원본 보존 preservation-after.json은 보존된 원본 분석 아카이브에 있으며, 이 공개본에는 해당 기록을 포함하지 않는다.
+Basis: 120 completed, 0 pending, and 0 excluded rows. The API failure was a dispatched MODEL_TIMEOUT and remains preserved. All 27 Docker executions recovered, with no cleanup errors. Original metrics, denominators, responses, and check results were not changed. The unobserved response to the failed API call remains missing. This amendment classifies schedule completion; it does not require another call or replacement with a successful response. The detailed verification.json and preservation-after.json records remain in the original analysis archive and are not included in this public release.
 

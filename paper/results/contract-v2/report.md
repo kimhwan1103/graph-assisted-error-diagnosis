@@ -1,61 +1,61 @@
-# 최종 결과 분석 — contract-v2 / analysis-v1
+# Final results analysis — contract-v2 / analysis-v1
 
-상태: **전체 완료·실험 종료**. 예정 120행 처리 완료; API 시간초과 1건을 실패 관측으로 보존; 재호출 없음.
+Status: **All scheduled units processed; experiment concluded**. All 120 scheduled rows were processed; one API timeout is retained as a failed observation, without another call.
 
-분석 버전: `review-controls.contract-v2.analysis-v1`. 원실험 run_id: `ef4abb15ff513f461a564910`. 이번 분석의 모델 호출·Docker 실행은 각각 0회다. 원본 보고서·응답·실행 기록·동결 코드의 바이트를 수정하지 않았다. `source-manifest.json`, `preservation-after.json`, `verification.json`으로 보존과 집계를 검증한다.
+Analysis version: `review-controls.contract-v2.analysis-v1`. Original run_id: `ef4abb15ff513f461a564910`. This analysis made 0 model calls and 0 Docker executions. It did not alter the bytes of the original reports, responses, execution records, or frozen code. Preservation and aggregation were checked using `source-manifest.json`, `preservation-after.json`, and `verification.json` in the original analysis archive.
 
-## 1. 완료 상태의 정정과 분석 분모
+## 1. Completion-status correction and analysis denominators
 
-원보고서의 `기술적 복구 필요`는 실행 적격 행에 `provider_unavailable`가 하나라도 있으면 발생하는 표시였다. 31번째 셀 `1d693d3212e91829a4c7`은 template-http / P_supported / G_eq / 반복 2에서 180.156초 후 MODEL_TIMEOUT으로 끝났다. 해당 호출은 이미 전송됐고 실패 관측으로 보존되었다. 이후 나머지 일정이 처리되어 예정 120행, 완료 120행, 미완료 0행, 제외 0행이다. 동결된 조건에서 새 응답을 얻으려는 재호출은 하지 않았다.
+The original report displayed `Technical recovery required` whenever any execution-eligible row had `provider_unavailable`. The 31st cell, `1d693d3212e91829a4c7`, was template-http / P_supported / G_eq / repeat 2 and ended with MODEL_TIMEOUT after 180.156 seconds. The request had already been dispatched and was preserved as a failed observation. The remaining schedule was subsequently processed: 120 scheduled, 120 completed, 0 pending, and 0 excluded rows. The failed call was not repeated to obtain a new response under the frozen conditions.
 
-이번 별도 분석은 **일정 완료 여부**와 **개별 결과의 가용성**을 분리한다. 해당 1건의 진단·잠재적 복구 결과는 여전히 알 수 없고, 성공으로 전환하거나 분모에서 제거하지 않는다. `summary.json`의 기존 점수·비율은 그대로 유지하고 종료 상태 및 설명 메타데이터만 변경했다. 이 정정은 API 장애의 해결이나 모든 응답의 성공을 의미하지 않는다. 새로운 전체 실험 없이 현재 자료로 이번 계획 실험을 종료한다.
+This separate analysis distinguishes **schedule completion** from **availability of individual outcomes**. The diagnosis and potential recovery outcome for that one failed call remain unknown; it is neither converted to a success nor removed from the denominator. Existing scores and rates in `summary.json` were retained, with only the completion status and explanatory metadata amended. This correction does not mean that the API problem was resolved or that every response succeeded. The planned experiment is concluded using the available records, without another full experiment.
 
-- 실제 생성 시도: 128회 = 주 호출 108회 + 후속 호출 20회. 시간초과도 1회로 포함한다. 총 상한 216회 내에서 끝났다.
-- 최종 원본 유효 응답: 117/120 (97.5%). 정규화도 117/120으로 같다. 자동 12행을 제외한 LLM 조건은 105/108 (97.2%)이다. 형식·근거 검증 통과율이며 진단 정확도가 아니다.
-- 실제 복구: 실행 적격 30행 중 27행 (90.0%). 실제 실행한 27행은 27행 모두 복구했다. 나머지는 최종 검증 실패 2행, API 실패 1행이며, 실제 Docker 복구 실패로 섞어 세지 않는다.
-- 원본/정규화 동일 패치의 27개 재사용 결과는 독립 복구 성공으로 더하지 않는다. 정규화의 신규 Docker 실행은 0회다.
+- Actual generation attempts: 128 = 108 primary + 20 fallback calls. The timeout is included as 1 attempt. The run remained within the total ceiling of 216.
+- Valid final original responses: 117/120 (97.5%); normalized responses were also 117/120. Excluding the 12 automatic rows, LLM conditions had 105/108 (97.2%) valid responses. These are format/evidence validation rates, not diagnostic accuracy.
+- Observed recovery: 27 of 30 execution-eligible rows (90.0%). All 27 executed rows recovered. The remaining rows had 2 final-validation failures and 1 API failure; these are not counted as actual Docker recovery failures.
+- The 27 reused original/normalized executions with identical patches are not additional independent recovery successes. Normalized evaluation required 0 new Docker executions.
 
-## 2. 실험 범위와 조건
+## 2. Experimental scope and conditions
 
-세 프로그램(shipping-cli, template-http, settlement-batch)의 기본 장애 3개에 저자 통제 문맥 네 종류를 적용한 12개 문맥이다. P_supported와 P_unknown은 참조상 채택, N_external_supply와 N_snapshot_conflict는 참조상 보류다. P_unknown은 가정이 제한된 조건부 계획 채택을 평가하며 실제 복구 성공을 평가하지 않는다. 원자료는 실제 수집 부분과 저자가 추가한 통제 문맥이 결합되어 있고, 실제 사람의 참조 승인 기록은 없다. 따라서 development 개념 검증으로 기술한다.
+The study comprises 12 contexts obtained by applying four authored context variants to 3 base incidents in shipping-cli, template-http, and settlement-batch. The references require acceptance for P_supported and P_unknown and deferral for N_external_supply and N_snapshot_conflict. P_unknown evaluates acceptance of a conditional plan under limited assumptions, not actual recovery. The inputs combine captured observations with authored controlled context, and there is no recorded human reference approval. The evaluation is therefore described as a development-stage proof of concept.
 
-|비교|조건|구성|행 수|
+|Comparison|Condition|Configuration|Rows|
 |---|---|---|---|
-|E1|R_auto|규칙 후보를 LLM 검토 없이 자동 채택|12 (문맥당 1회)|
-|E1|R_llm|동일 후보를 LLM이 문맥과 함께 검토|36 (문맥당 3회)|
-|E2|B_eq|공통 원자료와 출력 계약, 규칙 후보 추가 제공 없음|36|
-|E2|G_eq|B_eq와 같은 조건에 규칙 후보 필드를 추가 제공|36|
+|E1|R_auto|Automatically accept rule candidates without LLM review|12 (1 per context)|
+|E1|R_llm|LLM review of the same candidates with context|36 (3 per context)|
+|E2|B_eq|Common raw inputs and output contract, without added rule candidates|36|
+|E2|G_eq|Same conditions as B_eq, with added rule-candidate fields|36|
 
-E1/E2는 별도 비교다. E2의 36개 대응 쌍은 실제 입력에서 후보 필드를 제외한 원자료, 프롬프트·스키마, 생성 설정이 모두 일치한다. 반복 3회는 같은 사례의 모델 출력 반복이며 독립 장애 3개를 늘리지 않는다. R_auto를 36개 관측으로 복제하지 않는다. 유의성 검정·독립 표본 신뢰구간은 제시하지 않는다.
+E1 and E2 are separate comparisons. Across E2's 36 matched pairs, the actual raw inputs excluding candidate fields, prompts, schemas, and generation settings all match. The 3 repetitions are repeated model outputs for the same case; they do not add 3 independent incidents. R_auto is not duplicated into 36 observations. No significance test or confidence interval assuming independent samples is presented.
 
-생성 모델은 Gemma API의 `gemma-4-31b-it`이며 temperature=0, max_tokens=4096, seed=42·43·44, warmup=0, 요청 간격 60초, timeout=180초를 사용했다. 연구 설정의 고정값이며 seed가 제공자에서 완전한 결정론을 보장한다는 뜻은 아니다. 모델 입력·원응답과 실제 전송 설정은 각 호출 파일에 보존되어 있다.
+Generation used the Gemma API model `gemma-4-31b-it`, with temperature=0, max_tokens=4096, seed=42·43·44, warmup=0, request spacing of 60 seconds, and timeout=180 seconds. These are fixed study settings, not a claim of complete provider determinism from seeds. Model inputs, raw responses, and transmitted settings are preserved in the original call files.
 
-## 3. 주 단계 판단 및 최종 유효성
+## 3. Primary-stage decisions and final validity
 
-|조건|예정|양성 적절 채택|음성 부적합 채택|음성 명시 보류|계약 차단|API 실패|최종 유효|
+|Condition|Scheduled|Appropriate positive acceptance|Inappropriate negative acceptance|Explicit negative deferral|Contract blockages|API failures|Final valid|
 |---|---|---|---|---|---|---|---|
 |R_auto|12|6/6 (100.0%)|6/6 (100.0%)|0/6 (0.0%)|0|0|12/12 (100.0%)|
 |R_llm|36|18/18 (100.0%)|15/18 (83.3%)|3/18 (16.7%)|0|0|36/36 (100.0%)|
 |B_eq|36|18/18 (100.0%)|18/18 (100.0%)|0/18 (0.0%)|0|0|36/36 (100.0%)|
 |G_eq|36|9/18 (50.0%)|9/18 (50.0%)|0/18 (0.0%)|17|1|33/36 (91.7%)|
 
-양성 적절 채택은 참조상 양성에서 효과적인 accept와 연결값 일치를 모두 만족한 경우다. 음성 부적합 채택은 참조상 음성에서 효과적으로 accept한 경우다. 명시 보류, 계약 차단, API 오류는 서로 다른 상태다. 모든 조건의 양성 과도 보류는 0건이다. 실패로 인해 accept가 줄어든 현상을 보류 효과로 해석하지 않는다.
+Appropriate positive acceptance requires both an effective accept decision and matching bindings in a reference-positive context. Inappropriate negative acceptance is an effective accept decision in a reference-negative context. Explicit deferral, contract blockage, and API error are distinct outcomes. Excessive deferral on positive contexts was 0 in every condition. Reduced acceptance caused by failures must not be interpreted as a deferral effect.
 
-### E1: 제한된 주 단계 보류 효과
+### E1: Limited primary-stage deferral
 
-R_auto는 양성 6/6과 음성 6/6을 모두 채택했다. R_llm은 양성 18/18을 채택했고 음성 15/18을 부적합하게 채택했으며 3/18을 명시 보류했다. 음성 부적합 채택률은 100.0%에서 83.3%로 16.7%p 낮아졌다. 세 보류는 **settlement-batch의 N_external_supply 한 문맥의 세 반복**에 집중됐다. 나머지 다섯 음성 문맥은 모든 반복에서 채택했다. 따라서 여러 오류 유형에 걸친 일관된 안전성 개선으로 일반화할 수 없다.
+R_auto accepted all positive units (6/6) and all negative units (6/6). R_llm accepted 18/18 positive units, inappropriately accepted 15/18 negative units, and explicitly deferred 3/18. The inappropriate negative-acceptance rate decreased from 100.0% to 83.3%, a difference of 16.7 percentage points. All three deferrals were concentrated in **the three repetitions of settlement-batch's N_external_supply context**. The other five negative contexts were accepted in every repetition. This cannot be generalized to consistent safety improvement across error types.
 
-구조화된 counter_evidence_ids는 보류 세 건을 포함해 비어 있어 음성 근거 그룹 coverage는 R_auto 0/6, R_llm 0/18이다. 인용 자체가 없어 precision은 0%가 아니라 N/A(0/0)다. 자유 서술이나 다른 evidence_ids의 로그 언급을 구조화된 반대 근거 인용으로 대체 집계하지 않았다. 보류 이후의 최종 계획에 관한 한계는 6절을 함께 인용해야 한다.
+Structured counter_evidence_ids were empty, including in the three deferred responses. Negative evidence-group coverage was therefore 0/6 for R_auto and 0/18 for R_llm. With no citations, precision is N/A (0/0), not 0%. Free-text discussion or references to logs in other evidence_ids fields were not substituted for structured counter-evidence citations. The final-plan limitations in Section 6 must accompany this result.
 
-### E2: 후보 추가 제공의 비교 우위 미확인
+### E2: No established advantage from additional candidate information
 
-B_eq는 36행 모두 주 단계 계약을 통과했지만 음성 18/18도 채택했다. G_eq는 효과적인 채택 18/36, 계약 차단 17/36, API 실패 1/36이며 명시 보류는 0건이었다. G_eq의 음성 부적합 채택 9/18은 나머지 9건이 계약 차단된 결과다. **음성의 의미를 판단해 보류한 결과가 아니다.** 양성 적절 채택도 B_eq 18/18에서 G_eq 9/18로 감소했다.
+B_eq passed the primary contract in all 36 rows but also accepted 18/18 negative units. G_eq had 18/36 effective accepts, 17/36 contract blockages, 1/36 API failures, and 0 explicit deferrals. Its 9/18 inappropriate negative accepts reflect contract blockage in the other 9 units. **They do not reflect semantic rejection of negative contexts.** Appropriate positive acceptance also decreased from 18/18 for B_eq to 9/18 for G_eq.
 
-G_eq의 후속 분석 17회 중 15회가 유효한 최종 응답을 생성해 최종 유효성은 33/36까지 회복됐다. B_eq는 후속 호출이 없었고 최종 유효성은 36/36이다. 이번 데이터에서 후보 추가 제공에 따른 정확도·계약 준수·호출 비용의 비교 우위는 확인되지 않았다. 이 비교는 후보 필드 제공의 효과에 관한 것이며 RDF 표현 자체나 SHACL·SPARQL 각각의 우위를 독립적으로 검증하지 않는다.
+Of G_eq's 17 fallback analyses, 15 produced valid final responses, bringing final validity to 33/36. B_eq made no fallback calls and had 36/36 valid final responses. These data do not establish a comparative advantage from additional candidates in accuracy, contract compliance, or call cost. The comparison concerns the provision of candidate fields; it does not independently establish advantages of RDF representation, SHACL, or SPARQL.
 
-## 4. 계약 차단과 연결값 분석
+## 4. Contract blockages and binding analysis
 
-|조건|필드|일치/예정|불일치|응답 없음|
+|Condition|Field|Match / scheduled|Mismatch|No response|
 |---|---|---|---|---|
 |B_eq|target|36/36 (100.0%)|0|0|
 |B_eq|source_path|36/36 (100.0%)|0|0|
@@ -70,22 +70,22 @@ G_eq의 후속 분석 17회 중 15회가 유효한 최종 응답을 생성해 �
 |G_eq|insert_after_line|18/36 (50.0%)|17|1|
 |G_eq|plan|35/36 (97.2%)|0|1|
 
-G_eq의 계약 차단 17건은 모두 packaging.insert_after_line의 잘못된 행 번호와 연결됐다. template-http 11건은 실제 마지막 COPY 행 6 대신 11을 반환했고, settlement-batch 6건은 실제 마지막 COPY 행 7 대신 12를 반환했다. 각 값은 해당 마지막 COPY의 SC ID 숫자 부분(SC000011, SC000012)과 일치한다. 따라서 **SC 식별자 숫자와 실제 행 번호의 혼동에 부합하는 패턴**으로 설명할 수 있다. 모델 내부 추론이나 후보 제공이 그 혼동을 일으킨 인과 기전까지 확인된 것은 아니다.
+All 17 G_eq contract blockages were associated with incorrect line numbers in packaging.insert_after_line. The 11 template-http outputs returned 11 instead of the actual last COPY line, 6; the 6 settlement-batch outputs returned 12 instead of the actual line, 7. These values match the numeric portions of the corresponding last COPY evidence identifiers, SC000011 and SC000012. This is **a pattern consistent with confusion between SC identifier numbers and actual line numbers**. It does not establish the model's internal reasoning or a causal mechanism by which candidate information produced the confusion.
 
-후속 응답에서도 template-http / P_supported 반복 0·1의 두 건은 source_findings의 인용 SC 범위와 선언한 행 범위가 일치하지 않아 INVALID_SOURCE_LOCATION으로 차단됐다. 같은 문맥의 반복 2는 API 시간초과였다. 언어 enum이나 빈 observations.evidence_ids로 인한 기존 후속 실패는 이번 저장 결과에서 재현되지 않았다. 원응답을 수정하거나 행 번호를 자동 보정하지 않았다.
+Two fallback responses for template-http / P_supported, repeats 0 and 1, were also blocked with INVALID_SOURCE_LOCATION because the SC citations in source_findings did not match the declared line range. Repeat 2 of the same context timed out at the API. Earlier fallback failures involving the language enum or empty observations.evidence_ids did not recur in these saved results. Raw responses were not edited and line numbers were not automatically corrected.
 
-## 5. 실제 복구와 프로그램별 결과
+## 5. Executed recovery and results by program
 
-|조건|실행 적격|실제 실행|복구/예정|복구/실행|검증 실패로 미실행|API 실패로 미실행|
+|Condition|Execution-eligible|Executed|Recovery / scheduled|Recovery / executed|Not executed: validation failure|Not executed: API failure|
 |---|---|---|---|---|---|---|
 |R_auto|3|3|3/3 (100.0%)|3/3 (100.0%)|0|0|
 |R_llm|9|9|9/9 (100.0%)|9/9 (100.0%)|0|0|
 |B_eq|9|9|9/9 (100.0%)|9/9 (100.0%)|0|0|
 |G_eq|9|6|6/9 (66.7%)|6/6 (100.0%)|2|1|
 
-복구는 P_supported만 평가했다. 참조 복구와 잘못된 복구의 사전 검사를 통과한 동일 이미지·검사기로 첫 최종 계획 전체를 적용했다. P_unknown과 음성 문맥에 Docker 복구율을 부여하지 않았다. G_eq의 6/9는 예정 단위에서 관측된 복구 비율이며 API 실패의 잠재 결과를 아는 값은 아니다. API 실패를 제외한 6/8=75.0%는 참고용 가용 자료 비율이고 주 분석 6/9를 대체하지 않는다. 해당 한 건이 복구됐다고 가정해도 G_eq의 예정 복구는 최대 7/9=77.8%여서 B_eq 9/9를 넘지 않는다. 이는 통계적 추정이나 재실험 결과가 아닌 한 건의 결측 영향 범위다.
+Recovery was evaluated only for P_supported. The entire first final plan was applied using the same image and checker that had passed preflight checks with reference and deliberately incorrect repairs. No Docker recovery rate was assigned to P_unknown or negative contexts. G_eq's 6/9 is observed recovery over scheduled units, not knowledge of the failed API call's potential outcome. Excluding the API failure yields 6/8=75.0% as an available-data reference value; it does not replace the primary 6/9. Even if that one missing unit had recovered, scheduled recovery for G_eq would be at most 7/9=77.8%, below B_eq's 9/9. This bounds the effect of one missing observation; it is neither a statistical estimate nor a rerun result.
 
-|프로그램|조건|양성 적절 채택|음성 부적합 채택|음성 보류|계약/API 실패|최종 유효|복구/예정|
+|Program|Condition|Appropriate positive acceptance|Inappropriate negative acceptance|Negative deferral|Contract / API failures|Final valid|Recovery / scheduled|
 |---|---|---|---|---|---|---|---|
 |settlement-batch|R_auto|2/2 (100.0%)|2/2 (100.0%)|0/2 (0.0%)|0/0|4/4 (100.0%)|1/1 (100.0%)|
 |settlement-batch|R_llm|6/6 (100.0%)|3/6 (50.0%)|3/6 (50.0%)|0/0|12/12 (100.0%)|3/3 (100.0%)|
@@ -100,59 +100,59 @@ G_eq의 계약 차단 17건은 모두 packaging.insert_after_line의 잘못된 �
 |template-http|B_eq|6/6 (100.0%)|6/6 (100.0%)|0/6 (0.0%)|0/0|12/12 (100.0%)|3/3 (100.0%)|
 |template-http|G_eq|0/6 (0.0%)|0/6 (0.0%)|0/6 (0.0%)|11/1|9/12 (75.0%)|0/3 (0.0%)|
 
-G_eq의 shipping-cli 12행은 모두 주 단계 채택됐다. template-http에서는 11건 계약 차단과 1건 시간초과가 발생했고, settlement-batch에서는 P_unknown·N_external_supply의 각 세 반복이 계약 차단됐다. 이런 프로그램·문맥별 편중을 전체 평균과 함께 제시한다.
+All 12 shipping-cli rows in G_eq were accepted at the primary stage. template-http had 11 contract blockages and 1 timeout. In settlement-batch, all three repetitions of P_unknown and all three of N_external_supply were contract-blocked. This concentration by program and context should be reported alongside aggregate averages.
 
-## 6. 부정 문맥의 최종 COPY 지표와 보조 감사
+## 6. Final COPY indicators in negative contexts and supplementary audit
 
-|조건|동결된 표적 COPY 지표|첫 계획에 COPY 존재|어느 계획이든 COPY 존재|아카이브 경로 매핑상 표적 포함(어느 계획)|
+|Condition|Frozen target-COPY indicator|COPY in first plan|COPY in any plan|Archive mapping includes target (any plan)|
 |---|---|---|---|---|
 |R_auto|6/6 (100.0%)|6/6 (100.0%)|6/6 (100.0%)|6/6 (100.0%)|
 |R_llm|15/18 (83.3%)|18/18 (100.0%)|18/18 (100.0%)|18/18 (100.0%)|
 |B_eq|18/18 (100.0%)|18/18 (100.0%)|18/18 (100.0%)|18/18 (100.0%)|
 |G_eq|9/18 (50.0%)|15/18 (83.3%)|18/18 (100.0%)|18/18 (100.0%)|
 
-동결된 COPY 지표는 명시적인 표적 파일 도착 경로나 끝에 `/`가 붙은 상위 디렉터리를 탐지한다. `COPY --chown=node:node config ./config`처럼 목적지에 끝 슬래시가 없는 디렉터리 전체 복사를 놓칠 수 있다. 실제로 R_llm의 보류 세 건 모두 후속 첫 계획에서 이 COPY를 제안했다. G_eq의 원래 지표가 false인 음성 9건에도 디렉터리 COPY가 첫 번째 또는 다른 계획에 들어 있다.
+The frozen COPY indicator detects explicit target-file destinations or parent-directory destinations ending in `/`. It can miss copying an entire directory to a destination without a trailing slash, such as `COPY --chown=node:node config ./config`. All three R_llm deferrals were followed by this COPY in the first fallback plan. The 9 negative G_eq units marked false by the original indicator also contained directory COPY in the first or another plan.
 
-이 표의 추가 열은 **사후 보조 감사**다. 첫 계획/전체 계획의 Dockerfile snippet에 COPY가 있는지, 제공 아카이브의 파일·디렉터리와 문자 경로를 조합하면 표적이 포함되는지를 별도 계산했다. 허용 가능한 단일 literal COPY만 매핑하고 미지원 문법은 미확정으로 남긴다. `.dockerignore`, 적용 조건, 실제 배포 문맥, 경로를 바꾸는 다른 변경과의 상호작용 및 안전성을 모두 검증하는 새 채점기가 아니다. 추가 Docker 실행이나 사람의 의미 채점은 하지 않았다.
+The added columns are a **post hoc supplementary audit**. They separately assess whether the first or any plan's Dockerfile snippet contains COPY and whether literal path mapping against files/directories in the provided archive includes the target. Only supported single literal COPY instructions are mapped; unsupported syntax remains indeterminate. This is not a new scorer validating `.dockerignore`, application conditions, actual deployment context, interactions with other path-changing edits, or safety in full. No additional Docker execution or human semantic scoring was performed.
 
-원래 점수 15/18·9/18은 보존하되 **최종 위험 제안의 정확한 발생률이나 안전 성공률로 제시하지 않는다.** 특히 R_llm의 주 단계 보류 효과를 전체 에이전트가 부적합한 복구 제안을 막았다는 주장으로 확장할 수 없다. 후속 분석으로 보류가 유지되는지는 이번 지표로 입증되지 않았다. 원본 분석 아카이브의 `tables/supplementary-copy-audit.csv`에 60개 음성 평가 단위의 snippet과 판별 근거를 남겼다. 이 공개본에는 응답 snippet을 제외한 집계표 `tables/copy-groups.csv`를 제공한다.
+The original 15/18 and 9/18 values are preserved but **must not be presented as exact rates of harmful final proposals or safety success**. In particular, R_llm's primary-stage deferral effect does not establish that the complete agent prevented inappropriate remediation proposals. The metric does not demonstrate that deferral survives fallback analysis. Snippets and audit reasoning for the 60 negative evaluation units are retained in `tables/supplementary-copy-audit.csv` in the original analysis archive. This public release provides the aggregate `tables/copy-groups.csv`, without response snippets.
 
-## 7. 호출 수·토큰·시간
+## 7. Calls, tokens, and time
 
-|조건|주/후속 호출|관측 입력 토큰|관측 출력 토큰|usage 누락|API 대기·처리 합계(s)|pacing 합계(s)|
+|Condition|Primary / fallback calls|Observed input tokens|Observed output tokens|Missing usage|API waiting/processing sum (s)|Pacing sum (s)|
 |---|---|---|---|---|---|---|
 |R_auto|0/0|0|0|0|0.00|0.00|
 |R_llm|36/3|137934|11292|0|368.75|1728.00|
 |B_eq|36/0|134634|10239|0|337.14|1394.92|
 |G_eq|36/17|279128|37510|1|1418.52|2543.39|
 
-G_eq는 B_eq보다 총 호출이 53/36=1.47배였고, 관측 입력 토큰은 279,128/134,634=2.07배, 관측 출력 토큰은 37,510/10,239=3.66배였다. G_eq의 시간초과 한 호출은 usage가 없어 해당 총 토큰을 정확한 완전 합계로 취급하지 않는다. 입력 토큰 차이는 후보 필드 추가와 후속 호출 증가가 함께 포함된 값이다. 화폐 비용은 산출하지 않았다.
+Relative to B_eq, G_eq made 53/36=1.47 times as many calls. Observed input tokens were 279,128/134,634=2.07 times as high, and observed output tokens were 37,510/10,239=3.66 times as high. Usage was unavailable for G_eq's timed-out call, so its token totals are not exact complete totals. Input-token differences reflect both candidate fields and additional fallback calls. Monetary cost was not calculated.
 
-API 시간에는 180초 시간초과를 포함하며 실제 모델 계산 시간과 동일하지 않다. pacing은 호출 간격 60초 정책에 따른 대기다. 그래프·후보 생성은 오프라인 준비에서 한 번 수행됐고 live는 고정 패킷을 재생했다. 따라서 위 시간을 그래프 구축부터 실행 복구까지의 전체 시스템 지연으로 주장하지 않는다. 프로세스 재개 사이의 사용자 대기 시간도 셀 시간 합계에 포함되지 않는다.
+API timing includes the 180-second timeout and is not the same as model computation time. Pacing is waiting under the 60-second call-spacing policy. Graphs and candidates were generated once during offline preparation; the live run replayed fixed packets. These timings therefore do not measure end-to-end latency from graph construction through execution-based recovery. User waiting time between process restarts is also absent from summed cell timings.
 
-## 8. 이전 계약 버전과의 개발 비교
+## 8. Development comparison with the previous contract version
 
-|조건|이전 주 실패 → 이번|이전 최종 유효 → 이번|이전 복구 → 이번|
+|Condition|Primary failures: previous → current|Final valid: previous → current|Recovery: previous → current|
 |---|---|---|---|
 |R_auto|0/12 → 0/12|12/12 → 12/12|3/3 → 3/3|
 |R_llm|0/36 → 0/36|33/36 → 36/36|9/9 → 9/9|
 |B_eq|36/36 → 0/36|0/36 → 36/36|0/9 → 9/9|
 |G_eq|36/36 → 18/36|0/36 → 33/36|0/9 → 6/9|
 
-이전 183회(주 108+후속 75)에서 이번 128회(주 108+후속 20)로 생성 호출이 55회 줄었다. 계약 설명 보완 후 유효 응답·조립 가능성이 개선됐다는 개발 관찰이다. 기존 결과를 본 뒤 같은 문맥으로 수정한 사후 비교이므로 독립 holdout, 사전 등록된 확증 실험, 그래프 진단 정확도의 개선으로 해석하지 않는다. 두 버전의 행을 합쳐 표본 수를 늘리지 않는다.
+Generation attempts decreased by 55, from 183 (108 primary + 75 fallback) to 128 (108 primary + 20 fallback). This is a development observation of improved response validity and assembly feasibility after contract clarification. The revision followed inspection of earlier results and reused the same contexts. It is not an independent holdout, a preregistered confirmatory experiment, or evidence of improved graph-based diagnostic accuracy. Rows from both versions must not be pooled to enlarge the sample.
 
-## 9. 논문에서 허용되는 해석
+## 9. Interpretations supported in the manuscript
 
-- 제한된 Node.js 파일 읽기 실패·Docker COPY 문맥에서 근거 연결, 검증, 규칙 후보 생성, LLM 검토 및 실행 복구를 연계한 구현의 작동을 보였다. 실행 가능한 양성 계획 27건의 복구를 확인했다.
-- E1에서 LLM 검토는 한 부정 문맥의 세 반복에서 명시 보류를 보였지만 다른 음성 문맥에서는 부적합 채택이 유지됐고 최종 계획의 안전성은 입증하지 못했다.
-- E2에서 후보 필드 제공의 추가 이점은 확인되지 않았다. G_eq에서 위치 계약 위반과 후속 호출 비용 증가가 관측됐다.
-- 계약 설명 보완은 응답 유효성을 개선했지만 유효성은 의미적 정답이나 안전성의 대리 지표가 아니다.
+- In restricted Node.js file-read and Docker COPY contexts, the implementation connected evidence binding, validation, rule-based candidate generation, LLM review, and execution-based recovery. Recovery was confirmed for 27 executable positive plans.
+- In E1, LLM review explicitly deferred three repetitions of one negative context, while inappropriate acceptance persisted in other negative contexts. Final-plan safety was not established.
+- In E2, no additional benefit from candidate fields was established. G_eq exhibited location-contract violations and increased fallback-call cost.
+- Contract clarification improved response validity, but validity is not a proxy for semantic correctness or safety.
 
-제한: 기본 장애 3개, 저자 통제 문맥, 반복의 비독립성, 단일 모델·고정 설정, 사후 개발 수정, 실제 사람의 참조 승인 부재, API 결측 1건, 제한된 출력 계약·적용기, COPY 지표의 탐지 범위다. 다른 프로젝트·언어·미지원 오류로의 일반화, LLM의 필수성, RDF/OWL의 보편적 우위, 통계적 유의성·동등성은 주장하지 않는다. SHACL 구조 검증을 원인 증명으로, SPARQL 규칙 실행을 일반적인 OWL 추론으로 바꾸어 표현하지 않는다.
+Limitations include 3 base incidents, authored contexts, non-independent repetitions, a single model with fixed settings, post hoc development changes, no recorded human reference approval, 1 missing API outcome, a restricted output contract and applicator, and the COPY detector's scope. The study makes no claim of generalization to other projects, languages, or unsupported errors; necessity of an LLM; universal superiority of RDF/OWL; or statistical significance/equivalence. SHACL structural validation must not be described as causal proof, nor SPARQL rule execution as general OWL reasoning.
 
-## 10. 재현과 원자료
+## 10. Reproducibility and source records
 
-원본 별도 분석에서는 14,364개 파일을 검증했다. 원본 분석 아카이브의 `summary.json`은 기존 수치가 동일한 상태 정정본, `analysis.json`은 재집계·보조 감사, `status-amendment.json`은 변경 사유와 범위다. 원래 보고서와 논문 TeX/Bib, 실험 코드·프롬프트·스키마·정답·계획·Docker 결과는 수정하지 않았다.
+The original separate analysis verified 14,364 files. In that archive, `summary.json` preserves the original numerical results with corrected completion status, `analysis.json` contains reaggregation and the supplementary audit, and `status-amendment.json` records the rationale and scope of the change. The original report, manuscript TeX/Bib files, experiment code, prompts, schemas, references, plans, and Docker outcomes were not modified.
 
-이 GitHub 공개본은 결과표와 해석 문서만 포함하며 위 원본 아카이브 전체를 배포하지 않는다. 파일 경로와 공개 범위 설명만 정리했고 관측 수치는 변경하지 않았다. 공개 입력 예제와 전체 재집계의 차이는 [재현 안내](../../../docs/REPRODUCIBILITY.md)를 참고한다. 공개 파일의 출처·해시는 저장소 루트의 `publication-provenance.json`에 기록한다.
+This GitHub release provides result tables and interpretation documents, not the complete original archive. Paths and release-scope explanations were clarified, and the documentation was translated into English; observed values were not changed. See the [reproducibility notes](../../../docs/REPRODUCIBILITY.md) for the distinction between public input examples and full reaggregation. Public-file provenance and hashes are recorded in the repository-root `publication-provenance.json`.
 

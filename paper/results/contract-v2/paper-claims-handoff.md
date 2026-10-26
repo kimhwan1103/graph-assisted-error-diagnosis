@@ -1,13 +1,13 @@
-# 논문 반영 시 주장 범위
+# Claim boundaries for the manuscript
 
-|구성 요소|관측값|허용되는 표현|피해야 하는 표현|
-|---|---|---|---|
-|실행 가능성|27/30 예정 행에서 복구, 실제 실행 27/27 성공|제한된 P_supported에서 생성 계획의 적용·복구 가능성을 확인|모든 오류 100% 복구, 120개 독립 장애 검증|
-|LLM 검토|음성 명시 보류 3/18, 한 문맥의 반복에 집중|특정 외부 공급 문맥에서 주 단계 보류 관찰|LLM이 필수, 부정 복구 제안을 끝까지 방지|
-|후보 제공|G_eq 계약 차단 17/36, B_eq 0/36; 호출 53 대 36|이번 조건에서 추가 이점 미확인, 위치 계약과 비용 한계 관찰|그래프/RDF/OWL 자체가 우수하거나 불필요하다는 일반 결론|
-|출력 계약 보완|최종 유효 117/120; 이전 실패 감소|같은 개발 문맥에서 응답 유효성 개선|독립 검증에서 진단 정확도 향상 입증|
-|근거 사용|구조화 반대 근거 coverage 0; precision N/A|근거 연결 구조 구현 및 실제 인용 한계를 분리 기술|반대 근거를 충분히 활용한 안전 진단 입증|
-|COPY 탐지|사후 감사에서 기존 탐지기의 디렉터리 COPY 누락 확인|미검출·불확실·유효 응답·의미적 적절성을 구분|COPY 미검출 50%를 안전 성공률 50%로 표현|
+| Component | Observation | Supported wording | Wording to avoid |
+| --- | --- | --- | --- |
+| Execution feasibility | Recovery in 27/30 scheduled rows; 27/27 executed plans succeeded | Application and recovery feasibility were demonstrated within the restricted P_supported setting | 100% recovery for all errors; validation on 120 independent incidents |
+| LLM review | Explicit deferral in 3/18 negative-context units, concentrated in repetitions of one context | Primary-stage deferral was observed in a specific external-supply context | The LLM is necessary; inappropriate remediation proposals were prevented through the final stage |
+| Candidate information | G_eq had 17/36 contract blockages versus 0/36 for B_eq; 53 versus 36 calls | No additional benefit was established under these conditions; location-contract and cost limitations were observed | General claims that graphs/RDF/OWL are superior or unnecessary |
+| Output-contract clarification | 117/120 valid final responses; fewer failures than before | Response validity improved on the same development contexts | Diagnostic accuracy improved in an independent evaluation |
+| Evidence use | Structured counter-evidence coverage was 0; precision was N/A | Distinguish the implemented evidence-linking structure from limitations in actual citation behavior | Safe diagnosis through adequate use of counter-evidence was established |
+| COPY detection | The post hoc audit found directory COPY operations missed by the original detector | Distinguish non-detection, uncertainty, valid responses, and semantic appropriateness | Describe 50% COPY non-detection as a 50% safety-success rate |
 
-결과 표는 E1/E2, 원본/정규화, 예정/실행 분모를 구분한다. 논의에는 시간초과 1건과 SC 숫자/행 혼동 패턴, 후속 계획에서 보류가 유지되지 않을 가능성을 포함한다. 한계에는 기본 장애 3개, 12개 저자 통제 문맥, 비독립 반복, 단일 모델, 실제 사람 참조 승인 부재와 사후 개발 수정을 기재한다. 초록·결론은 제한된 구현·실행 가능성 및 확인된 한계에 맞춘다. SHACL은 구조 제약 검증, SPARQL은 명시적 규칙 추론으로 표기한다.
+Result tables must distinguish E1/E2, original/normalized responses, and scheduled/executed denominators. The discussion should include the single timeout, the SC-identifier/line-number pattern, and the possibility that deferral is not preserved in the fallback plan. Limitations include three base incidents, 12 authored contexts, non-independent repetitions, one model, no recorded human reference approval, and post hoc development changes. The abstract and conclusion should reflect the restricted implementation and execution feasibility together with the observed limitations. Describe SHACL as structural constraint validation and SPARQL as explicit rule-based inference.
 

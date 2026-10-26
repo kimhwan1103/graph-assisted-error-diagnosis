@@ -1,13 +1,15 @@
-# GitHub 공개본 구성 기록
+# GitHub publication inventory
 
-2026-10-26, paper v4의 별도 공개용 사본을 만들었습니다. 원본 실험 폴더는 삭제·이동·수정하지 않았습니다.
+A separate publication copy of paper v4 was prepared on 2026-10-26. The original experiment folder was not deleted, moved, or modified.
 
-포함: 최신 진단 코어, 공유되는 이전 모듈, v4 실험·검증·복구 평가 코드, 필요한 회귀 테스트, 세 Node.js 예제, 공개 가능한 입력 패킷, 키 없는 설정, 버전별 최종 결과표와 한계.
+Included: the current diagnosis core, reused earlier modules, v4 experiment and validation tools, remediation evaluation code, required regression tests, three Node.js examples, public input packets, settings without credentials, and final result tables with their limitations.
 
-제외: API 키가 든 `.env`, 가상환경, 바이트코드와 pytest/Ruff 캐시, `.cv2t*`와 각 테스트 임시 디렉터리, 수많은 mock·실패 중간 출력, 원본 모델 응답과 호출 기록, Docker 실행 로그, 전체 보존 매니페스트, 개인 경로가 들어간 실행 안내, 논문 초안 및 작업 인계 문서, 이전 노트북 전용 테스트.
+Excluded during preparation: the credential-bearing `.env`, virtual environments, bytecode and pytest/Ruff caches, `.cv2t*` and other temporary test directories, intermediate mock and failed-run outputs, original model responses and call records, Docker execution logs, the complete preservation manifest, instructions containing personal paths, working manuscript drafts and implementation handoffs, and tests dedicated to earlier notebooks. The accompanying English paper PDF was subsequently added to the repository root.
 
-`fixtures`와 코드의 fake 응답은 필요한 테스트 데이터입니다. 이를 없애면 회귀 검사와 예제 실행이 깨지므로 남겼습니다. 이전 버전 이름의 소스 모듈도 최신 코드가 import하면 유지했습니다. 원본을 수정하거나 과거 실험 결과가 더 좋아 보이도록 채점 기준을 바꾸지 않았습니다.
+The `fixtures` and fake responses in the code are required test data. Removing them would break regression checks and example execution. Modules with earlier version names are retained when imported by current code. The original experiment and its scoring criteria were not changed to improve the appearance of past results.
 
-최신 분석의 상태는 **전체 완료·실험 종료**이며 API 시간초과 1건은 실패 관측으로 보존합니다. 공개 결과는 원본과 제한적 정규화를 구분합니다. COPY 탐지 한계·development 평가 범위·비독립 반복을 삭제하지 않았습니다.
+The latest analysis status is **All scheduled units processed; experiment concluded**, with one API timeout retained as a failed observation. Published results distinguish original responses from limited normalization. COPY detection limitations, the development-stage evaluation scope, and non-independent repetitions are preserved.
 
-로컬 공개 폴더에 독립 Git 저장소를 초기화하므로 부모 작업공간의 다른 프로젝트를 함께 추가할 필요가 없습니다. 원격 저장소 생성·commit·push는 수행하지 않았습니다. 사용자가 생성한 GitHub 저장소를 이 폴더에 연결하면 됩니다. 라이선스는 소유자의 선택이 필요하므로 임의로 부여하지 않았습니다.
+The publication folder was initialized as an independent Git repository, so unrelated projects in the parent workspace need not be included. At the preparation step, no remote repository was created and no commit or push was performed; subsequent repository actions belong to the owner. No new repository-wide license was assigned because that choice belongs to the owner.
+
+The public documentation is now available in English. The two Korean runtime prompt files remain byte-identical to the experimental versions; [English reading guides](prompts/README.md) explain them without replacing the model inputs.

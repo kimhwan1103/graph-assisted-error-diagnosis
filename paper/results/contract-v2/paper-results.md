@@ -1,32 +1,32 @@
-# 논문용 결과 요약 — 저장된 contract-v2 결과의 별도 분석
+# Manuscript results summary — separate analysis of saved contract-v2 results
 
-전체 완료·실험 종료. 예정 120행 처리 완료; API 시간초과 1건을 실패 관측으로 보존; 재호출 없음. 아래 문장은 결과 초안이며 새 실험을 수행하지 않았다.
+All scheduled units processed; experiment concluded. All 120 scheduled rows were processed; one API timeout is retained as a failed observation, without another call. The following text is a results draft based on existing records; no new experiment was performed.
 
-세 Node.js 프로그램의 기본 장애 3개에 네 가지 저자 통제 문맥을 적용하여 12개 문맥을 구성하였다. 자동 채택 조건은 문맥당 한 번, 세 LLM 조건은 문맥당 세 번 평가하여 총 120개 평가 단위를 처리하였다. 실제 생성 호출은 주 호출 108회와 후속 호출 20회를 합한 128회였으며, 그중 API 시간초과 1회를 실패 관측으로 보존하였다. 참조는 저자 통제 기준이고 사람의 승인 기록이 없어 본 평가는 development 단계의 소규모 개념 검증으로 한정한다.
+Four authored context variants were applied to 3 base incidents in three Node.js programs, producing 12 contexts. Automatic acceptance was evaluated once per context, while each of the three LLM conditions was evaluated three times per context, giving 120 evaluation units. Actual generation comprised 128 calls: 108 primary and 20 fallback attempts. One API timeout was retained as a failed observation. References were author-controlled, with no recorded human approval, so the evaluation is limited to a small development-stage proof of concept.
 
-모델은 `gemma-4-31b-it`을 사용했고 temperature=0, 최대 출력 4096토큰, 반복 seed=42·43·44, 호출 간격 60초, timeout=180초를 고정하였다. E2의 36개 대응 쌍은 후보 필드를 제외한 입력과 프롬프트·출력 스키마·생성 설정이 일치하였다.
+The model was `gemma-4-31b-it`, with temperature=0, a maximum of 4096 output tokens, repetition seeds 42·43·44, call spacing of 60 seconds, and timeout=180 seconds. E2's 36 matched pairs used identical inputs except for candidate fields; prompts, output schemas, and generation settings also matched.
 
-|조건|예정|양성 적절 채택|음성 부적합 채택|음성 명시 보류|계약 차단|API 실패|최종 유효|
+|Condition|Scheduled|Appropriate positive acceptance|Inappropriate negative acceptance|Explicit negative deferral|Contract blockages|API failures|Final valid|
 |---|---|---|---|---|---|---|---|
 |R_auto|12|6/6 (100.0%)|6/6 (100.0%)|0/6 (0.0%)|0|0|12/12 (100.0%)|
 |R_llm|36|18/18 (100.0%)|15/18 (83.3%)|3/18 (16.7%)|0|0|36/36 (100.0%)|
 |B_eq|36|18/18 (100.0%)|18/18 (100.0%)|0/18 (0.0%)|0|0|36/36 (100.0%)|
 |G_eq|36|9/18 (50.0%)|9/18 (50.0%)|0/18 (0.0%)|17|1|33/36 (91.7%)|
 
-E1에서 자동 채택은 양성 6/6과 음성 6/6을 모두 채택하였다. LLM 검토는 양성 18/18의 적절 채택을 유지하면서 음성 18회 중 3회를 명시적으로 보류하였다. 이에 따라 음성 부적합 채택률은 100.0%에서 83.3%로 16.7%p 감소하였다. 다만 세 보류는 settlement-batch의 외부 공급 문맥 한 개의 반복에서만 나타났고, 구조화된 반대 근거 인용은 없었다. 또한 보류 후 최종 계획에서 디렉터리 COPY가 다시 제안되어, 이 결과는 주 단계의 제한된 보류 효과로 해석해야 하며 전체 에이전트의 안전성 향상으로 확장할 수 없다.
+In E1, automatic acceptance accepted both positive units (6/6) and negative units (6/6). LLM review retained appropriate acceptance for 18/18 positive units and explicitly deferred 3 of 18 negative units. The inappropriate negative-acceptance rate therefore decreased from 100.0% to 83.3%, a difference of 16.7 percentage points. However, all three deferrals were repetitions of one external-supply context in settlement-batch, and none included structured counter-evidence citations. Directory COPY was again proposed in the final plans after deferral. The result therefore concerns a limited primary-stage deferral effect and cannot be extended to improved safety of the complete agent.
 
-E2에서 후보를 추가 제공하지 않은 B_eq는 주 단계 계약을 36/36 통과했지만 음성도 18/18 채택하였다. 후보를 제공한 G_eq는 효과적 채택 18회, 계약 차단 17회, API 실패 1회였고 명시 보류는 없었다. 계약 차단 17회는 모두 Dockerfile 삽입 행 번호와 관련됐으며 반환 숫자가 마지막 COPY의 SC 식별자 숫자와 일치하는 패턴이 관찰되었다. 후속 분석을 포함한 최종 유효 응답은 B_eq 36/36, G_eq 33/36이었다. 이 조건에서는 후보 추가 제공의 비교 우위를 확인하지 못하였다.
+In E2, B_eq, which received no additional candidates, passed the primary contract in 36/36 units but also accepted 18/18 negative units. G_eq, which received candidates, produced 18 effective accepts, 17 contract blockages, and 1 API failure, with no explicit deferrals. All 17 blockages involved Dockerfile insertion-line numbers, with returned numbers matching the numeric portions of the last COPY's SC identifiers. Including fallback analysis, final validity was 36/36 for B_eq and 33/36 for G_eq. No comparative advantage from providing additional candidates was established under these conditions.
 
-|조건|실행 적격|실제 실행|복구/예정|복구/실행|검증 실패로 미실행|API 실패로 미실행|
+|Condition|Execution-eligible|Executed|Recovery / scheduled|Recovery / executed|Not executed: validation failure|Not executed: API failure|
 |---|---|---|---|---|---|---|
 |R_auto|3|3|3/3 (100.0%)|3/3 (100.0%)|0|0|
 |R_llm|9|9|9/9 (100.0%)|9/9 (100.0%)|0|0|
 |B_eq|9|9|9/9 (100.0%)|9/9 (100.0%)|0|0|
 |G_eq|9|6|6/9 (66.7%)|6/6 (100.0%)|2|1|
 
-실행 평가는 P_supported 30행으로 제한하였다. 27행에서 계획을 실제 적용해 복구를 확인했고, 나머지는 최종 검증 실패 2행과 API 시간초과 1행으로 실행하지 못하였다. 따라서 예정 행 기준 복구 비율은 27/30(90.0%), 실행된 계획의 조건부 복구 비율은 27/27(100.0%)이다. 원본과 제한적 정규화의 최종 유효성은 모두 117/120(97.5%)였고 복구 결과도 같았다. 동일 패치의 정규화 평가가 원본 실행을 재사용했으므로 독립 성공으로 합산하지 않았다.
+Execution evaluation was limited to 30 P_supported rows. Plans were applied and recovery confirmed in 27 rows; 2 final-validation failures and 1 API timeout prevented execution in the remaining rows. Recovery was therefore 27/30 (90.0%) over scheduled eligible rows and 27/27 (100.0%) conditional on execution. Final validity was 117/120 (97.5%) for both original responses and limited normalization, and recovery outcomes were identical. Normalized evaluation reused original executions for identical patches, so these were not counted as independent successes.
 
-G_eq는 B_eq에 비해 총 호출이 36회에서 53회로 증가하였다. 관측 입력·출력 토큰 합도 각각 2.07배와 3.66배였으며, 시간초과 호출의 usage는 누락값으로 유지하였다. 이는 후보 입력량과 후속 호출이 함께 반영된 비용이고 전체 시스템 지연이나 화폐 비용을 의미하지 않는다.
+G_eq increased total calls from B_eq's 36 to 53. Observed input and output tokens were respectively 2.07 and 3.66 times as high, with usage for the timed-out call retained as missing. These costs combine candidate-input volume and fallback calls; they are not end-to-end system latency or monetary cost.
 
-부정 문맥의 동결된 COPY 탐지 지표는 목적지 끝 슬래시가 없는 디렉터리 복사를 놓치는 한계가 있었다. 사후 보조 감사에서는 모든 조건의 음성 최종 응답에 적어도 한 계획의 COPY 코드가 포함되어 있음을 확인하였다. 이 관찰은 실제 적용·피해를 평가한 결과가 아니며, 기존 지표의 COPY 미검출을 안전 성공으로 해석할 수 없음을 보여준다. 전체 결과는 단일 모델, 3개 기본 장애, 합성 문맥, 반복의 비독립성, 사후 계약 보완 및 사람 참조 승인 부재의 범위에서 기술한다. 통계적 유의성이나 다른 프로젝트·오류 유형에 대한 일반화는 주장하지 않는다.
+The frozen COPY indicator for negative contexts could miss directory copies whose destination lacked a trailing slash. A post hoc supplementary audit found COPY code in at least one final plan for every negative response in every condition. This observation does not evaluate actual application or harm; it shows why non-detection by the original indicator cannot be interpreted as safety success. Results are confined to one model, 3 base incidents, synthetic contexts, non-independent repetitions, post hoc contract clarification, and no recorded human reference approval. No claim of statistical significance or generalization to other projects or error types is made.
 

@@ -71,10 +71,10 @@ The API model was gemma-4-31b-it, with temperature 0, a 4,096-token output limit
 | --- | --- |
 | [Paper PDF](Evidence%20Binding%20and%20Deferred%20Decisions%20in%20Graph-Assisted%20Error%20Diagnosis.pdf) | English manuscript, experimental design, results, and limitations |
 | [Final result tables](paper/results/contract-v2/tables/) | CSV tables by condition, program, context, binding, cost, and failure |
-| [Latest result summary](paper/results/contract-v2/paper-results.md) | Paper-oriented result summary, in Korean |
-| [Detailed analysis](paper/results/contract-v2/report.md) | Denominators, failures, normalization, and supplementary COPY audit, in Korean |
-| [Claim boundaries](paper/results/contract-v2/paper-claims-handoff.md) | Supported interpretations and limitations, in Korean |
-| [Experiment index](paper/README.md) | Earlier system-v4 and cross-program evaluations, in Korean |
+| [Latest result summary](paper/results/contract-v2/paper-results.md) | Paper-oriented result summary |
+| [Detailed analysis](paper/results/contract-v2/report.md) | Denominators, failures, normalization, and supplementary COPY audit |
+| [Claim boundaries](paper/results/contract-v2/paper-claims-handoff.md) | Supported interpretations and limitations |
+| [Experiment index](paper/README.md) | Earlier system-v4 and cross-program evaluations |
 
 Earlier experiments have different designs and should not be pooled with the latest comparison. Original and normalized results are separate views of the same responses; reused executions are not independent successes.
 
@@ -125,6 +125,8 @@ The example also accepts shipping-cli and settlement-batch. It does not query an
 
 A blank configuration template is available in [.env.example](.env.example) for separately configured, user-initiated API experiments. Credentials and generated outputs are excluded from Git.
 
+Public documentation is available in English. The two original Korean runtime prompts are deliberately preserved to keep the experimental model inputs unchanged. [English prompt reading guides](docs/prompts/README.md) are provided for reviewers; the runtime does not load them.
+
 ## Reproducibility and release scope
 
 This release includes the manuscript, diagnosis and evaluation code, example programs, prepared input packets, references, and aggregate result tables. The diagnosis core and original experiment tools retain their archived source bytes.
@@ -138,7 +140,7 @@ Consequently:
 - The original clone/freeze/live workflow and the full post hoc analysis script cannot be assumed to run from this compact release alone. Existing freeze checks should not be bypassed.
 - File-integrity verification checks the distributed artifact; it does not independently validate the underlying experimental observations.
 
-See the [reproducibility notes](docs/REPRODUCIBILITY.md) and [publication inventory](docs/PUBLICATION.md) for additional details; these supporting documents are in Korean.
+See the [reproducibility notes](docs/REPRODUCIBILITY.md) and [publication inventory](docs/PUBLICATION.md) for additional details.
 
 ## Limitations
 
@@ -166,3 +168,14 @@ The 120 units are not 120 independent bugs. The study does not establish statist
 | analysis/ | Post hoc analysis requiring the original run archive |
 
 Some modules retain earlier version names because the current implementation reuses them. Archive-dependent tests in tools/tests/ are separate from the default public test suite. The small historical BugsJS input retained for API regression tests is documented with its upstream licenses in [its own README](evaluation/public/bugsjs_hessian/README.md).
+
+## License
+
+Copyright 2026 Hwan Kim.
+
+Original source code in this repository is licensed under the
+Apache License 2.0. See [LICENSE](LICENSE).
+
+Third-party materials retain their original licenses and
+copyright notices. The paper PDF is not covered by this
+source-code license.

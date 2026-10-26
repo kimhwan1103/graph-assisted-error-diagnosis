@@ -1,25 +1,25 @@
-# v4 해결안 자동 실행 평가
+# v4 automated remediation execution evaluation
 
-상태: **complete** · 응답: **original** · 실행 요청: **True**
+Status: **complete** · Responses: **original** · Execution requested: **True**
 
-평가 범위는 지원된 COPY 계획 표현과 고정 재현 환경이다. 구조 검증 통과를 복구 성공으로 세지 않는다.
-사례 4개, incident 4개, 계보 1개, 셀 8개. 분류 시점: `post_hoc_development_before_replay_not_before_generation`.
+The evaluation covers supported COPY plan representations in a fixed reproduction environment. Passing structural validation is not counted as successful recovery.
+4 cases, 4 incidents, 1 lineage, and 8 cells. Classification timing: `post_hoc_development_before_replay_not_before_generation`.
 
-## 수정 가능한 사례
+## Repair-eligible cases
 
-| 조건 | 예정 | 완료 | 미판정 | 응답 유효 | 적용률 | 완전 복구율 | 적용 후 복구율 | 회귀 / 검사 완료 | 회귀 미검사 적용 셀 |
+| Condition | Scheduled | Completed | Unresolved | Response valid | Application rate | Full recovery rate | Recovery after application | Regressions / checks completed | Applied cells without regression checks |
 |---|---:|---:|---:|---|---|---|---|---|---:|
 | adaptive | 1 | 1 | 0 | 0/1 (0.0%) | 0/1 (0.0%) | 0/1 (0.0%) | N/A (0/0) | N/A (0/0) | 0 |
 | graph_compact | 1 | 1 | 0 | 1/1 (100.0%) | 1/1 (100.0%) | 1/1 (100.0%) | 1/1 (100.0%) | 0/1 (0.0%) | 0 |
 
-## 무변경 및 정보 부족
+## No-change and insufficient-evidence cases
 
-| 조건 | 무변경 셀 | 불필요한 제안 / 전체 | 불필요한 제안 / 유효 | 적절한 무변경 | 무변경 응답 실패 | 정보 부족 셀 | 구조적 보류 | 정보 부족 응답 실패 |
+| Condition | No-change cells | Unnecessary proposals / all | Unnecessary proposals / valid | Appropriate no-change | No-change response failures | Insufficient-evidence cells | Structural deferral | Insufficient-evidence response failures |
 |---|---:|---|---|---|---:|---:|---|---:|
 | adaptive | 2 | 0/2 (0.0%) | N/A (0/0) | 0/2 (0.0%) | 2 | 1 | 0/1 (0.0%) | 1 |
 | graph_compact | 2 | 0/2 (0.0%) | N/A (0/0) | 0/2 (0.0%) | 2 | 1 | 0/1 (0.0%) | 1 |
 
-## 대응 비교와 실행 범위
+## Matched comparison and execution scope
 
 ```json
 {
@@ -32,15 +32,15 @@
 }
 ```
 
-실제 에이전트 계획 재현 시도: 1회. 캐시 공유: 0회. 신규 모델 호출: 0회.
-사전 참조 수정과 평가기 회귀 테스트는 에이전트 복구 성공에 포함하지 않는다. 같은 장애의 여러 조건은 독립 사례 수를 늘리지 않는다.
-dry-run과 인프라 오류의 미실행 검사는 null이다. 미판정 셀이 있으면 완전 복구율을 확정하지 않으며, 예정 분모에 대한 확인된 성공만 하한으로 표시한다.
-원본과 정규화는 별도 평가다. 이 실행 시간은 모델의 기존 응답 시간이 아니며, 정규화 후 시스템의 새 토큰·지연 측정도 아니다.
-실제 모델 입력의 소스 범위가 조건별로 다를 수 있다. 셀별 model_visible_inputs와 fixture 조건을 확인해야 한다. 조건부 적용의 자연어 타당성은 자동 채점하지 않는다.
+Actual agent-plan replay attempts: 1; shared cached executions: 0; new model calls: 0.
+Reference repairs checked before replay and evaluator regression tests are not counted as agent recovery successes. Multiple conditions for the same incident do not increase the number of independent cases.
+Checks that were not executed during a dry run or because of infrastructure errors are null. When unresolved cells remain, the full recovery rate is not established; confirmed successes over the scheduled denominator are reported only as a lower bound.
+Original and normalized responses are evaluated separately. These execution timings are not the model's original response timings or new measurements of system tokens or latency after normalization.
+The source scope visible to the model may differ across conditions. Inspect each cell's model_visible_inputs and fixture conditions. The semantic validity of natural-language application conditions is not automatically scored.
 
-## 셀별 판정
+## Per-cell outcomes
 
-| 셀 | 조건 | 사례 | 판정 | 이유 |
+| Cell | Condition | Case | Outcome | Reason |
 |---|---|---|---|---|
 | f894e1251331da2e67fe | graph_compact | expected-test-error | contract_failed | INVALID_STATE |
 | db948e9d9762db92dd16 | adaptive | expected-test-error | contract_failed | INVALID_STATE |
@@ -51,7 +51,7 @@ dry-run과 인프라 오류의 미실행 검사는 null이다. 미판정 셀이 
 | b2026dfa6ca1089a2e4f | adaptive | recovered-same-stream | contract_failed | INVALID_SOURCE_RESULT |
 | b96190f8a8db7afb6c96 | graph_compact | recovered-same-stream | contract_failed | INVALID_SOURCE_RESULT |
 
-## 제외 사례
+## Excluded cases
 
 - missing-task-data: Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair
 - renamed-file: Outside v1 controlled COPY/no-change/context scope; no verified general file-supply repair

@@ -1,5 +1,5 @@
-# API 회귀 테스트가 사용하는 이전 파일럿 입력
+# Historical pilot inputs used by API regression tests
 
-`development.v2.json`은 기존 `tests/test_gemma_api.py`가 API 오류·재시도 방지·원본 응답 보존을 가짜 HTTP 클라이언트로 검사할 때 사용하는 세 사례의 고정 입력입니다. 최신 contract-v2 실험의 프로그램이나 결과에 합산하지 않습니다. 이 입력은 테스트의 외부 다운로드 의존성을 없애기 위해 포함했습니다.
+`development.v2.json` contains three fixed cases used by `tests/test_gemma_api.py` to test API errors, retry prevention, and raw-response preservation with a fake HTTP client. They are not added to the programs or results of the latest contract-v2 experiment. These inputs are included to avoid external downloads during testing.
 
-출처, 고정 커밋, 선택 과정은 JSON의 provenance와 `source/PROVENANCE.json`에 있습니다. 포함된 Hessian.js 코드와 BugsJS 자료의 원래 MIT 라이선스를 `source/LICENSE.hessian`, `source/LICENSE.benchmark`에 보존했습니다. provenance에서 언급하는 전체 원본 ZIP은 이 축약 공개본에 포함하지 않습니다. 저장소 전체에 새 라이선스를 부여한다는 의미가 아닙니다.
+Sources, pinned commits, and selection procedures are recorded in the JSON provenance and `source/PROVENANCE.json`. The original MIT licenses for the included Hessian.js code and BugsJS material are preserved in `source/LICENSE.hessian` and `source/LICENSE.benchmark`. The full original ZIP archives mentioned in the provenance are not included in this compact release. These upstream licenses do not assign a new license to the repository as a whole.

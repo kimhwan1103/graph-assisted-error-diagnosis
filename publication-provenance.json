@@ -1898,26 +1898,26 @@
     "paper/results/contract-v2/report.md": {
       "source": "results/review-controls-v4-contract-v2-analysis-v1/report.md",
       "source_sha256": "362c0db6c30df9909cd822b70a8f4dad321dde5250521eed4dfa5e31d659e2e9",
-      "export_sha256": "d3e56513cd040ac0a123307165c953ce6ceb45b80d1c86a82273c7baa9cd81ad",
-      "transformation": "local-path-redaction-and-publication-scope-notes; observed values unchanged"
+      "export_sha256": "ffd7d0c5e4eb3c54485875fe11dd86d5b48e70916e420b8c23650eb704789f34",
+      "transformation": "local-path-redaction-and-publication-scope-notes; observed values unchanged; Korean-to-English documentation translation; observed values unchanged"
     },
     "paper/results/contract-v2/paper-results.md": {
       "source": "results/review-controls-v4-contract-v2-analysis-v1/paper-results.md",
       "source_sha256": "5ef6fc0387a75fea5ed7fd08b6193322ba3fc23161037205e860ed22a7a99f48",
-      "export_sha256": "5ef6fc0387a75fea5ed7fd08b6193322ba3fc23161037205e860ed22a7a99f48",
-      "transformation": "local-path-redaction"
+      "export_sha256": "d53bb97cb35eff76f8fbcb159c53ff677986aeddecfaafed31a1bea6eb7d22e3",
+      "transformation": "local-path-redaction; Korean-to-English documentation translation; observed values unchanged"
     },
     "paper/results/contract-v2/paper-claims-handoff.md": {
       "source": "results/review-controls-v4-contract-v2-analysis-v1/paper-claims-handoff.md",
       "source_sha256": "f19bbabfd33c6aef2ae5cdff6dac57680fc806f4f0948009a49f17d6585ccab6",
-      "export_sha256": "f19bbabfd33c6aef2ae5cdff6dac57680fc806f4f0948009a49f17d6585ccab6",
-      "transformation": "local-path-redaction"
+      "export_sha256": "ff233c5dbc59b4af7b4e4b87db001fe084a858111c7793102aee070a16240460",
+      "transformation": "local-path-redaction; Korean-to-English documentation translation; observed values unchanged"
     },
     "paper/results/contract-v2/status-amendment.md": {
       "source": "results/review-controls-v4-contract-v2-analysis-v1/status-amendment.md",
       "source_sha256": "2b20525a61394cef5414e4635fd2834f23b66eb9be84354eab248f1f75c22a1f",
-      "export_sha256": "9fb6d80069a55c9dca3a76a28fe4c5d23e801d56c0f979e8af17dc18bc86b501",
-      "transformation": "local-path-redaction-and-publication-scope-notes; observed values unchanged"
+      "export_sha256": "ff56089b746ed203af3a79ce471a75bb11f6f1a835688ee3c4e2c2843113d394",
+      "transformation": "local-path-redaction-and-publication-scope-notes; observed values unchanged; Korean-to-English documentation translation; observed values unchanged"
     },
     "paper/results/contract-v2/tables/arms.csv": {
       "source": "results/review-controls-v4-contract-v2-analysis-v1/tables/arms.csv",
@@ -1964,8 +1964,8 @@
     "paper/results/cross-program-v4/report.md": {
       "source": "results/cross-program-v4-report/report.md",
       "source_sha256": "fdcf81beca0f60ab75021bd878be55af22b82e1452e8a80dda256038044cf6a9",
-      "export_sha256": "b9a60b531570c8f9c230b05d94551c9ea5be6c8d34880ec9fd2ad25de95b04d4",
-      "transformation": "local-path-redaction-and-publication-scope-notes; observed values unchanged"
+      "export_sha256": "69577f8b31a6b8ea50202050bbb23a8a0142d22f8381605fbbb563326f206d88",
+      "transformation": "local-path-redaction-and-publication-scope-notes; observed values unchanged; Korean-to-English documentation translation; observed values unchanged"
     },
     "paper/results/cross-program-v4/program-summary.csv": {
       "source": "results/cross-program-v4-report/program-summary.csv",
@@ -1994,20 +1994,20 @@
     "paper/results/system-v4/tables.md": {
       "source": "results/research-study-v4-paper-summary-v1/tables.md",
       "source_sha256": "089ea9f5ffbdae5d8236affc59730e2a5d153adc2954224e0a20c3c5192e883e",
-      "export_sha256": "089ea9f5ffbdae5d8236affc59730e2a5d153adc2954224e0a20c3c5192e883e",
-      "transformation": "byte-identical"
+      "export_sha256": "e0b4692c0ad6d620ec9b9cd0ee152167c616a40506b2d11eb4560ee0363e00dc",
+      "transformation": "Korean-to-English documentation translation; observed values unchanged"
     },
     "paper/results/system-v4/remediation-original.md": {
       "source": "results/remediation-original-execute-v2/report.md",
       "source_sha256": "7a9b53a99ab98fa1ab0c9dca0a27cc1d2d0ef9338663958acffd94f735470359",
-      "export_sha256": "7a9b53a99ab98fa1ab0c9dca0a27cc1d2d0ef9338663958acffd94f735470359",
-      "transformation": "local-path-redaction"
+      "export_sha256": "52c0c8309a205d206a595f68497af4becacf398749931a0c3fb77972522773c5",
+      "transformation": "local-path-redaction; Korean-to-English documentation translation; observed values unchanged"
     },
     "paper/results/system-v4/remediation-normalized.md": {
       "source": "results/remediation-normalized-execute-v2/report.md",
       "source_sha256": "3e4a6fb7ee28940f6359d77581e7228c2ddce1c9997d19c8bab04a20221484d0",
-      "export_sha256": "3e4a6fb7ee28940f6359d77581e7228c2ddce1c9997d19c8bab04a20221484d0",
-      "transformation": "local-path-redaction"
+      "export_sha256": "b0fdf965e326a4b69751eb8576cb5661380b498eb84f21768fec23ab8f3ac8d2",
+      "transformation": "local-path-redaction; Korean-to-English documentation translation; observed values unchanged"
     },
     "analysis/review_controls_contract_v2_final_v1/analyze.py": {
       "source": "analysis/review_controls_contract_v2_final_v1/analyze.py",
@@ -2050,5 +2050,36 @@
     "test_study_statistics.py",
     "test_study_v2.py",
     "test_study_v3.py"
-  ]
+  ],
+  "documentation_translation": {
+    "date": "2026-10-26",
+    "language": "English",
+    "translated_documents": [
+      "docs/METHOD.md",
+      "docs/PUBLICATION.md",
+      "docs/REPRODUCIBILITY.md",
+      "paper/README.md",
+      "evaluation/public/bugsjs_hessian/README.md",
+      "paper/results/contract-v2/paper-claims-handoff.md",
+      "paper/results/contract-v2/paper-results.md",
+      "paper/results/contract-v2/report.md",
+      "paper/results/contract-v2/status-amendment.md",
+      "paper/results/cross-program-v4/report.md",
+      "paper/results/system-v4/remediation-normalized.md",
+      "paper/results/system-v4/remediation-original.md",
+      "paper/results/system-v4/tables.md"
+    ],
+    "root_readme_links_updated": true,
+    "new_prompt_reading_guides": [
+      "docs/prompts/README.md",
+      "docs/prompts/diagnosis-prompt.en.md",
+      "docs/prompts/interactive-prompt.en.md"
+    ],
+    "preserved_runtime_prompts": [
+      "src/ai_error_check_agent/agent/diagnosis_prompt.md",
+      "src/ai_error_check_agent/agent/interactive_prompt.md"
+    ],
+    "numeric_table_checks_passed": true,
+    "runtime_code_data_and_paper_unchanged": true
+  }
 }

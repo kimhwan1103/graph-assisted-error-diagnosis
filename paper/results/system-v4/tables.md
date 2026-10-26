@@ -1,31 +1,31 @@
-# 논문 표의 계산 결과
+# Computed tables for the paper
 
 ## final_checks
 
-| 지표 | 원본 | 정규화 후 |
+| Metric | Original | Normalized |
 | --- | --- | --- |
-| 최종 응답 검증 통과 | 26/110 (23.6%) | 75/110 (68.2%) |
-| 상태 라벨 일치 / 전체 셀 | 26/110 (23.6%) | 75/110 (68.2%) |
-| 상태 라벨 일치 / 유효 응답 | 26/26 (100.0%) | 75/75 (100.0%) |
-| 코드 위치 적중 / 전체 대상 셀 | 26/80 (32.5%) | 50/80 (62.5%) |
-| 코드 위치 적중 / 대상 유효 응답 | 26/26 (100.0%) | 50/60 (83.3%) |
-| EV 식별자 존재 / 유효 응답의 인용 | 64/64 (100.0%) | 237/237 (100.0%) |
-| SC 근거 연결 일치 / 유효 응답의 인용 | 86/86 (100.0%) | 139/139 (100.0%) |
+| Final-response validation passed | 26/110 (23.6%) | 75/110 (68.2%) |
+| Status-label agreement / all cells | 26/110 (23.6%) | 75/110 (68.2%) |
+| Status-label agreement / valid responses | 26/26 (100.0%) | 75/75 (100.0%) |
+| Code-location hit / all eligible cells | 26/80 (32.5%) | 50/80 (62.5%) |
+| Code-location hit / eligible valid responses | 26/26 (100.0%) | 50/60 (83.3%) |
+| EV identifier exists / citations in valid responses | 64/64 (100.0%) | 237/237 (100.0%) |
+| SC evidence-binding agreement / citations in valid responses | 86/86 (100.0%) | 139/139 (100.0%) |
 
 ## graph_scores
 
-| 집계 범위 | 차원 | TP | FP | FN | P | R | F1 |
+| Aggregation scope | Dimension | TP | FP | FN | P | R | F1 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 전체 11셀 | 사실 | 100 | 0 | 33 | 1.000 | 0.752 | 0.858 |
-| 전체 11셀 | 관계 | 76 | 0 | 18 | 1.000 | 0.809 | 0.894 |
-| 전체 11셀 | 후보 | 19 | 0 | 4 | 1.000 | 0.826 | 0.905 |
-| 소스 단계 방문 9셀 | 사실 | 100 | 0 | 11 | 1.000 | 0.901 | 0.948 |
-| 소스 단계 방문 9셀 | 관계 | 76 | 0 | 4 | 1.000 | 0.950 | 0.974 |
-| 소스 단계 방문 9셀 | 후보 | 19 | 0 | 0 | 1.000 | 1.000 | 1.000 |
+| All 11 cells | Facts | 100 | 0 | 33 | 1.000 | 0.752 | 0.858 |
+| All 11 cells | Relations | 76 | 0 | 18 | 1.000 | 0.809 | 0.894 |
+| All 11 cells | Candidates | 19 | 0 | 4 | 1.000 | 0.826 | 0.905 |
+| 9 cells reaching the source stage | Facts | 100 | 0 | 11 | 1.000 | 0.901 | 0.948 |
+| 9 cells reaching the source stage | Relations | 76 | 0 | 4 | 1.000 | 0.950 | 0.974 |
+| 9 cells reaching the source stage | Candidates | 19 | 0 | 0 | 1.000 | 1.000 | 1.000 |
 
 ## arms
 
-| 조건 | 원본 유효 | 정규화 후 유효 | 평균 입력 토큰 | 평균 출력 토큰 | 평균 처리 시간 초 |
+| Condition | Original valid | Normalized valid | Mean input tokens | Mean output tokens | Mean processing time (s) |
 | --- | --- | --- | --- | --- | --- |
 | adaptive | 1/11 (9.1%) | 9/11 (81.8%) | 7056.9 | 1224.8 | 35.96 |
 | graph_compact | 6/11 (54.5%) | 8/11 (72.7%) | 5285.7 | 766.1 | 22.97 |
@@ -40,7 +40,7 @@
 
 ## audit
 
-| 조건 | 손상 입력 후보 생성 | SHACL 거절 / 손상 입력 | 비손상 입력 후보 생성 | SHACL 거절 / 검사한 비손상 입력 |
+| Condition | Candidates from corrupted inputs | SHACL rejection / corrupted inputs | Candidates from uncorrupted inputs | SHACL rejection / checked uncorrupted inputs |
 | --- | --- | --- | --- | --- |
 | graph_compact | 0/4 (0.0%) | 2/4 (50.0%) | 8/11 (72.7%) | 0/8 (0.0%) |
 | no_rules | 0/4 (0.0%) | 2/4 (50.0%) | 0/11 (0.0%) | 0/8 (0.0%) |
@@ -49,7 +49,7 @@
 
 ## sensitivity
 
-| 분석 | 전체 셀 | 원본 검증 통과 | 정규화 후 검증 통과 | 정규화 후 코드 위치 적중 | graph_compact 후보 F1 |
+| Analysis | Total cells | Original validation passed | Normalized validation passed | Normalized code-location hit | graph_compact candidate F1 |
 | --- | --- | --- | --- | --- | --- |
-| 전체 사례 | 110 | 26/110 (23.6%) | 75/110 (68.2%) | 50/80 (62.5%) | 0.905 |
-| direct-literal 제외 | 100 | 22/100 (22.0%) | 66/100 (66.0%) | 41/70 (58.6%) | 0.895 |
+| All cases | 110 | 26/110 (23.6%) | 75/110 (68.2%) | 50/80 (62.5%) | 0.905 |
+| Excluding direct-literal | 100 | 22/100 (22.0%) | 66/100 (66.0%) | 41/70 (58.6%) | 0.895 |
